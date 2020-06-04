@@ -81,3 +81,15 @@
 .my-picture {
     border-radius: 50%;
 }
+
+@media screen and (max-width: 768px) {
+    .desc-body>p {
+        width: 15em;
+    }
+
+    .demo>img {
+        width: 17em;
+        height: auto;
+        margin: 15px auto;
+    }
+}
