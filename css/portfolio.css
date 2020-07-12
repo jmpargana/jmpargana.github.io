@@ -33,7 +33,18 @@
 .desc-links {
     display: flex;
     justify-content: space-evenly;
+    margin-top: 30px;
     margin-bottom: 30px;
+}
+
+.desc-links > a {
+    color: #000;
+    font-size: 20px;
+}
+
+.desc-links > a#hover {
+    color: orange;
+    font-size: 20px;
 }
 
 .tech {

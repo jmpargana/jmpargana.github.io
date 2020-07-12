@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="jmpargana official website">
 <meta name="author" content="jmpargana">
-<meta name="generator" content="Hugo 0.72.0" />
+<meta name="generator" content="Hugo 0.73.0" />
 <title>jmpargana</title>
 <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -101,18 +101,16 @@
       <div class="skill-title"><h3>Full Stack Web Development</h3></div>
       <div class="skill-body">
         <div class="demo">
-          <img src="https://s3.eu-central-1.amazonaws.com/jmpargana.github.io/kizkalesi.gif" alt="" height=500 />
+          <img src="https://s3.eu-central-1.amazonaws.com/jmpargana.github.io/asa.gif" alt="" height=500 />
         </div>
         <div class="desc">
           <div class="desc-body">
-            <p>
-              Smart Speaker Studying Assistant is a project where users can upload textbook and
-              multiple choice questions on any given topic and use a smart speaker like Alexa to ask
-              them and keep track of their scores
-            </p>
+            <p>Alexa Studying Assistant is a web application with two parts. Its a full stack
+              application where users can upload their textbooks and questions and interact with the
+            corresponding alexa skill to practice any topic.</p>
             <div class="desc-links">
-              <a href="//github.com/jmpargana/Bachelorarbeit">GitHub</a>
-              <a href="">Demo</a>
+              <a href="//github.com/jmpargana/AlexaStudyingAssistant">GitHub</a>
+              <a href="https://alexastudyingassistant.herokuapp.com">Demo</a>
             </div>
           </div>
           <div class="tech">
@@ -141,42 +139,41 @@
                 <img class="svg" src="../logos/auth0.svg" alt="">
                 <p>Auth0</p>
               </div>
+              <div class="list-item">
+                <img class="svg" src="../logos/aws.svg" alt="">
+                <p>AWS</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="skill-title odd"><h3>Machine Learning & NLP</h3></div>
+      <div class="skill-title odd"><h3>Machine Learning</h3></div>
       <div class="skill-body odd container">
         <div class="desc">
           <div class="desc-body">
-            <p>
-              Content analysis is a broad topic needed in different comercial areas where NLP bots
-              are used. I've done a project to train a model to recognize user's emotional content
-              according to the words used in their questions in stackoverflow.
-            </p>
+            <p>fcnn is a scalable fully connected neural network completely written from scratch
+              using the Go Standard Library and an third party library to display the progress bar.
+            fcnn takes advantage of Go's concurrency patterns to parallelize matrix multiplication
+            and all operations a neural network can perform non sequentially. fcnn was also
+            developed following some TDD principles. The GIF shows the binary training a
+            config file with the MNIST dataset, but any other model can be trained as well, by
+            defining a different dataset reader that satisfies the Reader interface.</p>
             <div class="desc-links">
-              <a href="">GitHub</a>
+              <a href="https://github.com/jmpargana/fcnn">GitHub</a>
             </div>
           </div>
           <div class="tech">
             <div class="list">
               <div class="list-item">
-                <img class="svg" src="../logos/python.svg" alt="">
-                <p>Python</p>
-              </div>
-              <div class="list-item">
-                <img class="svg" src="../logos/docker.svg" alt="">
-                <p>Docker</p>
-              </div>
-              <div class="list-item">
-                <img id="tensor" src="../logos/tensor.svg" alt="">
-                <p>Tensorflow</p>
+                <img class="svg" src="../logos/golang.svg" alt="">
+                <p>Go</p>
               </div>
             </div>
           </div>
         </div>
         <div class="demo">
-          <img src="https://via.placeholder.com/500" alt="" />
+          <img src="https://s3.eu-central-1.amazonaws.com/jmpargana.github.io/fcnn.gif"
+          height=500 alt="" />
         </div>
       </div>
       <div class="skill-title"><h3>Native Mobile Development</h3></div>
@@ -186,9 +183,9 @@
         </div>
         <div class="desc">
           <div class="desc-body">
-            <p>WhatsAppWithThemes is a clone of the messaging app programmed in the flutter
-            ui-development-kit with the dart programming language. I chose flutter/dart since its a
-            great tool to create cross-platform apps for both ios, android and soon the web.</p>
+            <p>WhatsAppWithThemes is a clone of the famous mobile app but fully implemented using
+              the flutter framework for Cross-Platform deployment. In addition to the main design it
+            also implements themes as a new feature.</p>
             <div class="desc-links">
               <a href="//github.com/jmpargana/WhatsAppWithThemes">GitHub</a>
             </div>
@@ -215,11 +212,9 @@
       <div class="skill-body odd container">
         <div class="desc">
           <div class="desc-body">
-            <p>StackOverflowDataset is a bot I've written to fetch concurrently all questions from
-            stackoverflow and save them in a mongodb. All this works inside a docker container that
-            can deployed anywhere while the downloads occur, since this make take some hours.
-            The fetched data was used to model a machine learning project.
-            </p>
+            <p>StackOverflowDataset is a web scrapper which takes advantage of docker container to
+              be easily deployed anywhere and fetch all stackoverflow questions to be used later in
+            a NLP project.</p>
             <div class="desc-links">
               <a href="//github.com/jmpargana/StackOverflowDataset">GitHub</a>
             </div>
@@ -256,11 +251,9 @@
         </div>
         <div class="desc">
           <div class="desc-body">
-            <p>I've always been interested in many different programming languages, so I decided to
-            learn about compiler architecture and found a very nice book which helped me create a
-            dialect from lisp written in C. It made be become more familiar with a fundamental
-            language which represents one of the pilars of programming, Lisp, which I've
-            always found fascinating as well as the way memory is stored inside an environment.</p>
+            <p>BuildYourOwnLisp is a continuation of a project introduced by a great book that
+              teaches the basics of compiler architecture with a hands on approach, where readers
+              create a dialect of the lisp programming language family.</p>
             <div class="desc-links">
               <a href="//github.com/jmpargana/BuildYourOwnLisp">GitHub</a>
             </div>
@@ -268,7 +261,7 @@
           <div class="tech">
             <div class="list">
               <div class="list-item">
-                <i class="devicon-c-plain colored"></i>
+                <img class="svg" src="../logos/c-original.svg" alt="">
                 <p>C</p>
               </div>
               <div class="list-item">
