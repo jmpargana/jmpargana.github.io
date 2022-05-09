@@ -1,0 +1,195 @@
+/*
+  Typography
+*/
+:root {
+  --font-heading: "Noto Sans", sans-serif;
+  --font-body: "Merriweather", serif;
+
+  --text-line-height-ratio: 1.5;
+
+  --text-base-size: 1rem;
+  --text-scale-ratio: 1.3;
+
+  --text-xs: calc(
+    var(--text-base-size) / (var(--text-scale-ratio) * var(--text-scale-ratio))
+  );
+  --text-sm: calc(var(--text-base-size));
+  --text-md: calc(var(--text-base-size) * var(--text-scale-ratio));
+  --text-lg: calc(
+    var(--text-base-size) * var(--text-scale-ratio) * var(--text-scale-ratio)
+  );
+  --text-xl: calc(
+    var(--text-base-size) * var(--text-scale-ratio) * var(--text-scale-ratio) *
+      var(--text-scale-ratio)
+  );
+  --text-xxl: calc(
+    var(--text-base-size) * var(--text-scale-ratio) * var(--text-scale-ratio) *
+      var(--text-scale-ratio) * var(--text-scale-ratio)
+  );
+  --text-xxxl: calc(
+    var(--text-base-size) * var(--text-scale-ratio) * var(--text-scale-ratio) *
+      var(--text-scale-ratio) * var(--text-scale-ratio) *
+      var(--text-scale-ratio) * var(--text-scale-ratio)
+  );
+}
+
+@media (min-width: 600px) {
+  :root {
+    /* --text-scale-ratio: 1.5; */
+    /* --text-base-size: 2rem; */
+  }
+}
+
+@media (min-width: 900px) {
+  :root {
+    --text-base-size: 1.2rem;
+    --text-scale-ratio: 1.5;
+    /* --text-base-size: 3rem; */
+  }
+}
+
+@media (min-width: 1536px) {
+  :root {
+    /* --text-scale-ratio: 3; */
+    /* --text-base-size: 3.5rem; */
+  }
+}
+
+/*
+  Colors
+*/
+:root {
+  --color-primary: #E91E63;
+  --color-secondary: #ba000d;
+  --color-tertiary: #ffcdd2;
+
+  --color-text-primary: #212121;
+  --color-hover-secondary: #757575;
+  --color-bg-secondary: #bdbdbd;
+  --color-bg-primary: #ffffff;
+}
+
+/*
+  Spacing
+*/
+:root {
+  --baseline: 1rem;
+
+  --space-xxs: calc(var(--baseline) * 0.25);
+  --space-xs: calc(var(--baseline) * 0.5);
+  --space-sm: calc(var(--baseline) * 0.75);
+  --space-md: calc(var(--baseline) * 1.25);
+  --space-lg: calc(var(--baseline) * 2);
+  --space-xl: calc(var(--baseline) * 3.25);
+  --space-xxl: calc(var(--baseline) * 5.25);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  /* background-color: var(--color-bg-primary); */
+  font: inherit;
+}
+
+svg {
+  background-color: transparent;
+}
+
+html,
+body {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+body {
+  --font-size: var(--text-md);
+  font-size: var(--font-size);
+  line-height: 1.5;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  overflow-wrap: break-word;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+input,
+textarea,
+select {
+  outline: none;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: normal;
+  overflow-x: hidden;
+}
+
+a {
+  color: var(--color-secondary);
+  text-decoration: none;
+  font-family: var(--font-heading);
+  display: inline-block;
+}
+
+h1 {
+  --font-size: var(--text-xxxl);
+  --text-line-height-ratio: 1.2;
+  line-height: calc(var(--text-line-height-ratio) * var(--font-size));
+}
+
+h2 {
+  --font-size: var(--text-xxl);
+}
+
+h3 {
+  --font-size: var(--text-xl);
+}
+h4 {
+  --font-size: var(--text-lg);
+}
+
+h5 {
+  --font-size: var(--text-md);
+}
+h6 {
+  --font-size: var(--text-sm);
+}
+
+body {
+  --font-size: var(--text-sm);
+}

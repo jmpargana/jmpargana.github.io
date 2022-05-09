@@ -1,0 +1,19 @@
+<svg
+  id="visual"
+  viewBox="0 0 960 540"
+  width="960"
+  height="540"
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  version="1.1"
+  style="opacity: 0.5"
+>
+  <rect x="0" y="0" width="960" height="540" fill="#003c5a"></rect>
+  <path
+    d="M0 338L40 343C80 348 160 358 240 354.5C320 351 400 334 480 337.5C560 341 640 365 720 363.8C800 362.7 880 336.3 920 323.2L960 310L960 541L920 541C880 541 800 541 720 541C640 541 560 541 480 541C400 541 320 541 240 541C160 541 80 541 40 541L0 541Z"
+    fill="#fff"
+    fill-opacity="1"
+    stroke-linecap="round"
+    stroke-linejoin="miter"
+  ></path>
+</svg>
