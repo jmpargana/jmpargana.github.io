@@ -26,8 +26,8 @@ data "aws_iam_policy_document" "github_assume_role" {
     condition {
       test     = "StringLike"
       variable = "token.actions.githubusercontent.com:sub"
-      # Restrict to main branch only. Change repo name & branch as needed
-      values = ["repo:jmpargana/jmpargana:ref:refs/heads/main"]
+      # Restrict to main branch. Update repo name if running from different repo
+      values = ["repo:jmpargana/jmpargana.github.io:ref:refs/heads/main"]
     }
   }
 }
