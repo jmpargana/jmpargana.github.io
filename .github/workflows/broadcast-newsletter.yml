@@ -1,0 +1,47 @@
+name: Broadcast Newsletter on New Post
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'content/posts/**'
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  broadcast:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Check if post was added/modified
+        id: check_posts
+        run: |
+          # Get changed files in content/posts/
+          changed=$(git diff --name-only HEAD~1 HEAD -- content/posts/ | grep -c '^content/posts/' || echo 0)
+          if [ "$changed" -gt 0 ]; then
+            echo "posts_changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "posts_changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Configure AWS credentials via OIDC
+        if: steps.check_posts.outputs.posts_changed == 'true'
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_GITHUB_BROADCAST_ROLE_ARN }}
+          aws-region: eu-west-1
+
+      - name: Invoke broadcast lambda
+        if: steps.check_posts.outputs.posts_changed == 'true'
+        run: |
+          aws lambda invoke \
+            --function-name jmpargana-newsletter-broadcast \
+            --payload '{}' \
+            response.json
+          cat response.json
