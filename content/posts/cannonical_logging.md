@@ -26,7 +26,7 @@ package main
 
 import (
     _ "github.com/ucarion/log/loggers/zap"
-	"go.uber.org/zap"
+    "go.uber.org/zap"
 )
 
 func init() {
@@ -34,40 +34,40 @@ func init() {
 }
 
 func main() {
-	mux := http.NewServeMux()
-	mux.HandleFunc("GET /endpoint", handler)
+    mux := http.NewServeMux()
+    mux.HandleFunc("GET /endpoint", handler)
     loggedAppHandler := logger(mux)
     
     // ...
 }
 
 func logger(next http.Handler) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		ctx := log.NewContext(r.Context())
-		log.Set(ctx, "start_time", time.Now())
-		
-		correlationID := r.Header.Get("X-Correlation-Id")
-		log.Set(ctx, "correlationId", correlationID)
+    return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+        ctx := log.NewContext(r.Context())
+        log.Set(ctx, "start_time", time.Now())
+        
+        correlationID := r.Header.Get("X-Correlation-Id")
+        log.Set(ctx, "correlationId", correlationID)
 
-		r = r.WithContext(ctx)
-		next.ServeHTTP(w, r)
+        r = r.WithContext(ctx)
+        next.ServeHTTP(w, r)
 
-		log.Set(ctx, "end_time", time.Now())
-		if r.Method == http.MethodOptions {
-			return
-		}
-		log.Log(ctx, "request")
-	})
+        log.Set(ctx, "end_time", time.Now())
+        if r.Method == http.MethodOptions {
+            return
+        }
+        log.Log(ctx, "request")
+    })
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	ctx := r.Context()
-	log.Set(ctx, "handler", "handler")
+    ctx := r.Context()
+    log.Set(ctx, "handler", "handler")
     
     // ...
 
-	log.Set(ctx, "status_code", 200)
-	w.WriteHeader(200)
+    log.Set(ctx, "status_code", 200)
+    w.WriteHeader(200)
 }
 ```
 

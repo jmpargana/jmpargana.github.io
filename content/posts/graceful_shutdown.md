@@ -35,8 +35,8 @@ On Linux systems, two signal types exist:
 Your application typically subscribes to signals, wires them with shared, concurrency-friendly global data (usually `context.Context`), and defines cleanup routines.
 
 ```go
-	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
-	defer stop()
+    ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
+    defer stop()
     
     go func(){
         // ... your logic
@@ -60,9 +60,9 @@ With `http.Server`, you must call `server.Shutdown()` manually after receiving t
 
 ```go
     server := &http.Server{
-		Addr:    port,
-		Handler: mux,
-	}
+        Addr:    port,
+        Handler: mux,
+    }
     go func() {
         if err := server.ListenAndServe(); err != nil {
             // ... handle error
@@ -88,7 +88,7 @@ Here's an example of such a library:
     func Start(ctx context.Context) {
         select {
             // ...
-            case <-ctx.Done()
+            case <-ctx.Done():
                 // or other Shutdown methods
                 close(jobs)
                 return
@@ -107,8 +107,8 @@ Here's a better, more idiomatic Go design:
 ```go
 func (wp *WorkerPool) Start(ctx context.Context) {
     for i := 0; i < p.workers; i++ {
-		p.wg.Add(1)
-		go func(ctx context.Context) {
+        p.wg.Add(1)
+        go func(ctx context.Context) {
             defer p.wg.Done()
 
             for {
@@ -118,7 +118,7 @@ func (wp *WorkerPool) Start(ctx context.Context) {
                 }    
             }
         }(ctx)
-	}
+    }
 }
 
 // Called after you know you want to stop to handle timeouts
