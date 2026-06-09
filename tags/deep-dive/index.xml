@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Deep-Dive on jmpargana</title>
-    <link>https://jmpargana.com/tags/deep-dive/</link>
-    <description>Recent content in Deep-Dive on jmpargana</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sat, 11 Apr 2026 21:13:34 +0100</lastBuildDate>
-    <atom:link href="https://jmpargana.com/tags/deep-dive/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>CKAD - 2 - Kubernetes API Resources</title>
-      <link>https://jmpargana.com/posts/ckad2/</link>
-      <pubDate>Sat, 11 Apr 2026 21:13:34 +0100</pubDate>
-      <guid>https://jmpargana.com/posts/ckad2/</guid>
-      <description>&lt;p&gt;While Kubernetes is far more than just a server, thinking about it as a REST API server is incredibly helpful for understanding how to interact with cluster resources.&lt;/p&gt;&#xA;&lt;p&gt;In this post I&amp;rsquo;ll explore how we can interact with Kubernetes as a server and how to discover its API.&lt;/p&gt;&#xA;&lt;h2 id=&#34;proxy&#34;&gt;Proxy&lt;/h2&gt;&#xA;&lt;p&gt;To make it easier for you to see how Kubernetes is a server, run:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt; kubectl proxy&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now we can call the API to navigate through its endpoints. Calling the root you can see all available paths:&lt;/p&gt;</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Deep-Dive on jmpargana</title>
+		<link>https://jmpargana.com/tags/deep-dive/</link>
+		<description>Recent content in Deep-Dive on jmpargana</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Sat, 11 Apr 2026 21:13:34 +0100</lastBuildDate>
+		
+			<atom:link href="https://jmpargana.com/tags/deep-dive/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>CKAD - 2 - Kubernetes API Resources</title>
+				<link>https://jmpargana.com/posts/ckad2/</link>
+				<pubDate>Sat, 11 Apr 2026 21:13:34 +0100</pubDate>
+				<guid>https://jmpargana.com/posts/ckad2/</guid>
+				<description>&lt;p&gt;While Kubernetes is far more than just a server, thinking of it as a REST API server is incredibly helpful for understanding how to interact with cluster resources.&lt;/p&gt;&#xA;&lt;p&gt;In this post, I&amp;rsquo;ll explore how we can interact with Kubernetes as a server and how to discover its API.&lt;/p&gt;&#xA;&lt;h2 id=&#34;proxy&#34;&gt;Proxy&lt;/h2&gt;&#xA;&lt;p&gt;To make it easier for you to see how Kubernetes functions as a server, run:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt; kubectl proxy&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now we can call the API to navigate through its endpoints. Calling the root endpoint shows all available paths:&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

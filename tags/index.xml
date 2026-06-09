@@ -1,383 +1,388 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Tags on jmpargana</title>
-    <link>https://jmpargana.com/tags/</link>
-    <description>Recent content in Tags on jmpargana</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sun, 12 Apr 2026 22:03:54 +0100</lastBuildDate>
-    <atom:link href="https://jmpargana.com/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Arch</title>
-      <link>https://jmpargana.com/tags/arch/</link>
-      <pubDate>Sun, 12 Apr 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/arch/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Aws</title>
-      <link>https://jmpargana.com/tags/aws/</link>
-      <pubDate>Sun, 12 Apr 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/aws/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Hugo</title>
-      <link>https://jmpargana.com/tags/hugo/</link>
-      <pubDate>Sun, 12 Apr 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/hugo/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Javascript</title>
-      <link>https://jmpargana.com/tags/javascript/</link>
-      <pubDate>Sun, 12 Apr 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/javascript/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Lambda</title>
-      <link>https://jmpargana.com/tags/lambda/</link>
-      <pubDate>Sun, 12 Apr 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/lambda/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Python</title>
-      <link>https://jmpargana.com/tags/python/</link>
-      <pubDate>Sun, 12 Apr 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/python/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Stitch</title>
-      <link>https://jmpargana.com/tags/stitch/</link>
-      <pubDate>Sun, 12 Apr 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/stitch/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Terraform</title>
-      <link>https://jmpargana.com/tags/terraform/</link>
-      <pubDate>Sun, 12 Apr 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/terraform/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Vanilla</title>
-      <link>https://jmpargana.com/tags/vanilla/</link>
-      <pubDate>Sun, 12 Apr 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/vanilla/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Certification</title>
-      <link>https://jmpargana.com/tags/certification/</link>
-      <pubDate>Sat, 11 Apr 2026 21:13:34 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/certification/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Deep-Dive</title>
-      <link>https://jmpargana.com/tags/deep-dive/</link>
-      <pubDate>Sat, 11 Apr 2026 21:13:34 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/deep-dive/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Kubernetes</title>
-      <link>https://jmpargana.com/tags/kubernetes/</link>
-      <pubDate>Sat, 11 Apr 2026 21:13:34 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/kubernetes/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Architecture</title>
-      <link>https://jmpargana.com/tags/architecture/</link>
-      <pubDate>Sun, 05 Apr 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/architecture/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Backend</title>
-      <link>https://jmpargana.com/tags/backend/</link>
-      <pubDate>Sun, 05 Apr 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/backend/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Go</title>
-      <link>https://jmpargana.com/tags/go/</link>
-      <pubDate>Sun, 05 Apr 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/go/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Multipart</title>
-      <link>https://jmpargana.com/tags/multipart/</link>
-      <pubDate>Sun, 05 Apr 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/multipart/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>S3</title>
-      <link>https://jmpargana.com/tags/s3/</link>
-      <pubDate>Sun, 05 Apr 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/s3/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Seaweedfs</title>
-      <link>https://jmpargana.com/tags/seaweedfs/</link>
-      <pubDate>Sun, 05 Apr 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/seaweedfs/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Signing</title>
-      <link>https://jmpargana.com/tags/signing/</link>
-      <pubDate>Sun, 05 Apr 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/signing/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Video Streaming</title>
-      <link>https://jmpargana.com/tags/video-streaming/</link>
-      <pubDate>Sun, 05 Apr 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/video-streaming/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Context</title>
-      <link>https://jmpargana.com/tags/context/</link>
-      <pubDate>Fri, 20 Mar 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/context/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Costs</title>
-      <link>https://jmpargana.com/tags/costs/</link>
-      <pubDate>Fri, 20 Mar 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/costs/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Logging</title>
-      <link>https://jmpargana.com/tags/logging/</link>
-      <pubDate>Fri, 20 Mar 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/logging/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Monitoring</title>
-      <link>https://jmpargana.com/tags/monitoring/</link>
-      <pubDate>Fri, 20 Mar 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/monitoring/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Observability</title>
-      <link>https://jmpargana.com/tags/observability/</link>
-      <pubDate>Fri, 20 Mar 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/observability/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>On-Call</title>
-      <link>https://jmpargana.com/tags/on-call/</link>
-      <pubDate>Fri, 20 Mar 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/on-call/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Operations</title>
-      <link>https://jmpargana.com/tags/operations/</link>
-      <pubDate>Fri, 20 Mar 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/operations/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>GHA</title>
-      <link>https://jmpargana.com/tags/gha/</link>
-      <pubDate>Thu, 19 Mar 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/gha/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>GitHub Actions</title>
-      <link>https://jmpargana.com/tags/github-actions/</link>
-      <pubDate>Thu, 19 Mar 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/github-actions/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Open Source</title>
-      <link>https://jmpargana.com/tags/open-source/</link>
-      <pubDate>Thu, 19 Mar 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/open-source/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>OSS</title>
-      <link>https://jmpargana.com/tags/oss/</link>
-      <pubDate>Thu, 19 Mar 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/oss/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>TypeScript</title>
-      <link>https://jmpargana.com/tags/typescript/</link>
-      <pubDate>Thu, 19 Mar 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/typescript/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Authentication</title>
-      <link>https://jmpargana.com/tags/authentication/</link>
-      <pubDate>Thu, 05 Mar 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/authentication/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Authorisation</title>
-      <link>https://jmpargana.com/tags/authorisation/</link>
-      <pubDate>Thu, 05 Mar 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/authorisation/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Ca</title>
-      <link>https://jmpargana.com/tags/ca/</link>
-      <pubDate>Thu, 05 Mar 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/ca/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Cert-Manager</title>
-      <link>https://jmpargana.com/tags/cert-manager/</link>
-      <pubDate>Thu, 05 Mar 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/cert-manager/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Cloud</title>
-      <link>https://jmpargana.com/tags/cloud/</link>
-      <pubDate>Thu, 05 Mar 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/cloud/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Concurrency</title>
-      <link>https://jmpargana.com/tags/concurrency/</link>
-      <pubDate>Thu, 05 Mar 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/concurrency/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Error Handling</title>
-      <link>https://jmpargana.com/tags/error-handling/</link>
-      <pubDate>Thu, 05 Mar 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/error-handling/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Fault Tolerance</title>
-      <link>https://jmpargana.com/tags/fault-tolerance/</link>
-      <pubDate>Thu, 05 Mar 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/fault-tolerance/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Gateway Api</title>
-      <link>https://jmpargana.com/tags/gateway-api/</link>
-      <pubDate>Thu, 05 Mar 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/gateway-api/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Lb</title>
-      <link>https://jmpargana.com/tags/lb/</link>
-      <pubDate>Thu, 05 Mar 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/lb/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Load Balancer</title>
-      <link>https://jmpargana.com/tags/load-balancer/</link>
-      <pubDate>Thu, 05 Mar 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/load-balancer/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Oauth2</title>
-      <link>https://jmpargana.com/tags/oauth2/</link>
-      <pubDate>Thu, 05 Mar 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/oauth2/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Oidc</title>
-      <link>https://jmpargana.com/tags/oidc/</link>
-      <pubDate>Thu, 05 Mar 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/oidc/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Pki</title>
-      <link>https://jmpargana.com/tags/pki/</link>
-      <pubDate>Thu, 05 Mar 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/pki/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Tls</title>
-      <link>https://jmpargana.com/tags/tls/</link>
-      <pubDate>Thu, 05 Mar 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/tls/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Containerd</title>
-      <link>https://jmpargana.com/tags/containerd/</link>
-      <pubDate>Fri, 30 Aug 2024 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/containerd/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Personal</title>
-      <link>https://jmpargana.com/tags/personal/</link>
-      <pubDate>Tue, 27 Aug 2024 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/personal/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Css</title>
-      <link>https://jmpargana.com/tags/css/</link>
-      <pubDate>Mon, 26 Aug 2024 17:11:59 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/css/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Frontend</title>
-      <link>https://jmpargana.com/tags/frontend/</link>
-      <pubDate>Mon, 26 Aug 2024 17:11:59 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/frontend/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Html</title>
-      <link>https://jmpargana.com/tags/html/</link>
-      <pubDate>Mon, 26 Aug 2024 17:11:59 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/html/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Svg</title>
-      <link>https://jmpargana.com/tags/svg/</link>
-      <pubDate>Mon, 26 Aug 2024 17:11:59 +0100</pubDate>
-      <guid>https://jmpargana.com/tags/svg/</guid>
-      <description></description>
-    </item>
-  </channel>
+	<channel>
+		<title>Tags on jmpargana</title>
+		<link>https://jmpargana.com/tags/</link>
+		<description>Recent content in Tags on jmpargana</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Sun, 12 Apr 2026 22:03:54 +0100</lastBuildDate>
+		
+			<atom:link href="https://jmpargana.com/tags/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Arch</title>
+				<link>https://jmpargana.com/tags/arch/</link>
+				<pubDate>Sun, 12 Apr 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/arch/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Aws</title>
+				<link>https://jmpargana.com/tags/aws/</link>
+				<pubDate>Sun, 12 Apr 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/aws/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Hugo</title>
+				<link>https://jmpargana.com/tags/hugo/</link>
+				<pubDate>Sun, 12 Apr 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/hugo/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Javascript</title>
+				<link>https://jmpargana.com/tags/javascript/</link>
+				<pubDate>Sun, 12 Apr 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/javascript/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Lambda</title>
+				<link>https://jmpargana.com/tags/lambda/</link>
+				<pubDate>Sun, 12 Apr 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/lambda/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Python</title>
+				<link>https://jmpargana.com/tags/python/</link>
+				<pubDate>Sun, 12 Apr 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/python/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Stitch</title>
+				<link>https://jmpargana.com/tags/stitch/</link>
+				<pubDate>Sun, 12 Apr 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/stitch/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Terraform</title>
+				<link>https://jmpargana.com/tags/terraform/</link>
+				<pubDate>Sun, 12 Apr 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/terraform/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Vanilla</title>
+				<link>https://jmpargana.com/tags/vanilla/</link>
+				<pubDate>Sun, 12 Apr 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/vanilla/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Certification</title>
+				<link>https://jmpargana.com/tags/certification/</link>
+				<pubDate>Sat, 11 Apr 2026 21:13:34 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/certification/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Deep-Dive</title>
+				<link>https://jmpargana.com/tags/deep-dive/</link>
+				<pubDate>Sat, 11 Apr 2026 21:13:34 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/deep-dive/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Kubernetes</title>
+				<link>https://jmpargana.com/tags/kubernetes/</link>
+				<pubDate>Sat, 11 Apr 2026 21:13:34 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/kubernetes/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Architecture</title>
+				<link>https://jmpargana.com/tags/architecture/</link>
+				<pubDate>Sun, 05 Apr 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/architecture/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Backend</title>
+				<link>https://jmpargana.com/tags/backend/</link>
+				<pubDate>Sun, 05 Apr 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/backend/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Go</title>
+				<link>https://jmpargana.com/tags/go/</link>
+				<pubDate>Sun, 05 Apr 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/go/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Multipart</title>
+				<link>https://jmpargana.com/tags/multipart/</link>
+				<pubDate>Sun, 05 Apr 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/multipart/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>S3</title>
+				<link>https://jmpargana.com/tags/s3/</link>
+				<pubDate>Sun, 05 Apr 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/s3/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Seaweedfs</title>
+				<link>https://jmpargana.com/tags/seaweedfs/</link>
+				<pubDate>Sun, 05 Apr 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/seaweedfs/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Signing</title>
+				<link>https://jmpargana.com/tags/signing/</link>
+				<pubDate>Sun, 05 Apr 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/signing/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Video Streaming</title>
+				<link>https://jmpargana.com/tags/video-streaming/</link>
+				<pubDate>Sun, 05 Apr 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/video-streaming/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Context</title>
+				<link>https://jmpargana.com/tags/context/</link>
+				<pubDate>Fri, 20 Mar 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/context/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Costs</title>
+				<link>https://jmpargana.com/tags/costs/</link>
+				<pubDate>Fri, 20 Mar 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/costs/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Logging</title>
+				<link>https://jmpargana.com/tags/logging/</link>
+				<pubDate>Fri, 20 Mar 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/logging/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Monitoring</title>
+				<link>https://jmpargana.com/tags/monitoring/</link>
+				<pubDate>Fri, 20 Mar 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/monitoring/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Observability</title>
+				<link>https://jmpargana.com/tags/observability/</link>
+				<pubDate>Fri, 20 Mar 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/observability/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>On-Call</title>
+				<link>https://jmpargana.com/tags/on-call/</link>
+				<pubDate>Fri, 20 Mar 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/on-call/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Operations</title>
+				<link>https://jmpargana.com/tags/operations/</link>
+				<pubDate>Fri, 20 Mar 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/operations/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>GHA</title>
+				<link>https://jmpargana.com/tags/gha/</link>
+				<pubDate>Thu, 19 Mar 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/gha/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>GitHub Actions</title>
+				<link>https://jmpargana.com/tags/github-actions/</link>
+				<pubDate>Thu, 19 Mar 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/github-actions/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Open Source</title>
+				<link>https://jmpargana.com/tags/open-source/</link>
+				<pubDate>Thu, 19 Mar 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/open-source/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>OSS</title>
+				<link>https://jmpargana.com/tags/oss/</link>
+				<pubDate>Thu, 19 Mar 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/oss/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>TypeScript</title>
+				<link>https://jmpargana.com/tags/typescript/</link>
+				<pubDate>Thu, 19 Mar 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/typescript/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Authentication</title>
+				<link>https://jmpargana.com/tags/authentication/</link>
+				<pubDate>Thu, 05 Mar 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/authentication/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Authorisation</title>
+				<link>https://jmpargana.com/tags/authorisation/</link>
+				<pubDate>Thu, 05 Mar 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/authorisation/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Ca</title>
+				<link>https://jmpargana.com/tags/ca/</link>
+				<pubDate>Thu, 05 Mar 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/ca/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Cert-Manager</title>
+				<link>https://jmpargana.com/tags/cert-manager/</link>
+				<pubDate>Thu, 05 Mar 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/cert-manager/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Cloud</title>
+				<link>https://jmpargana.com/tags/cloud/</link>
+				<pubDate>Thu, 05 Mar 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/cloud/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Concurrency</title>
+				<link>https://jmpargana.com/tags/concurrency/</link>
+				<pubDate>Thu, 05 Mar 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/concurrency/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Error Handling</title>
+				<link>https://jmpargana.com/tags/error-handling/</link>
+				<pubDate>Thu, 05 Mar 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/error-handling/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Fault Tolerance</title>
+				<link>https://jmpargana.com/tags/fault-tolerance/</link>
+				<pubDate>Thu, 05 Mar 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/fault-tolerance/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Gateway Api</title>
+				<link>https://jmpargana.com/tags/gateway-api/</link>
+				<pubDate>Thu, 05 Mar 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/gateway-api/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Lb</title>
+				<link>https://jmpargana.com/tags/lb/</link>
+				<pubDate>Thu, 05 Mar 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/lb/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Load Balancer</title>
+				<link>https://jmpargana.com/tags/load-balancer/</link>
+				<pubDate>Thu, 05 Mar 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/load-balancer/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Oauth2</title>
+				<link>https://jmpargana.com/tags/oauth2/</link>
+				<pubDate>Thu, 05 Mar 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/oauth2/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Oidc</title>
+				<link>https://jmpargana.com/tags/oidc/</link>
+				<pubDate>Thu, 05 Mar 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/oidc/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Pki</title>
+				<link>https://jmpargana.com/tags/pki/</link>
+				<pubDate>Thu, 05 Mar 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/pki/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Tls</title>
+				<link>https://jmpargana.com/tags/tls/</link>
+				<pubDate>Thu, 05 Mar 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/tls/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Containerd</title>
+				<link>https://jmpargana.com/tags/containerd/</link>
+				<pubDate>Fri, 30 Aug 2024 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/containerd/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Personal</title>
+				<link>https://jmpargana.com/tags/personal/</link>
+				<pubDate>Tue, 27 Aug 2024 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/personal/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Css</title>
+				<link>https://jmpargana.com/tags/css/</link>
+				<pubDate>Mon, 26 Aug 2024 17:11:59 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/css/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Frontend</title>
+				<link>https://jmpargana.com/tags/frontend/</link>
+				<pubDate>Mon, 26 Aug 2024 17:11:59 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/frontend/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Html</title>
+				<link>https://jmpargana.com/tags/html/</link>
+				<pubDate>Mon, 26 Aug 2024 17:11:59 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/html/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Svg</title>
+				<link>https://jmpargana.com/tags/svg/</link>
+				<pubDate>Mon, 26 Aug 2024 17:11:59 +0100</pubDate>
+				<guid>https://jmpargana.com/tags/svg/</guid>
+				<description></description>
+			</item>
+	</channel>
 </rss>

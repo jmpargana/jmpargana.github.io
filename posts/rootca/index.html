@@ -111,46 +111,46 @@
 </header>
 
       <article class="article-body">
-        <p>This post is part of my <em>MiniTube</em> series. If you end up enjoying the content, please have a look at other related tasks.</p>
+        <p>This post is part of my <em>MiniTube</em> series. Check out other related posts if you find this content useful.</p>
 <h2 id="problem">Problem</h2>
-<p>Let&rsquo;s start with the problem. <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API">Web Crypto API</a> is only available over secure contexts (HTTPS) or localhost.</p>
-<p>While developing the frontend to my MiniTube application, the function I was using to generate a random UUID <code>crypto.randomUUID()</code> stopped working once I deployed the container in Kubernetes.</p>
+<p>Let&rsquo;s start with the problem. The <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API">Web Crypto API</a> is only available in secure contexts (HTTPS) or localhost.</p>
+<p>While developing the frontend for my MiniTube application, the function I was using to generate a random UUID (<code>crypto.randomUUID()</code>) stopped working once I deployed the container in Kubernetes.</p>
 <h2 id="solution">Solution</h2>
-<p>The solution was not really a solution, but rather an invitation to understand how setting TLS locally can be done.</p>
-<p>Like <a href="/posts/oauth2">oauth</a>, TLS is something I&rsquo;ve been using for a very long time. It&rsquo;s part of every deployment to production. It&rsquo;s part of internal communication of pods in Kubernetes if you have a service mesh. It&rsquo;s ubiquitous.</p>
-<p>Yet, I had never really spend any time trying to understand how it works exactly. This prompted me on a journey to understand something that in my mind was only one thing (<em>TLS</em>), which then turned into a lot of other things, because <em>TLS</em> is really just part of a cryptography ecosystem which has been standardised in the way we communicate over the internet.</p>
+<p>The solution wasn&rsquo;t really a solution, but rather an opportunity to understand how to set up TLS locally.</p>
+<p>Like OAuth, TLS is something I&rsquo;ve used for a long time. It&rsquo;s part of every production deployment. It&rsquo;s part of internal pod communication in Kubernetes if you have a service mesh. It&rsquo;s ubiquitous.</p>
+<p>Yet, I&rsquo;ve never really spent time truly understanding how it works. This prompted me on a journey to understand something that seemed like one thing (<em>TLS</em>) but turned out to involve many other things, because <em>TLS</em> is really just part of a cryptography ecosystem standardized in how we communicate over the internet.</p>
 <h2 id="scope">Scope</h2>
-<p>I&rsquo;ll use different posts to dive deeper into how TLS works (cryptography behind it, the protocol itself, different versions and flows).</p>
-<p>In this post I&rsquo;ll focus on PKI, the options we have for setting up a certificate and the easiest way to set up a load balancer to your service using TLS.</p>
+<p>I&rsquo;ll use different posts to dive deeper into TLS (cryptography, the protocol itself, versions, and flows).</p>
+<p>This post focuses on PKI, certificate setup options, and the easiest way to set up a load balancer with TLS.</p>
 <h2 id="pki">PKI</h2>
-<p>In order to set up a secure environment you need <em>trust</em>. Trust, specially in a distributed system with many moving parts requires some sort of centralize entity, or better, multiple entities to give you confidence that a given actor is trustworthy.</p>
-<p>Certificates can be fake, tampered with, invalid, misused, you name it. PKI, also public key infrastructure was created as a process to define few trustworthy organisations that could delegate the validation to others they trust, thus creating a chain of trust.</p>
-<p>PKI has flow to generate and validate certificates. We won&rsquo;t go into how they work and the nomenclature used for each of the actors. The more interesting part of it is how certificates are passed and how are they validated.</p>
-<p>When you perform a TLS handshake before submitting your HTTP request to a server, the server responds with a certificate and a chain of certificates that extend to a root CA (certification authority).</p>
-<p>Locally you are expected to have the missing CA, either on your browser or on your operating system and compute the signing of the chain with the public key you have locally. All these computations are extremely quick and done before you start encrypting the content of your communication with the temporary server+client secret.</p>
-<p>These root CAs include public keys for some of the entities you might already know: Let&rsquo;s encrypt, DigiCert, Apple, etc.</p>
-<p>Your first question might be: should I create a certificate from one of these root CAs or other CAs, or should I create my own root CA.</p>
-<p>The answer is <em>it depends</em>. Creating your own root CA has limitations, because it won&rsquo;t be automatically trusted by other clients, unless you add it to their root CAs, but it can be incredibly useful in a setup where you only want internal <em>trust</em>.</p>
-<h2 id="requesting-certificate">Requesting certificate</h2>
-<p>First, let&rsquo;s explore getting a certificate from an existing CA that&rsquo;s not own by you. This used to be expensive until Let&rsquo;s Encrypt came in and created the ACME (Automatic Certificate Management Environment) protocol, which is a dance over HTTP that you can leverage to generate a certificate with full automation.</p>
-<p>This protocol involves requesting a certificate along with the type of validation that the ACME server will require to get proof you are the owner of the domain you are requesting for. You don&rsquo;t need to implement the interaction flow yourself. There&rsquo;s great tools, even with full infrastructure provisioning, like <a href="https://cert-manager.io/docs/">cert-manager</a>, that implement the protocol and give you full automation to manage your certificates.</p>
-<p>The only issue is, if you don&rsquo;t own the domain yet, or if you don&rsquo;t expose a client on that domain to prove you are the owner, you won&rsquo;t be able to get a certificate for it (unless in non-production environments).</p>
-<h2 id="root-ca">root CA</h2>
-<p>Moving to the custom root CA. If you only intend to use a domain that you are playing with locally (and you usually trust yourself), creating a root CA might be enough.</p>
-<p><a href="https://mkcert.org/">mkcert</a> is an amazing tool that does exactly that. It generates a local root CA, that you can use to create certificates by yourself to yourself.</p>
+<p>To set up a secure environment, you need <em>trust</em>. In distributed systems with many moving parts, trust requires some centralized entity (or better, multiple) to provide confidence that an actor is trustworthy.</p>
+<p>Certificates can be fake, tampered with, invalid, or misused. PKI (public key infrastructure) was created to define trustworthy organizations that could delegate validation to others they trust, creating a chain of trust.</p>
+<p>PKI has a flow to generate and validate certificates. The nomenclature and process of each actor matters less than understanding how certificates are passed and validated.</p>
+<p>When you perform a TLS handshake before submitting an HTTP request to a server, the server responds with a certificate and a chain of certificates extending to a root CA (certification authority).</p>
+<p>Locally, you&rsquo;re expected to have the missing CA, either in your browser or operating system. You then compute the signature of the chain using the public key you have locally. All these computations happen quickly and before you start encrypting the content with the temporary server/client secret.</p>
+<p>These root CAs include public keys for well-known entities: Let&rsquo;s Encrypt, DigiCert, Apple, etc.</p>
+<p>Should you create a certificate from an existing CA (not your own) or create your own root CA?</p>
+<p>The answer is <em>it depends</em>. Creating your own root CA has limitations because it won&rsquo;t be automatically trusted by other clients unless you add it to their root stores. However, it&rsquo;s incredibly useful for internal-only <em>trust</em> setups.</p>
+<h2 id="requesting-a-certificate">Requesting a certificate</h2>
+<p>First, let&rsquo;s explore getting a certificate from an existing CA that you don&rsquo;t own. This used to be expensive until Let&rsquo;s Encrypt created the ACME (Automatic Certificate Management Environment) protocol, a dance over HTTP that automates certificate generation.</p>
+<p>This protocol involves requesting a certificate with a validation type that the ACME server will use to prove you own the domain. You don&rsquo;t need to implement the interaction flow yourself. Great tools exist, like <a href="https://cert-manager.io/docs/">cert-manager</a>, that implement the protocol with full infrastructure automation.</p>
+<p>The issue is, if you don&rsquo;t own the domain yet or can&rsquo;t expose a client on it to prove ownership, you won&rsquo;t get a certificate (unless in non-production environments).</p>
+<h2 id="custom-root-ca">Custom root CA</h2>
+<p>Moving to custom root CA. If you only intend to use a domain locally (and trust yourself), creating a root CA might suffice.</p>
+<p><a href="https://mkcert.org/">mkcert</a> is an amazing tool that does exactly that. It generates a local root CA for creating certificates by and for yourself.</p>
 <p>Start by installing the CA on your system:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">&gt; mkcert -install
-</span></span></code></pre></div><p>Then you can generate the certificate:</p>
+</span></span></code></pre></div><p>Then generate the certificate:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">&gt; mkcert your-domain.com
-</span></span></code></pre></div><p>Finally you navigate to the certificate location and use the certificates for whatever you need.</p>
+</span></span></code></pre></div><p>Finally, navigate to the certificate location to use them.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">&gt; mkcert -CAROOT
 </span></span></code></pre></div><h2 id="using-the-certificates">Using the certificates</h2>
-<p>For each of the certificate you&rsquo;ll have the public and private key. Each of them encoded with x.509 format. If you configured <code>cert-manager</code> previously, you can leverage it by pointing to files or full strings, instead of configuring the ACME flow.</p>
-<p>You need to create a secret with the certificates first:</p>
+<p>For each certificate, you&rsquo;ll have the public and private key, both encoded with X.509 format. If you configured <code>cert-manager</code> previously, you can leverage it by pointing to files or full strings instead of configuring the ACME flow.</p>
+<p>Create a secret with the certificates first:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">mkcert -install
 </span></span><span class="line"><span class="cl"><span class="nv">CA</span><span class="o">=</span><span class="k">$(</span>mkcert -CAROOT<span class="k">)</span>
 </span></span><span class="line"><span class="cl">kubectl create secret tls minitube-tls --cert<span class="o">=</span><span class="s2">&#34;</span><span class="nv">$CA</span><span class="s2">/rootCA.pem&#34;</span> --key<span class="o">=</span><span class="s2">&#34;</span><span class="nv">$CA</span><span class="s2">/rootCA-key.pem&#34;</span> --namespace cert-manager
-</span></span></code></pre></div><p>With that in place you can create a <code>ClusterIssuer</code>, which is quite a simple payload when it doesn&rsquo;t need ACME configuration.</p>
+</span></span></code></pre></div><p>With that in place, create a <code>ClusterIssuer</code>, which is a simple payload when it doesn&rsquo;t need ACME configuration.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">cert-manager.io/v1</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ClusterIssuer</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="nt">metadata</span><span class="p">:</span><span class="w">
@@ -158,7 +158,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="nt">spec</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ca</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l">minitube-tls</span><span class="w">
-</span></span></span></code></pre></div><p>Then, using the new Gateway API, you can create a <code>Gateway</code> (I&rsquo;ll go over the missing piece of creating a <code>GatewayClass</code> later):</p>
+</span></span></span></code></pre></div><p>Then, using the new Gateway API, create a <code>Gateway</code> (I&rsquo;ll cover the missing <code>GatewayClass</code> creation later):</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">gateway.networking.k8s.io/v1</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Gateway</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="nt">metadata</span><span class="p">:</span><span class="w">
@@ -179,16 +179,16 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">allowedRoutes</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">namespaces</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">from</span><span class="p">:</span><span class="w"> </span><span class="l">All</span><span class="w">
-</span></span></span></code></pre></div><p>Finally, all you need to add the domain to your static DNS configuration, so that your browser knows how to translate the TLS secured domain into an IP:</p>
+</span></span></span></code></pre></div><p>Finally, add the domain to your static DNS configuration so your browser translates the TLS-secured domain to an IP:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">&gt; sudo cat <span class="k">$(</span>kubectl get gateway minitube-gateway -o <span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.status.addresses[0].value}&#39;</span><span class="k">)</span> &gt;&gt; /etc/hosts
 </span></span></code></pre></div><h2 id="load-balancing">Load Balancing</h2>
-<p>The final step is to create a load balancer, so that you can access your cluster from the outside. The following example is meant for <a href="https://kind.sigs.k8s.io/">kind</a> users. There&rsquo;s a tool that creates a tunnel to your cluster, running inside docker, so that you can replicate a cloud provider without having to use a service from outside: <a href="https://github.com/kubernetes-sigs/cloud-provider-kind">cloud-provider-kind</a>.</p>
-<p>Once you are running you can install any service you&rsquo;d use to perform load balancing and/or act as API Gateway. One of my go to tools is <a href="https://gateway.envoyproxy.io/">envoy</a>.</p>
-<p>Running the following command will set up a <code>GatewayClass</code> that you can use to attach an external IP to the Gateway you&rsquo;ve configured before:</p>
+<p>The final step is creating a load balancer so you can access your cluster externally. This example is for <a href="https://kind.sigs.k8s.io/">kind</a> users. There&rsquo;s a tool that creates a tunnel to your cluster running inside Docker, letting you replicate a cloud provider without external services: <a href="https://github.com/kubernetes-sigs/cloud-provider-kind">cloud-provider-kind</a>.</p>
+<p>Once running, install any service for load balancing or acting as an API Gateway. One of my go-to tools is <a href="https://gateway.envoyproxy.io/">Envoy</a>.</p>
+<p>Running this command sets up a <code>GatewayClass</code> you can use to attach an external IP to the Gateway you configured earlier:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">&gt; helm install eg oci://docker.io/envoyproxy/gateway-helm --version v1.7.1 -n envoy-gateway-system --create-namespace --skip-crds
 </span></span></code></pre></div><h2 id="conclusion">Conclusion</h2>
-<p>That&rsquo;s it on how I&rsquo;ve configured my MiniTube project to be accessible with TLS and use the crypto web API locally. I hope you&rsquo;ve came out of this with a bit more knowledge on how PKI works and how you can use it.</p>
-<p>I&rsquo;ll create a post in the future to explain the content of the certificates and how the TLS protocol itself works.</p>
+<p>That covers how I configured my MiniTube project to be accessible with TLS and use the Web Crypto API locally. I hope you gained some knowledge on how PKI works and how to set it up.</p>
+<p>I&rsquo;ll create a future post explaining certificate contents and how the TLS protocol itself works.</p>
 
       </article>
 

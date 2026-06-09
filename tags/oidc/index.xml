@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Oidc on jmpargana</title>
-    <link>https://jmpargana.com/tags/oidc/</link>
-    <description>Recent content in Oidc on jmpargana</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 05 Mar 2026 22:03:54 +0100</lastBuildDate>
-    <atom:link href="https://jmpargana.com/tags/oidc/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>OAuth2 Explained</title>
-      <link>https://jmpargana.com/posts/oauth/</link>
-      <pubDate>Thu, 05 Mar 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/posts/oauth/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;ve recently integrated a provider and consumer service with Azure AD and B2C. Setting up the scopes was confusing and since I&amp;rsquo;ve felt that although I&amp;rsquo;ve been using OAuth in my systems for a long time, I haven&amp;rsquo;t really understood it well, I decided to invest some time and really learn how it works under the hood.&lt;/p&gt;&#xA;&lt;p&gt;I could tell you that reading the various RFCs offered me clarity, but I&amp;rsquo;d be lying. The key point of why they didn&amp;rsquo;t, it&amp;rsquo;s because there isn&amp;rsquo;t a single cohesive document explaining the core concepts. It&amp;rsquo;s spread around multiple ones:&lt;/p&gt;</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Oidc on jmpargana</title>
+		<link>https://jmpargana.com/tags/oidc/</link>
+		<description>Recent content in Oidc on jmpargana</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Thu, 05 Mar 2026 22:03:54 +0100</lastBuildDate>
+		
+			<atom:link href="https://jmpargana.com/tags/oidc/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>OAuth2 Explained</title>
+				<link>https://jmpargana.com/posts/oauth/</link>
+				<pubDate>Thu, 05 Mar 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/posts/oauth/</guid>
+				<description>&lt;p&gt;I&amp;rsquo;ve recently integrated a provider and consumer service with Azure AD and B2C. Setting up the scopes was confusing and since I&amp;rsquo;ve felt that although I&amp;rsquo;ve been using OAuth in my systems for a long time, I haven&amp;rsquo;t really understood it well, I decided to invest some time and really learn how it works under the hood.&lt;/p&gt;&#xA;&lt;p&gt;I could claim that reading the various RFCs offered clarity, but that wouldn&amp;rsquo;t be accurate. The key reason they didn&amp;rsquo;t is that there&amp;rsquo;s no single cohesive document explaining the core concepts. It&amp;rsquo;s spread around multiple ones:&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

@@ -1,33 +1,38 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Kubernetes on jmpargana</title>
-    <link>https://jmpargana.com/tags/kubernetes/</link>
-    <description>Recent content in Kubernetes on jmpargana</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sat, 11 Apr 2026 21:13:34 +0100</lastBuildDate>
-    <atom:link href="https://jmpargana.com/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>CKAD - 2 - Kubernetes API Resources</title>
-      <link>https://jmpargana.com/posts/ckad2/</link>
-      <pubDate>Sat, 11 Apr 2026 21:13:34 +0100</pubDate>
-      <guid>https://jmpargana.com/posts/ckad2/</guid>
-      <description>&lt;p&gt;While Kubernetes is far more than just a server, thinking about it as a REST API server is incredibly helpful for understanding how to interact with cluster resources.&lt;/p&gt;&#xA;&lt;p&gt;In this post I&amp;rsquo;ll explore how we can interact with Kubernetes as a server and how to discover its API.&lt;/p&gt;&#xA;&lt;h2 id=&#34;proxy&#34;&gt;Proxy&lt;/h2&gt;&#xA;&lt;p&gt;To make it easier for you to see how Kubernetes is a server, run:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt; kubectl proxy&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now we can call the API to navigate through its endpoints. Calling the root you can see all available paths:&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>MiniTube - PKI &amp; rootCA &#43; LB Setup</title>
-      <link>https://jmpargana.com/posts/rootca/</link>
-      <pubDate>Thu, 05 Mar 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/posts/rootca/</guid>
-      <description>&lt;p&gt;This post is part of my &lt;em&gt;MiniTube&lt;/em&gt; series. If you end up enjoying the content, please have a look at other related tasks.&lt;/p&gt;&#xA;&lt;h2 id=&#34;problem&#34;&gt;Problem&lt;/h2&gt;&#xA;&lt;p&gt;Let&amp;rsquo;s start with the problem. &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API&#34;&gt;Web Crypto API&lt;/a&gt; is only available over secure contexts (HTTPS) or localhost.&lt;/p&gt;&#xA;&lt;p&gt;While developing the frontend to my MiniTube application, the function I was using to generate a random UUID &lt;code&gt;crypto.randomUUID()&lt;/code&gt; stopped working once I deployed the container in Kubernetes.&lt;/p&gt;&#xA;&lt;h2 id=&#34;solution&#34;&gt;Solution&lt;/h2&gt;&#xA;&lt;p&gt;The solution was not really a solution, but rather an invitation to understand how setting TLS locally can be done.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>CKAD - 1 - Foundations</title>
-      <link>https://jmpargana.com/posts/ckad1/</link>
-      <pubDate>Wed, 14 Aug 2024 15:05:23 +0100</pubDate>
-      <guid>https://jmpargana.com/posts/ckad1/</guid>
-      <description>&lt;p&gt;Welcome! In this series you&amp;rsquo;ll read along my journey to CKAD certification. You can expect&#xA;high-level knowledge sharing and hopefully some useful tips.&lt;/p&gt;&#xA;&lt;h2 id=&#34;picking-the-course&#34;&gt;Picking the course&lt;/h2&gt;&#xA;&lt;p&gt;Visiting the &lt;a href=&#34;https://training.linuxfoundation.org/certification/certified-kubernetes-application-developer-ckad/&#34;&gt;linux foundation&lt;/a&gt;, you&amp;rsquo;ll see a suggested package, which includes a course, an annual subscription, and more.&lt;/p&gt;&#xA;&lt;p&gt;After getting advise from colleagues who are already certified, I decided to follow a different course instead, on &lt;a href=&#34;https://www.udemy.com/course/certified-kubernetes-application-developer/learn/lecture/28376970#overview&#34;&gt;Udemy&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Not only does this have close to 5 star reviews, it&amp;rsquo;s significantly cheaper. I purchased it with a discount of 80% (at around $11).&lt;/p&gt;</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Kubernetes on jmpargana</title>
+		<link>https://jmpargana.com/tags/kubernetes/</link>
+		<description>Recent content in Kubernetes on jmpargana</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Sat, 11 Apr 2026 21:13:34 +0100</lastBuildDate>
+		
+			<atom:link href="https://jmpargana.com/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>CKAD - 2 - Kubernetes API Resources</title>
+				<link>https://jmpargana.com/posts/ckad2/</link>
+				<pubDate>Sat, 11 Apr 2026 21:13:34 +0100</pubDate>
+				<guid>https://jmpargana.com/posts/ckad2/</guid>
+				<description>&lt;p&gt;While Kubernetes is far more than just a server, thinking of it as a REST API server is incredibly helpful for understanding how to interact with cluster resources.&lt;/p&gt;&#xA;&lt;p&gt;In this post, I&amp;rsquo;ll explore how we can interact with Kubernetes as a server and how to discover its API.&lt;/p&gt;&#xA;&lt;h2 id=&#34;proxy&#34;&gt;Proxy&lt;/h2&gt;&#xA;&lt;p&gt;To make it easier for you to see how Kubernetes functions as a server, run:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&amp;gt; kubectl proxy&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now we can call the API to navigate through its endpoints. Calling the root endpoint shows all available paths:&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>MiniTube - PKI &amp; rootCA &#43; LB Setup</title>
+				<link>https://jmpargana.com/posts/rootca/</link>
+				<pubDate>Thu, 05 Mar 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/posts/rootca/</guid>
+				<description>&lt;p&gt;This post is part of my &lt;em&gt;MiniTube&lt;/em&gt; series. Check out other related posts if you find this content useful.&lt;/p&gt;&#xA;&lt;h2 id=&#34;problem&#34;&gt;Problem&lt;/h2&gt;&#xA;&lt;p&gt;Let&amp;rsquo;s start with the problem. The &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API&#34;&gt;Web Crypto API&lt;/a&gt; is only available in secure contexts (HTTPS) or localhost.&lt;/p&gt;&#xA;&lt;p&gt;While developing the frontend for my MiniTube application, the function I was using to generate a random UUID (&lt;code&gt;crypto.randomUUID()&lt;/code&gt;) stopped working once I deployed the container in Kubernetes.&lt;/p&gt;&#xA;&lt;h2 id=&#34;solution&#34;&gt;Solution&lt;/h2&gt;&#xA;&lt;p&gt;The solution wasn&amp;rsquo;t really a solution, but rather an opportunity to understand how to set up TLS locally.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>CKAD - 1 - Foundations</title>
+				<link>https://jmpargana.com/posts/ckad1/</link>
+				<pubDate>Wed, 14 Aug 2024 15:05:23 +0100</pubDate>
+				<guid>https://jmpargana.com/posts/ckad1/</guid>
+				<description>&lt;p&gt;Welcome! In this series, you&amp;rsquo;ll read along my journey to CKAD certification. Expect high-level knowledge sharing and hopefully some useful tips.&lt;/p&gt;&#xA;&lt;h2 id=&#34;picking-the-course&#34;&gt;Picking the course&lt;/h2&gt;&#xA;&lt;p&gt;Visiting the &lt;a href=&#34;https://training.linuxfoundation.org/certification/certified-kubernetes-application-developer-ckad/&#34;&gt;Linux Foundation&lt;/a&gt; site, you&amp;rsquo;ll see a suggested package that includes a course, annual subscription, and more.&lt;/p&gt;&#xA;&lt;p&gt;After getting advice from colleagues who are already certified, I decided to follow a different course instead on &lt;a href=&#34;https://www.udemy.com/course/certified-kubernetes-application-developer/learn/lecture/28376970#overview&#34;&gt;Udemy&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Not only does this have close to 5-star reviews, it&amp;rsquo;s significantly cheaper. I purchased it at an 80% discount (around $11).&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

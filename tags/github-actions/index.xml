@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>GitHub Actions on jmpargana</title>
-    <link>https://jmpargana.com/tags/github-actions/</link>
-    <description>Recent content in GitHub Actions on jmpargana</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 19 Mar 2026 22:03:54 +0100</lastBuildDate>
-    <atom:link href="https://jmpargana.com/tags/github-actions/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>OpenSource - 3 - Humbled by AI</title>
-      <link>https://jmpargana.com/posts/oss3/</link>
-      <pubDate>Thu, 19 Mar 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/posts/oss3/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;ve managed to find another project that I could contribute to.&lt;/p&gt;&#xA;&lt;p&gt;During the last weeks of December, while a team in my company was migrating from Azure DevOps Pipelines to GitHub Actions, a colleague reached out because one of the actions we developed, which was meant to be reused across the company was not working. It was the CI workflow, responsible for build, running and publishing the unit and integration tests, while security scans would run in parallel.&lt;/p&gt;</description>
-    </item>
-  </channel>
+	<channel>
+		<title>GitHub Actions on jmpargana</title>
+		<link>https://jmpargana.com/tags/github-actions/</link>
+		<description>Recent content in GitHub Actions on jmpargana</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Thu, 19 Mar 2026 22:03:54 +0100</lastBuildDate>
+		
+			<atom:link href="https://jmpargana.com/tags/github-actions/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>OpenSource - 3 - Humbled by AI</title>
+				<link>https://jmpargana.com/posts/oss3/</link>
+				<pubDate>Thu, 19 Mar 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/posts/oss3/</guid>
+				<description>&lt;p&gt;I found another project I could contribute to.&lt;/p&gt;&#xA;&lt;p&gt;In the last weeks of December, while a team at my company was migrating from Azure DevOps Pipelines to GitHub Actions, a colleague reached out. One of the actions we developed for company-wide reuse wasn&amp;rsquo;t working. It was the CI workflow responsible for building, running, and publishing unit and integration tests, with security scans running in parallel.&lt;/p&gt;&#xA;&lt;p&gt;This workflow failed in their runtime because the runners didn&amp;rsquo;t have Docker Compose installed, and the &lt;a href=&#34;https://github.com/hoverkraft-tech/compose-action&#34;&gt;compose-action&lt;/a&gt; crashed with an unexpected error.&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

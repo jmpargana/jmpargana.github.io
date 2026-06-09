@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Tls on jmpargana</title>
-    <link>https://jmpargana.com/tags/tls/</link>
-    <description>Recent content in Tls on jmpargana</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 05 Mar 2026 22:03:54 +0100</lastBuildDate>
-    <atom:link href="https://jmpargana.com/tags/tls/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>MiniTube - PKI &amp; rootCA &#43; LB Setup</title>
-      <link>https://jmpargana.com/posts/rootca/</link>
-      <pubDate>Thu, 05 Mar 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/posts/rootca/</guid>
-      <description>&lt;p&gt;This post is part of my &lt;em&gt;MiniTube&lt;/em&gt; series. If you end up enjoying the content, please have a look at other related tasks.&lt;/p&gt;&#xA;&lt;h2 id=&#34;problem&#34;&gt;Problem&lt;/h2&gt;&#xA;&lt;p&gt;Let&amp;rsquo;s start with the problem. &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API&#34;&gt;Web Crypto API&lt;/a&gt; is only available over secure contexts (HTTPS) or localhost.&lt;/p&gt;&#xA;&lt;p&gt;While developing the frontend to my MiniTube application, the function I was using to generate a random UUID &lt;code&gt;crypto.randomUUID()&lt;/code&gt; stopped working once I deployed the container in Kubernetes.&lt;/p&gt;&#xA;&lt;h2 id=&#34;solution&#34;&gt;Solution&lt;/h2&gt;&#xA;&lt;p&gt;The solution was not really a solution, but rather an invitation to understand how setting TLS locally can be done.&lt;/p&gt;</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Tls on jmpargana</title>
+		<link>https://jmpargana.com/tags/tls/</link>
+		<description>Recent content in Tls on jmpargana</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Thu, 05 Mar 2026 22:03:54 +0100</lastBuildDate>
+		
+			<atom:link href="https://jmpargana.com/tags/tls/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>MiniTube - PKI &amp; rootCA &#43; LB Setup</title>
+				<link>https://jmpargana.com/posts/rootca/</link>
+				<pubDate>Thu, 05 Mar 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/posts/rootca/</guid>
+				<description>&lt;p&gt;This post is part of my &lt;em&gt;MiniTube&lt;/em&gt; series. Check out other related posts if you find this content useful.&lt;/p&gt;&#xA;&lt;h2 id=&#34;problem&#34;&gt;Problem&lt;/h2&gt;&#xA;&lt;p&gt;Let&amp;rsquo;s start with the problem. The &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API&#34;&gt;Web Crypto API&lt;/a&gt; is only available in secure contexts (HTTPS) or localhost.&lt;/p&gt;&#xA;&lt;p&gt;While developing the frontend for my MiniTube application, the function I was using to generate a random UUID (&lt;code&gt;crypto.randomUUID()&lt;/code&gt;) stopped working once I deployed the container in Kubernetes.&lt;/p&gt;&#xA;&lt;h2 id=&#34;solution&#34;&gt;Solution&lt;/h2&gt;&#xA;&lt;p&gt;The solution wasn&amp;rsquo;t really a solution, but rather an opportunity to understand how to set up TLS locally.&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

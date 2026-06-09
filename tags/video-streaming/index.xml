@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Video Streaming on jmpargana</title>
-    <link>https://jmpargana.com/tags/video-streaming/</link>
-    <description>Recent content in Video Streaming on jmpargana</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sun, 05 Apr 2026 22:03:54 +0100</lastBuildDate>
-    <atom:link href="https://jmpargana.com/tags/video-streaming/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>MiniTube - Presigned URLs - Insanely Useful Pattern for Sharing Data</title>
-      <link>https://jmpargana.com/posts/presigning/</link>
-      <pubDate>Sun, 05 Apr 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/posts/presigning/</guid>
-      <description>&lt;p&gt;This post is part of my &lt;em&gt;MiniTube&lt;/em&gt; series. If you end up enjoying the content, please have a look at other related tasks.&lt;/p&gt;&#xA;&lt;h2 id=&#34;presigning&#34;&gt;Presigning&lt;/h2&gt;&#xA;&lt;p&gt;I&amp;rsquo;ve gone over signing as a useful strategy to overcome extra network calls when you want to prove you have permission to do something in regards of someone else. Presigning achieves the same goals, but with a few more cherries on top.&lt;/p&gt;&#xA;&lt;h2 id=&#34;minitube&#34;&gt;MiniTube&lt;/h2&gt;&#xA;&lt;p&gt;If you haven&amp;rsquo;t read my other posts on this topic. I&amp;rsquo;ve implemented a miniature video streaming architecture based on the system design interview by &lt;a href=&#34;https://www.youtube.com/watch?v=IUrQ5_g3XKs&#34;&gt;hello interview&lt;/a&gt;.&lt;/p&gt;</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Video Streaming on jmpargana</title>
+		<link>https://jmpargana.com/tags/video-streaming/</link>
+		<description>Recent content in Video Streaming on jmpargana</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Sun, 05 Apr 2026 22:03:54 +0100</lastBuildDate>
+		
+			<atom:link href="https://jmpargana.com/tags/video-streaming/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>MiniTube - Presigned URLs - Insanely Useful Pattern for Sharing Data</title>
+				<link>https://jmpargana.com/posts/presigning/</link>
+				<pubDate>Sun, 05 Apr 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/posts/presigning/</guid>
+				<description>&lt;p&gt;This post is part of my &lt;em&gt;MiniTube&lt;/em&gt; series. Check out other related posts if you find this content useful.&lt;/p&gt;&#xA;&lt;h2 id=&#34;presigning&#34;&gt;Presigning&lt;/h2&gt;&#xA;&lt;p&gt;I&amp;rsquo;ve gone over signing as a useful strategy to overcome extra network calls when you want to prove you have permission to do something in regards of someone else. Presigning achieves the same goals, but with a few more cherries on top.&lt;/p&gt;&#xA;&lt;h2 id=&#34;minitube&#34;&gt;MiniTube&lt;/h2&gt;&#xA;&lt;p&gt;If you haven&amp;rsquo;t read my other posts on this topic. I&amp;rsquo;ve implemented a miniature video streaming architecture based on the system design interview by &lt;a href=&#34;https://www.youtube.com/watch?v=IUrQ5_g3XKs&#34;&gt;hello interview&lt;/a&gt;.&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

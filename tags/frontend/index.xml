@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Frontend on jmpargana</title>
-    <link>https://jmpargana.com/tags/frontend/</link>
-    <description>Recent content in Frontend on jmpargana</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 26 Aug 2024 17:11:59 +0100</lastBuildDate>
-    <atom:link href="https://jmpargana.com/tags/frontend/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>SVG: `viewBox`</title>
-      <link>https://jmpargana.com/posts/svg/</link>
-      <pubDate>Mon, 26 Aug 2024 17:11:59 +0100</pubDate>
-      <guid>https://jmpargana.com/posts/svg/</guid>
-      <description>&lt;p&gt;In this post I&amp;rsquo;ll explore the &lt;code&gt;viewBox&lt;/code&gt; attribute in &lt;code&gt;&amp;lt;svg&amp;gt;&lt;/code&gt; html tag. I&amp;rsquo;ll use examples available in the &lt;a href=&#34;https://developer.mozilla.org/en-US/&#34;&gt;MDN documentation&lt;/a&gt;&#xA;but all applied to the SVGs you can find in the home page of this website.&lt;/p&gt;&#xA;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;Before getting started, it&amp;rsquo;s worth pointing out that SVGs are a extremely rich feature which deserves a lot of reading. The &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/SVG&#34;&gt;documentation mentioned above&lt;/a&gt; does an incredible job providing both &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorials/SVG_from_scratch&#34;&gt;Tutorials&lt;/a&gt; and &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/SVG/Guides&#34;&gt;Guides&lt;/a&gt; of all the attributes and features you&amp;rsquo;ll need to create and use SVGs in your frontend applications.&lt;/p&gt;</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Frontend on jmpargana</title>
+		<link>https://jmpargana.com/tags/frontend/</link>
+		<description>Recent content in Frontend on jmpargana</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Mon, 26 Aug 2024 17:11:59 +0100</lastBuildDate>
+		
+			<atom:link href="https://jmpargana.com/tags/frontend/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>SVG: `viewBox`</title>
+				<link>https://jmpargana.com/posts/svg/</link>
+				<pubDate>Mon, 26 Aug 2024 17:11:59 +0100</pubDate>
+				<guid>https://jmpargana.com/posts/svg/</guid>
+				<description>&lt;p&gt;In this post, I&amp;rsquo;ll explore the &lt;code&gt;viewBox&lt;/code&gt; attribute in the &lt;code&gt;&amp;lt;svg&amp;gt;&lt;/code&gt; HTML tag. I&amp;rsquo;ll use examples from the &lt;a href=&#34;https://developer.mozilla.org/en-US/&#34;&gt;MDN documentation&lt;/a&gt;, applied to SVGs on this website&amp;rsquo;s home page.&lt;/p&gt;&#xA;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;Before starting, it&amp;rsquo;s worth noting that SVGs are an extremely rich feature deserving extensive reading. The &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/SVG&#34;&gt;MDN documentation&lt;/a&gt; does an incredible job providing both &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorials/SVG_from_scratch&#34;&gt;Tutorials&lt;/a&gt; and &lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/SVG/Guides&#34;&gt;Guides&lt;/a&gt; covering all attributes and features you&amp;rsquo;ll need to create and use SVGs.&lt;/p&gt;&#xA;&lt;p&gt;With that said, we can move on into how to display it.&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

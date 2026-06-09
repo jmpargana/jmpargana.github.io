@@ -111,26 +111,25 @@
 </header>
 
       <article class="article-body">
-        <p>In this post I&rsquo;ll explore the <code>viewBox</code> attribute in <code>&lt;svg&gt;</code> html tag. I&rsquo;ll use examples available in the <a href="https://developer.mozilla.org/en-US/">MDN documentation</a>
-but all applied to the SVGs you can find in the home page of this website.</p>
+        <p>In this post, I&rsquo;ll explore the <code>viewBox</code> attribute in the <code>&lt;svg&gt;</code> HTML tag. I&rsquo;ll use examples from the <a href="https://developer.mozilla.org/en-US/">MDN documentation</a>, applied to SVGs on this website&rsquo;s home page.</p>
 <h2 id="introduction">Introduction</h2>
-<p>Before getting started, it&rsquo;s worth pointing out that SVGs are a extremely rich feature which deserves a lot of reading. The <a href="https://developer.mozilla.org/en-US/docs/Web/SVG">documentation mentioned above</a> does an incredible job providing both <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorials/SVG_from_scratch">Tutorials</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Guides">Guides</a> of all the attributes and features you&rsquo;ll need to create and use SVGs in your frontend applications.</p>
+<p>Before starting, it&rsquo;s worth noting that SVGs are an extremely rich feature deserving extensive reading. The <a href="https://developer.mozilla.org/en-US/docs/Web/SVG">MDN documentation</a> does an incredible job providing both <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorials/SVG_from_scratch">Tutorials</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Guides">Guides</a> covering all attributes and features you&rsquo;ll need to create and use SVGs.</p>
 <p>With that said, we can move on into how to display it.</p>
 <h2 id="embedding">Embedding</h2>
-<p>As SVGs are written in markup, it can easily be mistaken for another html tag, such as <code>&lt;div&gt;</code>, <code>&lt;table&gt;</code>. This is not quite the case, because SVG code can be embedded in XML, HTML, inside an <code>&lt;img&gt;</code> as static content, inside an <code>&lt;iframe&gt;</code> or even referenced as as an <code>&lt;object&gt;</code>.</p>
-<p>Chosing between these options carries the usual <em>it depends</em> pain. You&rsquo;ll need to consider a couple of pros and cons for each option. I&rsquo;ll just focus between rendering it as an HTML tag vs loading as a static image.</p>
+<p>SVGs are written in markup and can be embedded in XML, HTML, inside an <code>&lt;img&gt;</code> tag as static content, in an <code>&lt;iframe&gt;</code>, or referenced as an <code>&lt;object&gt;</code>.</p>
+<p>Choosing between these options involves weighing pros and cons. I&rsquo;ll focus on rendering as an HTML tag versus loading as a static image.</p>
 <h3 id="static-image">Static Image</h3>
 <p><strong>Pros:</strong></p>
 <ul>
-<li>Clean html</li>
+<li>Clean HTML</li>
 <li>Cacheable</li>
 </ul>
 <p><strong>Cons:</strong></p>
 <ul>
 <li>Limited access:
 <ul>
-<li>Can&rsquo;t change colors of particular elements (ex. lines, shapes)</li>
-<li>Can&rsquo;t have full control of elements when performing animations</li>
+<li>Can&rsquo;t change colors of particular elements (lines, shapes)</li>
+<li>Can&rsquo;t have full control of elements during animations</li>
 </ul>
 </li>
 </ul>
@@ -138,40 +137,40 @@ but all applied to the SVGs you can find in the home page of this website.</p>
 <p><strong>Pros:</strong></p>
 <ul>
 <li>Full control</li>
-<li>Easy to debug and understand what&rsquo;s inside it</li>
+<li>Easy to debug and understand contents</li>
 </ul>
 <p><strong>Cons:</strong></p>
 <ul>
-<li>Polluted html</li>
-<li>No cache</li>
+<li>Larger HTML</li>
+<li>No caching</li>
 </ul>
-<p>As this site requires mirroring, flipping, scaling, and animating the SVGs, I&rsquo;ve opted for the HTML tag approach, despite the impact on the HTML file size.</p>
+<p>Since this site requires mirroring, flipping, scaling, and animating SVGs, I chose the HTML tag approach despite the HTML size impact.</p>
 <h2 id="viewbox"><code>viewBox</code></h2>
-<p>If you play around with an SVG, either by copying one from a site like <a href="https://undraw.co/">undraw</a>, <a href="https://www.freepik.com/">freepik</a> or your favorite icon library, you&rsquo;ll probably notice that it usually comes with a <code>viewBox</code> attribute looking something like <code>viewBox=&quot;0 0 500 500&quot;</code>.</p>
-<p>This is what the documentation says:</p>
+<p>If you experiment with an SVG from sites like <a href="https://undraw.co/">Undraw</a>, <a href="https://www.freepik.com/">Freepik</a>, or your favorite icon library, you&rsquo;ll probably notice a <code>viewBox</code> attribute like <code>viewBox=&quot;0 0 500 500&quot;</code>.</p>
+<p>The documentation says:</p>
 <blockquote>
-<p><em>&ldquo;The value of the viewBox attribute is a list of four numbers separated by whitespace and/or a comma: min-x, min-y, width, and height&rdquo;.</em></p>
+<p><em>&ldquo;The <code>viewBox</code> attribute is a list of four numbers separated by whitespace or comma: min-x, min-y, width, and height.&rdquo;</em></p>
 </blockquote>
-<p>I find this explanation confusing for the following reasons:</p>
+<p>I find this explanation confusing for these reasons:</p>
 <ul>
-<li><code>min-x</code> and <code>min-y</code> are coordinates (not lengths)</li>
-<li><code>width</code> and <code>height</code> are also available as individual attributes&hellip; what gives?!</li>
+<li><code>min-x</code> and <code>min-y</code> are coordinates, not lengths</li>
+<li><code>width</code> and <code>height</code> are also available as separate attributes&hellip; what gives?!</li>
 </ul>
 <h3 id="canvas">Canvas</h3>
-<p>If you think of a SVG as a canvas, you can think of the values in <code>viewBox</code> as top-left and bottom-right points in your canvas window.</p>
-<p>The number doesn&rsquo;t matter much, because as you&rsquo;ll learn, SVG have <em>Scalable</em> in their name. Meaning, the number you define on the coordinates could be a pixel, cm, etc. It&rsquo;ll be defined by other factors (such as <code>width</code> or <code>height</code> later on). As default, it means a unit matches a pixel in your viewport.</p>
-<p>So, these coordinates, they only matter if the content inside has <strong>it&rsquo;s own</strong> coordinates. Let me give you an example:</p>
+<p>Think of an SVG as a canvas. The values in <code>viewBox</code> are the top-left and bottom-right points of your canvas window.</p>
+<p>The numbers don&rsquo;t matter much because SVGs are <em>Scalable</em>—meaning the coordinates could be pixels, centimeters, etc., determined by other factors (like <code>width</code> or <code>height</code>). By default, one unit matches one pixel in your viewport.</p>
+<p>These coordinates only matter if the content inside has <strong>its own</strong> coordinates. For example:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">svg</span> <span class="na">viewBox</span><span class="o">=</span><span class="s">&#34;0 0 10 10&#34;</span> <span class="na">xmlns</span><span class="o">=</span><span class="s">&#34;http://www.w3.org/2000/svg&#34;</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">rect</span> <span class="na">x</span><span class="o">=</span><span class="s">&#34;2&#34;</span> <span class="na">y</span><span class="o">=</span><span class="s">&#34;2&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;100%&#34;</span> <span class="p">/&gt;</span>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">circle</span> <span class="na">cx</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">cy</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">r</span><span class="o">=</span><span class="s">&#34;4&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;white&#34;</span> <span class="p">/&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">svg</span><span class="p">&gt;</span>
 </span></span></code></pre></div><p><img src="/images/svg/starting-svg.png" alt="original"></p>
-<p>You can see that in the context of the canvas, the rectangle starts 2/10s away from the top and left corner. If I update the <code>viewBox=&quot;2 2 10 10&quot;</code> you&rsquo;ll see now the rectangle starting at the top of the canvas. If instead you set <code>viewBox=&quot;6 6 10 10&quot;</code> you see the end of the rectangle and starting point in the middle of it. In conclusion, the 2 first values define the location of the window into what resides inside the canvas.</p>
+<p>You can see that the rectangle starts 2/10ths from the top and left corner. If I change the <code>viewBox=&quot;2 2 10 10&quot;</code>, the rectangle now starts at the top of the canvas. If instead I set <code>viewBox=&quot;6 6 10 10&quot;</code>, I see the rectangle&rsquo;s end and starting point in its middle. In conclusion, the first 2 values define the window location into what&rsquo;s inside the canvas.</p>
 <p><img src="/images/svg/centered-svg.png" alt="original"></p>
 <p><img src="/images/svg/shifted-svg.png" alt="original"></p>
-<p>Now let&rsquo;s explore change the second pair of values. Setting <code>viewBox=&quot;0 0 30 30&quot;</code>. You&rsquo;ll notice that the coordinates don&rsquo;t actually change, instead you zoom. Notice that the zooming is different for the rectangle and for the circle. That is because now the circle has a radius of 2/30 instead of the original 2/10. If you change to <code>viewBox=&quot;6 6 30 30&quot;</code> the rectangle still closes in the same location.</p>
+<p>Now let&rsquo;s explore changing the second pair of values. Setting <code>viewBox=&quot;0 0 30 30&quot;</code>. You&rsquo;ll notice the coordinates don&rsquo;t actually change; instead you zoom. Notice the zoom differs for the rectangle and circle. That&rsquo;s because the circle now has a radius of 2/30 instead of the original 2/10. If you change to <code>viewBox=&quot;6 6 30 30&quot;</code>, the rectangle still closes in the same location.</p>
 <p><img src="/images/svg/zoomed-svg.png" alt="original"></p>
-<p>So you actually have 2 different behaviors. If the objects inside the SVG have absolute configurations <code>r=&quot;2&quot;</code> you&rsquo;ll see a zooming of the canvas. If they don&rsquo;t, there&rsquo;s no change. <strong>Relative means content adapts and absolute means content remains unchanged (window adapts).</strong></p>
+<p>You have 2 different behaviors. Objects with absolute configuration like <code>r=&quot;2&quot;</code> will show canvas zooming. Objects without absolute configuration won&rsquo;t change. <strong>Relative content adapts; absolute content stays unchanged (window adapts).</strong></p>
 <h3 id="fixed-dimensions">Fixed dimensions</h3>
 <p>Now let&rsquo;s see how setting fixed <code>height</code> and <code>width</code> impacts the changes above.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">svg</span> <span class="na">height</span><span class="o">=</span><span class="s">&#34;100&#34;</span> <span class="na">width</span><span class="o">=</span><span class="s">&#34;100&#34;</span> <span class="na">viewBox</span><span class="o">=</span><span class="s">&#34;0 0 10 10&#34;</span> <span class="na">xmlns</span><span class="o">=</span><span class="s">&#34;http://www.w3.org/2000/svg&#34;</span><span class="p">&gt;</span>
@@ -179,17 +178,17 @@ but all applied to the SVGs you can find in the home page of this website.</p>
 </span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">circle</span> <span class="na">cx</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">cy</span><span class="o">=</span><span class="s">&#34;50%&#34;</span> <span class="na">r</span><span class="o">=</span><span class="s">&#34;4&#34;</span> <span class="na">fill</span><span class="o">=</span><span class="s">&#34;white&#34;</span> <span class="p">/&gt;</span>
 </span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">svg</span><span class="p">&gt;</span>
 </span></span></code></pre></div><p><img src="/images/svg/scaled-svg.png" alt="original"></p>
-<p>The first thing you&rsquo;ll notice is that the SVG is now tiny. Setting fixed values for the window, mean the default 1 unit to 1px has now changed to 1 unit to 0.1px (10/100).</p>
-<p>Now, if you change the first and second pair you&rsquo;ll see exactly the same behavior as above, only the SVG is <em>scaled</em> to a different dimension.</p>
+<p>The first thing you&rsquo;ll notice is the SVG is tiny. Setting fixed values for the window means the default 1 unit to 1px has changed to 1 unit to 0.1px (10/100).</p>
+<p>Changing the first and second pair shows the same behavior as before, only with the SVG <em>scaled</em> to a different dimension.</p>
 <h3 id="recipe">Recipe</h3>
-<p>Let&rsquo;s say you are working with SVGs on your website. This is the recipe I&rsquo;d follow:</p>
+<p>If you&rsquo;re working with SVGs on your website, here&rsquo;s the recipe I&rsquo;d follow:</p>
 <ol>
-<li>Define the dimensions of the out box via <code>height</code> and <code>width</code> to set the correct scale for the SVG</li>
+<li>Define output box dimensions via <code>height</code> and <code>width</code> to set the correct SVG scale</li>
 <li>Adapt the coordinates for the object</li>
 <li>Scale the inner content inside the canvas (if applicable)</li>
 </ol>
 <h2 id="conclusion">Conclusion</h2>
-<p>I hope this clarified some of the doubts you might have had about SVGs. My suggestion for learning how tools like these work is to simply play around with them. The <a href="https://developer.mozilla.org/en-US/play?uuid=ca097dc9-6900-46a5-a5a4-8d506f18a607&amp;state=1VLLasMwEPyVRRBoIY7VRy6qm0O%2BwxdHVq1NZcnIixUT8u9d2aG99AcCEjO70uwwsFdhqXdCiWqcOpjQpGO4fNZCgoQXudxawKV3fuSuJRpUWaaUdultF2JXvkopS5bW4lB7gCoaTbAMYNl8x4QtWeY8bMOlNdhZ%2BqvLVaoxamdAZ%2FV%2BedDzL43M3hm%2F0DmmySKZu7TK%2FozM%2FsvA52ETFHvg81AZxFboceSFynu1rf0ptDNDznXNBqutyou1%2BciNyURC3biicdh5BRQG7t8WifKBnlQMgZ5XdYvj4JpZAXqH3hQnF%2FT3%2Bp2Nz9mXkazpDVOXrcTtBw%3D%3D&amp;srcPrefix=%2Fen-US%2Fdocs%2FWeb%2FSVG%2FReference%2FAttribute%2FviewBox%2F">playground by MDN</a> is a great place for that.</p>
+<p>I hope this clarified some doubts about SVGs. My suggestion for learning how such tools work is to simply experiment. The <a href="https://developer.mozilla.org/en-US/play?uuid=ca097dc9-6900-46a5-a5a4-8d506f18a607&amp;state=1VLLasMwEPyVRRBoIY7VRy6qm0O%2BwxdHVq1NZcnIixUT8u9d2aG99AcCEjO70uwwsFdhqXdCiWqcOpjQpGO4fNZCgoQXudxawKV3fuSuJRpUWaaUdultF2JXvkopS5bW4lB7gCoaTbAMYNl8x4QtWeY8bMOlNdhZ%2BqvLVaoxamdAZ%2FV%2BedDzL43M3hm%2F0DmmySKZu7TK%2FozM%2FsvA52ETFHvg81AZxFboceSFynu1rf0ptDNDznXNBqutyou1%2BciNyURC3biicdh5BRQG7t8WifKBnlQMgZ5XdYvj4JpZAXqH3hQnF%2FT3%2Bp2Nz9mXkazpDVOXrcTtBw%3D%3D&amp;srcPrefix=%2Fen-US%2Fdocs%2FWeb%2FSVG%2FReference%2FAttribute%2FviewBox%2F">MDN playground</a> is a great place to start.</p>
 
       </article>
 

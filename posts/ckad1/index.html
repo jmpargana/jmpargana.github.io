@@ -111,39 +111,37 @@
 </header>
 
       <article class="article-body">
-        <p>Welcome! In this series you&rsquo;ll read along my journey to CKAD certification. You can expect
-high-level knowledge sharing and hopefully some useful tips.</p>
+        <p>Welcome! In this series, you&rsquo;ll read along my journey to CKAD certification. Expect high-level knowledge sharing and hopefully some useful tips.</p>
 <h2 id="picking-the-course">Picking the course</h2>
-<p>Visiting the <a href="https://training.linuxfoundation.org/certification/certified-kubernetes-application-developer-ckad/">linux foundation</a>, you&rsquo;ll see a suggested package, which includes a course, an annual subscription, and more.</p>
-<p>After getting advise from colleagues who are already certified, I decided to follow a different course instead, on <a href="https://www.udemy.com/course/certified-kubernetes-application-developer/learn/lecture/28376970#overview">Udemy</a>.</p>
-<p>Not only does this have close to 5 star reviews, it&rsquo;s significantly cheaper. I purchased it with a discount of 80% (at around $11).</p>
+<p>Visiting the <a href="https://training.linuxfoundation.org/certification/certified-kubernetes-application-developer-ckad/">Linux Foundation</a> site, you&rsquo;ll see a suggested package that includes a course, annual subscription, and more.</p>
+<p>After getting advice from colleagues who are already certified, I decided to follow a different course instead on <a href="https://www.udemy.com/course/certified-kubernetes-application-developer/learn/lecture/28376970#overview">Udemy</a>.</p>
+<p>Not only does this have close to 5-star reviews, it&rsquo;s significantly cheaper. I purchased it at an 80% discount (around $11).</p>
 <h2 id="first-impressions">First impressions</h2>
-<p>I&rsquo;ve only just started. After completing the <em>Section 2: Core Concepts</em>, I&rsquo;m already very impressed with the instructor.
-Even though I&rsquo;ve been using Kubernetes professionally and dealing with it daily—debugging, deploying, securing—the course is the first time I&rsquo;ve understood core concepts that make the documentation and manifest development much clearer.</p>
-<p>Also, since the course is heavily focused on <code>kubectl</code>, I&rsquo;ve stopped relying on <code>k9s</code> as a daily dependency and am now comfortable using <code>kubectl</code> directly.</p>
+<p>I&rsquo;ve just started. After completing <em>Section 2: Core Concepts</em>, I&rsquo;m already very impressed with the instructor. Even though I&rsquo;ve been using Kubernetes professionally and dealing with it daily—debugging, deploying, securing—this course is the first time I&rsquo;ve truly understood core concepts that make documentation and manifest development much clearer.</p>
+<p>Since the course focuses heavily on <code>kubectl</code>, I&rsquo;ve stopped relying on <code>k9s</code> as a daily dependency and am now comfortable using <code>kubectl</code> directly.</p>
 <h3 id="manifest-skeleton">Manifest skeleton</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Kind</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="nt">metadata</span><span class="p">:</span><span class="w"> </span><span class="l">map[string]any</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="nt">spec</span><span class="p">:</span><span class="w"> </span><span class="l">any</span><span class="w">
-</span></span></span></code></pre></div><p>Each manifest always has the 4 components listed above.</p>
-<p><code>Kind</code> is anything either available in the kubernetes API (ex. <code>Pod</code>, <code>Service</code>, <code>ReplicaSet</code>, etc.) or it&rsquo;s something custom defined (or a <em>CRD</em>).</p>
-<p><code>spec</code>, the most important field, is strongly typed and needs to match it&rsquo;s <code>Kind</code>.</p>
+</span></span></span></code></pre></div><p>Each manifest always has these 4 components.</p>
+<p><code>Kind</code> can be anything available in the Kubernetes API (like <code>Pod</code>, <code>Service</code>, <code>ReplicaSet</code>, etc.) or something custom (a <em>CRD</em>).</p>
+<p><code>spec</code>, the most important field, is strongly typed and must match its <code>kind</code>.</p>
 <blockquote>
-<p>NOTE: In future posts I&rsquo;ll go more in depth with <code>apiVersion</code>, <code>kind</code> and <code>spec</code>. Understanding these fields is all about understanding how Kubernetes exposes it&rsquo;s API and how you can enhance it.</p>
+<p>NOTE: In future posts I&rsquo;ll dive deeper into <code>apiVersion</code>, <code>kind</code>, and <code>spec</code>. Understanding these fields is really about understanding how Kubernetes exposes its API and how you can extend it.</p>
 </blockquote>
 <h3 id="kubernetes-api-references">Kubernetes API References</h3>
-<p>My motivation to explore the documentation can be split in 2 points.</p>
+<p>My motivation to explore the documentation splits into 2 points.</p>
 <h4 id="llms">LLMs</h4>
-<p>In my quest to become a better software engineer, I want to fight the constant urge of finding the <em>easy</em> solution. For most questions I have, instead of searching for a response on StackOverflow, on Guides, articles, I end up going for the easy thing: asking the latest most powerful model.</p>
-<p>This is sadly becoming a recurring event. Much more serious than using <code>k9s</code> as a clutch.</p>
-<p>One way I&rsquo;m trying to break out of that cycle is to find the information in 2 sources. Either the official documentation or directly in the source code.</p>
+<p>In my quest to become a better software engineer, I want to resist the constant urge to find the <em>easy</em> solution. For most questions, instead of searching StackOverflow, guides, or articles, I end up taking the easy route: asking the latest powerful model.</p>
+<p>This is sadly becoming a recurring issue—far more serious than relying on <code>k9s</code>.</p>
+<p>One way I&rsquo;m breaking out of this cycle is to find information from 2 sources: either the official documentation or the source code directly.</p>
 <h4 id="certificate">Certificate</h4>
-<p>My second motivation is during the certification one only has access to the documentation. So ideally, you should become well versed in it&rsquo;s structure to find your way around.</p>
+<p>My second motivation is that during certification, you only have access to documentation. Ideally, you should become well versed in its structure to navigate it quickly.</p>
 <h4 id="reference">Reference</h4>
-<p>Well, the docs are massive. You have over 1000 pages, but the API reference, as it&rsquo;s automatically generated, is quite intuitive. It feels like navigating code.</p>
-<p>You start of in the <a href="https://kubernetes.io/docs/reference/kubernetes-api/">References &gt; Kubernetes API</a> submodule. If you can&rsquo;t find it straight away in the categories, you can simply search for a title (ex. <code>Pods</code>).</p>
-<p>Every documentation that is not a reference, contains an API reference on top-right corner saying <code>X API</code>. Clicking it, you&rsquo;ll see exactly what&rsquo;s expected in the spec.</p>
+<p>Well, the docs are massive—over 1000 pages—but the API reference, being automatically generated, is quite intuitive and feels like navigating code.</p>
+<p>You start in the <a href="https://kubernetes.io/docs/reference/kubernetes-api/">References &gt; Kubernetes API</a> section. If you can&rsquo;t find it immediately in the categories, you can search by title (like <code>Pods</code>).</p>
+<p>Every documentation page (except references) has an API reference link in the top-right corner labeled <code>X API</code>. Clicking it shows exactly what&rsquo;s expected in the spec.</p>
 <p>Here&rsquo;s the example for <code>Pod</code>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">PodSpec</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">Containers</span><span class="p">:</span><span class="w">
@@ -153,16 +151,16 @@ Even though I&rsquo;ve been using Kubernetes professionally and dealing with it 
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">Volumes</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">Scheduling</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="l">// ... plenty more</span><span class="w">
-</span></span></span></code></pre></div><p>You&rsquo;ll be able to understand exactly what the required fields are and how what data is expected.</p>
+</span></span></span></code></pre></div><p>You can understand exactly what the required fields are and what data type is expected.</p>
 <h3 id="imperative-commands">Imperative commands</h3>
-<p>The 3rd valuable lesson is using <em>imperative commands</em> to quickly generate YAML manifest boilerplate. While you can add all necessary flags for a complete resource definition, you can quickly generate templates for most common debugging scenarios.</p>
-<p>Before I start dumping all the information I&rsquo;ve learned so far, there&rsquo;s 2 important flags that come in handy when using imperative commands.</p>
+<p>The 3rd valuable lesson is using <em>imperative commands</em> to quickly generate YAML manifest boilerplate. While you can use flags for complete resource definitions, you can quickly generate templates for common debugging scenarios.</p>
+<p>Before listing all this information, there are 2 important flags that are helpful when using imperative commands.</p>
 <ol>
-<li><code>--dry-run=client</code> -&gt; does not create any resources yet, just outputs the result</li>
-<li><code>-o yaml</code> -&gt; dumps the exact yaml manifest needed</li>
+<li><code>--dry-run=client</code> → outputs the result without creating resources</li>
+<li><code>-o yaml</code> → outputs the exact YAML manifest needed</li>
 </ol>
 <h4 id="pods">Pods</h4>
-<p>As pods are working resources, you can <em>run</em> them:</p>
+<p>Since pods are working resources, you can <em>run</em> them:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ kubectl run nginx --image nginx --dry-run<span class="o">=</span>client -o yaml
 </span></span><span class="line"><span class="cl">apiVersion: v1
 </span></span><span class="line"><span class="cl">kind: Pod
@@ -179,7 +177,7 @@ Even though I&rsquo;ve been using Kubernetes professionally and dealing with it 
 </span></span><span class="line"><span class="cl">  dnsPolicy: ClusterFirst
 </span></span><span class="line"><span class="cl">  restartPolicy: Always
 </span></span><span class="line"><span class="cl">status: <span class="o">{}</span>
-</span></span></code></pre></div><p>For <code>Deployments</code> you need to <em>create</em>. As with other commands in <code>kubectl</code> you can opt for the short form:</p>
+</span></span></code></pre></div><p>For <code>Deployments</code>, you need to <em>create</em>. You can use the short form:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ kubectl create deploy nginx-deploy --image nginx --replicas <span class="m">4</span> --dry-run<span class="o">=</span>client -o yaml
 </span></span><span class="line"><span class="cl">apiVersion: apps/v1
 </span></span><span class="line"><span class="cl">kind: Deployment
@@ -205,8 +203,8 @@ Even though I&rsquo;ve been using Kubernetes professionally and dealing with it 
 </span></span><span class="line"><span class="cl">        name: nginx
 </span></span><span class="line"><span class="cl">        resources: <span class="o">{}</span>
 </span></span><span class="line"><span class="cl">status: <span class="o">{}</span>
-</span></span></code></pre></div><p>As you can probably notice, the selector labels and pod metadata match, so that&rsquo;s one less thing you need to check on.</p>
-<p>For services there are multiple ways, I&rsquo;ll show an alternative to <code>create</code>:</p>
+</span></span></code></pre></div><p>As you can see, the selector labels and pod metadata match, so that&rsquo;s one less thing to verify.</p>
+<p>For services, here&rsquo;s an alternative to <code>create</code>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ kubectl expose pod redis --port<span class="o">=</span><span class="m">6379</span> --name redis-svc --dry-run<span class="o">=</span>client -o yaml
 </span></span><span class="line"><span class="cl">apiVersion: v1
 </span></span><span class="line"><span class="cl">kind: Service
@@ -224,7 +222,7 @@ Even though I&rsquo;ve been using Kubernetes professionally and dealing with it 
 </span></span><span class="line"><span class="cl">    run: redis
 </span></span><span class="line"><span class="cl">status:
 </span></span><span class="line"><span class="cl">  loadBalancer: <span class="o">{}</span>
-</span></span></code></pre></div><p>And for namespace, you can also do it very quickly:</p>
+</span></span></code></pre></div><p>For namespaces, you can also create them quickly:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ kubectl create ns ns-test --dry-run<span class="o">=</span>client -o yaml
 </span></span><span class="line"><span class="cl">apiVersion: v1
 </span></span><span class="line"><span class="cl">kind: Namespace
@@ -233,10 +231,10 @@ Even though I&rsquo;ve been using Kubernetes professionally and dealing with it 
 </span></span><span class="line"><span class="cl">  name: ns-test
 </span></span><span class="line"><span class="cl">spec: <span class="o">{}</span>
 </span></span><span class="line"><span class="cl">status: <span class="o">{}</span>
-</span></span></code></pre></div><p>You can always pipe these yaml to files that you edit further before applying, or you don&rsquo;t even have to worry about the output if you simply want to validate the typing. Doing a <code>--dry-run</code> will give you feedback if the types are correct.</p>
+</span></span></code></pre></div><p>You can always pipe YAML to files for further editing before applying, or skip file output if you just want to validate typing. A <code>--dry-run</code> provides feedback on type correctness.</p>
 <h2 id="conclusion">Conclusion</h2>
-<p>These were the first learnings, but here comes a recommendation. The only reason I can remember them all so well is because of the practicing labs that come with the udemy course.</p>
-<p>Playing around with quickly creating all kinds of resources, even debugging some pods on your dev cluster.</p>
+<p>You&rsquo;ll remember these learnings best through the practice labs included with the Udemy course.</p>
+<p>Experiment with quickly creating different resource types and debug pods on your dev cluster.</p>
 
       </article>
 

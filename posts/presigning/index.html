@@ -111,13 +111,13 @@
 </header>
 
       <article class="article-body">
-        <p>This post is part of my <em>MiniTube</em> series. If you end up enjoying the content, please have a look at other related tasks.</p>
+        <p>This post is part of my <em>MiniTube</em> series. Check out other related posts if you find this content useful.</p>
 <h2 id="presigning">Presigning</h2>
 <p>I&rsquo;ve gone over signing as a useful strategy to overcome extra network calls when you want to prove you have permission to do something in regards of someone else. Presigning achieves the same goals, but with a few more cherries on top.</p>
 <h2 id="minitube">MiniTube</h2>
 <p>If you haven&rsquo;t read my other posts on this topic. I&rsquo;ve implemented a miniature video streaming architecture based on the system design interview by <a href="https://www.youtube.com/watch?v=IUrQ5_g3XKs">hello interview</a>.</p>
 <p>In order to upload large files, the recommended architecture is to perform a multipart upload, and generating some upload URLs with pre-authorised codes, that the client can use to call the storage service directly on behalf of the server.</p>
-<p>Here&rsquo;s how the sequence looks like:</p>
+<p>Here&rsquo;s how the sequence works:</p>
 <ol>
 <li>Client initiates multipart upload</li>
 <li>Server takes file size and splits in chunks</li>
@@ -130,7 +130,7 @@
 <li>Storage server validates order and validity of ETags and completes process</li>
 </ol>
 <h2 id="urls">URLs</h2>
-<p>What&rsquo;s so special about this presignature. Well, besides including the credentials for the specific client to upload a specific chunk, of a specific size to a specific path, it also embeds information such as expiration date and refresh capabilities (if configured by server).</p>
+<p>What makes this presignature special? Besides including the credentials for the specific client to upload a specific chunk, of a specific size to a specific path, it also embeds information such as expiration date and refresh capabilities (if configured by server).</p>
 <h2 id="example">Example</h2>
 <p>I&rsquo;ll give you some code examples of how to perform such a flow with vanilla javascript and Go with a S3-like API.</p>
 <h3 id="client-initiates">Client initiates</h3>
@@ -339,7 +339,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
 </span></span></span></code></pre></div><h2 id="conclusion">Conclusion</h2>
-<p>This post doesn&rsquo;t focus on refreshing or handling timeouts and reconnections. That could be a take-home exercise for you.</p>
+<p>This post doesn&rsquo;t cover refreshing, timeouts, or reconnection handling—those make good follow-up exercises.</p>
 <p>Feel free to play around with the project by cloning the <a href="https://github.com/jmpargana/minitube/tree/main">repo</a>.</p>
 
       </article>

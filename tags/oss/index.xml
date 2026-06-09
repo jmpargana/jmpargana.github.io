@@ -1,33 +1,38 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>OSS on jmpargana</title>
-    <link>https://jmpargana.com/tags/oss/</link>
-    <description>Recent content in OSS on jmpargana</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 19 Mar 2026 22:03:54 +0100</lastBuildDate>
-    <atom:link href="https://jmpargana.com/tags/oss/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>OpenSource - 3 - Humbled by AI</title>
-      <link>https://jmpargana.com/posts/oss3/</link>
-      <pubDate>Thu, 19 Mar 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/posts/oss3/</guid>
-      <description>&lt;p&gt;I&amp;rsquo;ve managed to find another project that I could contribute to.&lt;/p&gt;&#xA;&lt;p&gt;During the last weeks of December, while a team in my company was migrating from Azure DevOps Pipelines to GitHub Actions, a colleague reached out because one of the actions we developed, which was meant to be reused across the company was not working. It was the CI workflow, responsible for build, running and publishing the unit and integration tests, while security scans would run in parallel.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>OpenSource - 2 - First Contribution</title>
-      <link>https://jmpargana.com/posts/oss2/</link>
-      <pubDate>Fri, 30 Aug 2024 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/posts/oss2/</guid>
-      <description>&lt;h2 id=&#34;getting-started&#34;&gt;Getting started&lt;/h2&gt;&#xA;&lt;p&gt;I should&amp;rsquo;ve called it &lt;em&gt;My Second Contribution&lt;/em&gt; to be accurate. The first contribution, can be quite easy. Instead I&amp;rsquo;ll call that one step zero and the second as my first. It even fits better our software engineering counting habits.&lt;/p&gt;&#xA;&lt;h2 id=&#34;finding-your-target&#34;&gt;Finding your target&lt;/h2&gt;&#xA;&lt;p&gt;Contributing to an open source project isn&amp;rsquo;t really that much different than your daily job (assuming you work with industry standard practices). You go through the same ramping up steps. You&amp;rsquo;ll read documentation on the organisation, on the team. What tools are needed and how to set them up.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>OpenSource - 1 - Motivations</title>
-      <link>https://jmpargana.com/posts/oss1/</link>
-      <pubDate>Tue, 27 Aug 2024 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/posts/oss1/</guid>
-      <description>&lt;p&gt;Have you ever felt like you take more than you give?&lt;/p&gt;&#xA;&lt;p&gt;I&amp;rsquo;ve been using free information and resources for as long as I remember. My journey with computers started with linux. Most of the software I&amp;rsquo;ve used ever since (I&amp;rsquo;d guess about 99%) has been open source. I&amp;rsquo;ve read open documentation, downloaded free books, learned how to code with free resources. Everything for free. When it wasn&amp;rsquo;t free I used torrents or libgen (I hope this admission is not enough to charge me). I&amp;rsquo;ve build my knowledge and tools from things that are out there.&lt;/p&gt;</description>
-    </item>
-  </channel>
+	<channel>
+		<title>OSS on jmpargana</title>
+		<link>https://jmpargana.com/tags/oss/</link>
+		<description>Recent content in OSS on jmpargana</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Thu, 19 Mar 2026 22:03:54 +0100</lastBuildDate>
+		
+			<atom:link href="https://jmpargana.com/tags/oss/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>OpenSource - 3 - Humbled by AI</title>
+				<link>https://jmpargana.com/posts/oss3/</link>
+				<pubDate>Thu, 19 Mar 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/posts/oss3/</guid>
+				<description>&lt;p&gt;I found another project I could contribute to.&lt;/p&gt;&#xA;&lt;p&gt;In the last weeks of December, while a team at my company was migrating from Azure DevOps Pipelines to GitHub Actions, a colleague reached out. One of the actions we developed for company-wide reuse wasn&amp;rsquo;t working. It was the CI workflow responsible for building, running, and publishing unit and integration tests, with security scans running in parallel.&lt;/p&gt;&#xA;&lt;p&gt;This workflow failed in their runtime because the runners didn&amp;rsquo;t have Docker Compose installed, and the &lt;a href=&#34;https://github.com/hoverkraft-tech/compose-action&#34;&gt;compose-action&lt;/a&gt; crashed with an unexpected error.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>OpenSource - 2 - First Contribution</title>
+				<link>https://jmpargana.com/posts/oss2/</link>
+				<pubDate>Fri, 30 Aug 2024 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/posts/oss2/</guid>
+				<description>&lt;h2 id=&#34;getting-started&#34;&gt;Getting started&lt;/h2&gt;&#xA;&lt;p&gt;I should&amp;rsquo;ve called this &lt;em&gt;My Second Contribution&lt;/em&gt; for accuracy. The first contribution can be quite easy, so I&amp;rsquo;ll call that one step zero and this as my first. It even fits better with software engineering counting habits.&lt;/p&gt;&#xA;&lt;h2 id=&#34;finding-your-target&#34;&gt;Finding your target&lt;/h2&gt;&#xA;&lt;p&gt;Contributing to an open source project isn&amp;rsquo;t that different from your daily job (assuming you follow industry standards). You go through the same setup steps. You&amp;rsquo;ll read documentation about the organization, the team, tools needed, and how to set them up.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>OpenSource - 1 - Motivations</title>
+				<link>https://jmpargana.com/posts/oss1/</link>
+				<pubDate>Tue, 27 Aug 2024 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/posts/oss1/</guid>
+				<description>&lt;p&gt;Have you ever felt like you take more than you give?&lt;/p&gt;&#xA;&lt;p&gt;I&amp;rsquo;ve been using free information and resources forever. My journey with computers started with Linux. Most software I&amp;rsquo;ve used (roughly 99%) has been open source. I&amp;rsquo;ve read documentation, downloaded free books, learned to code with free resources—everything free. When something wasn&amp;rsquo;t free, I used torrents or LibGen (I hope this admission doesn&amp;rsquo;t incriminate me). I built my knowledge from freely available resources.&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

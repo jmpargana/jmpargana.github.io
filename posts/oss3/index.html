@@ -111,13 +111,13 @@
 </header>
 
       <article class="article-body">
-        <p>I&rsquo;ve managed to find another project that I could contribute to.</p>
-<p>During the last weeks of December, while a team in my company was migrating from Azure DevOps Pipelines to GitHub Actions, a colleague reached out because one of the actions we developed, which was meant to be reused across the company was not working. It was the CI workflow, responsible for build, running and publishing the unit and integration tests, while security scans would run in parallel.</p>
-<p>This workflow would fail in their runtime, because the runners didn&rsquo;t have docker compose installed and the <a href="https://github.com/hoverkraft-tech/compose-action">compose-action</a> crashed with an unexpected error.</p>
-<p>Navigating the code exposed a quick bug to solve so I opened my personal laptop and layed hands to work.</p>
+        <p>I found another project I could contribute to.</p>
+<p>In the last weeks of December, while a team at my company was migrating from Azure DevOps Pipelines to GitHub Actions, a colleague reached out. One of the actions we developed for company-wide reuse wasn&rsquo;t working. It was the CI workflow responsible for building, running, and publishing unit and integration tests, with security scans running in parallel.</p>
+<p>This workflow failed in their runtime because the runners didn&rsquo;t have Docker Compose installed, and the <a href="https://github.com/hoverkraft-tech/compose-action">compose-action</a> crashed with an unexpected error.</p>
+<p>Navigating the code exposed a quick bug to fix, so I opened my laptop and got to work.</p>
 <h2 id="the-bug">The Bug</h2>
-<p>The bug was very easy to fix, but hidden in a few layers of if/else logic with 3 flags. It took me a while to figure out the cleanest boolean expression, without refactoring too much the code.</p>
-<p>This is the kind of setup, that no matter how you look at, it&rsquo;ll always look like you can improve it. You&rsquo;ll understand what I mean with the snippet:</p>
+<p>The bug was very easy to fix but hidden in several layers of if/else logic with 3 flags. It took a while to find the cleanest boolean expression without refactoring too much of the code.</p>
+<p>This is the kind of setup where, no matter how you look at it, it always seems improvable. You&rsquo;ll understand once you see this snippet:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-typescript" data-lang="typescript"><span class="line"><span class="cl"><span class="kr">async</span> <span class="nx">install</span><span class="p">({</span> <span class="nx">composeVersion</span><span class="p">,</span> <span class="nx">cwd</span><span class="p">,</span> <span class="nx">githubToken</span> <span class="p">}</span><span class="o">:</span> <span class="nx">InstallInputs</span><span class="p">)</span><span class="o">:</span> <span class="nx">Promise</span><span class="p">&lt;</span><span class="nt">string</span><span class="p">&gt;</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kr">const</span> <span class="nx">currentVersion</span> <span class="o">=</span> <span class="k">await</span> <span class="k">this</span><span class="p">.</span><span class="nx">getInstalledVersion</span><span class="p">(</span><span class="nx">cwd</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
@@ -140,12 +140,12 @@
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">version</span><span class="p">({</span> <span class="nx">cwd</span> <span class="p">});</span>
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span></code></pre></div><h2 id="pushing-changes">Pushing changes</h2>
-<p>Before submitting the PR I filed a <a href="https://github.com/hoverkraft-tech/compose-action/issues/232">bug report</a>, documenting the issue as requested in the code of conduct. Then, a few minutes later a opened the <a href="https://github.com/hoverkraft-tech/compose-action/pull/234">PR</a>.</p>
-<p>Everything went well and within a few minutes the maintainer merged the changes.</p>
+<p>Before submitting the PR, I filed a <a href="https://github.com/hoverkraft-tech/compose-action/issues/232">bug report</a>, documenting the issue as requested in the code of conduct. Then, minutes later, I opened the <a href="https://github.com/hoverkraft-tech/compose-action/pull/234">PR</a>.</p>
+<p>Everything went well, and the maintainer merged the changes within minutes.</p>
 <h2 id="humbling-experience">Humbling experience</h2>
-<p>Here&rsquo;s why I&rsquo;m writing an article about it.</p>
-<p>Between the time I filed the bug and opened the PR (few minutes tops), copilot had already created a branch, opened a PR in draft with the plan to identify the issue. It then correctly identified the issue and submitted a similar PR with a similar refactor of the boolean states along with the same style of testing. All this in maximum 5 minutes compared to the 2/3h it took me to clone the code, read the documentation, study the tests, setup my personal laptop to run the tests, document the pull request description.</p>
-<p>This wasn&rsquo;t the state of art we are witnessing today with impressive coding agents and cheap-to-run models like gemma. It was back in January and it was already insanely powerful and making it compelling for open source maintainers to stop relying on contributers for such small tasks.</p>
+<p>Here&rsquo;s why I&rsquo;m writing this article.</p>
+<p>Between filing the bug and opening the PR (minutes apart), Copilot had already created a branch and opened a draft PR with a plan to identify the issue. It correctly identified it and submitted a similar PR with comparable refactoring of boolean logic and the same testing style. All this in ~5 minutes compared to the 2–3 hours it took me to clone code, read documentation, study tests, setup my laptop, run tests, and document the PR.</p>
+<p>This wasn&rsquo;t the state-of-the-art we see today with impressive coding agents and cheap models like Gemma. It was January, and it was already insanely powerful, making it compelling for maintainers to stop relying on contributors for small tasks.</p>
 
       </article>
 

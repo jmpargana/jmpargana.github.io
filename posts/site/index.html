@@ -111,73 +111,73 @@
 </header>
 
       <article class="article-body">
-        <p>In this post I&rsquo;ll go over the architecture behind this static site plus newsletter features, as well as the decisions behind the tech used.</p>
+        <p>In this post, I&rsquo;ll go over the architecture behind this static site plus newsletter features, as well as decisions behind the tech used.</p>
 <h2 id="overview">Overview</h2>
 <p><img src="/images/site/arch.png" alt="architecture"></p>
 <h2 id="frontend">Frontend</h2>
-<p>Starting with the frontend. The previous site was developed with <a href="https://svelte.dev/">svelte</a> as a fun project to work with a technology I was excited about. Since I&rsquo;ve added a blog to it, the functional requirements changed:</p>
+<p>The previous site was built with <a href="https://svelte.dev/">Svelte</a> as a fun project. Since adding a blog, the requirements changed:</p>
 <ul>
-<li>Display page with list of blog posts</li>
-<li>Render markdown in page style for individual post</li>
+<li>Display page listing blog posts</li>
+<li>Render markdown in page style for individual posts</li>
 <li>Display landing page with animations</li>
-<li>Make it easy to write articles in markdown without having to change code</li>
-<li>Make it easy to update animations and styles without having to rewrite a lot of code</li>
+<li>Make it easy to write articles in markdown without changing code</li>
+<li>Make it easy to update animations and styles without rewriting a lot of code</li>
 </ul>
-<p>With these requirements in mind, continuing to write svelte would require me to create a set of components for the markdown, and implement a rendering engine, so that I could simply add a static asset which would get converted.</p>
-<p>Working with svelte also makes it difficult to experiment with animations, because the most efficient and document code you find, is usually vanilla javascript, which has good integration with all modern browser APIs.</p>
-<p>I&rsquo;ve decided to use <a href="https://gohugo.io/">hugo</a> for the following reasons:</p>
+<p>Given these requirements, continuing with Svelte would require creating markdown rendering components and a rendering engine so I could add static assets and convert them.</p>
+<p>Svelte also makes it difficult to experiment with animations, since the most efficient and documented code is usually vanilla JavaScript, which integrates well with modern browser APIs.</p>
+<p>I chose <a href="https://gohugo.io/">Hugo</a> for the following reasons:</p>
 <ul>
 <li>great support for blogging and markdown rendering</li>
 <li>blazing fast (always a popular argument)</li>
-<li>built on top of helm templating engine, which is something I&rsquo;m very familiar with because of my backend work</li>
-<li>popular and full of extensions</li>
-<li>great support for vanilla js, html and css</li>
+<li>built on top of Helm templating engine, familiar to me from backend work</li>
+<li>popular with many extensions</li>
+<li>great support for vanilla JS, HTML, and CSS</li>
 </ul>
-<p>The way I&rsquo;ve configured my hugo site was by creating a custom theme, where I define all the vanilla html, js and css inside the theme, then use the main site with only the parameters and markdown content added.</p>
-<p>For styling I&rsquo;m using CSS variables because they&rsquo;re well-supported across all modern browsers and provide excellent extensibility. You build your styles on top of variables and tweaking them in the browser developer tools updates the whole design instantaneously.</p>
+<p>I configured my Hugo site by creating a custom theme with vanilla HTML, JS, and CSS, then used the main site only for parameters and markdown content.</p>
+<p>For styling, I&rsquo;m using CSS variables because they&rsquo;re well-supported in modern browsers and offer excellent extensibility. You build styles on variables and tweaking them in browser developer tools updates the whole design instantly.</p>
 <h2 id="designs">Designs</h2>
-<p>Continuing on the css styles line, I started by copying the styles I had on my previous blog. However, a few weeks ago I watched a <a href="https://www.youtube.com/watch?v=qaB5HF4ax9M">fireship video</a> about <a href="https://stitch.withgoogle.com">stitch</a>.</p>
-<p>If you&rsquo;re not familiar with it, I recommend exploring <a href="https://stitch.withgoogle.com">stitch</a>. It generates Figma-friendly designs from LLM prompts, allowing you to iterate on designs through natural language.</p>
-<p>Using Stitch was particularly useful because design has been a challenge for me in past projects. Leveraging AI-generated designs provided a practical solution without hiring a dedicated designer.</p>
-<p>Lastly, to set up those designs with the already existing css variables code, was just a matter of wiring up the MCP google provides and letting it update the whole codebase.</p>
+<p>Continuing with CSS styling, I started by copying styles from my previous blog. A few weeks ago, I watched a <a href="https://www.youtube.com/watch?v=qaB5HF4ax9M">Fireship video</a> about <a href="https://stitch.withgoogle.com">Stitch</a>.</p>
+<p>If you&rsquo;re unfamiliar, I recommend exploring <a href="https://stitch.withgoogle.com">Stitch</a>. It generates Figma-friendly designs from LLM prompts, letting you iterate via natural language.</p>
+<p>Stitch was particularly useful because design has been challenging for me in past projects. Leveraging AI-generated designs provided a practical solution without hiring a dedicated designer.</p>
+<p>To set up those designs with existing CSS variable code, I wired up the MCP Google provides and let it update the codebase.</p>
 <h2 id="newsletter">Newsletter</h2>
-<p>Now we get to the fun part. The requirements for my newsletter were the following:</p>
+<p>Now for the fun part. The newsletter requirements were:</p>
 <ul>
-<li>Accept very low throughput and sporadic requests to manage user base</li>
-<li>Have list of users available behind UI so it&rsquo;s easy to review changes</li>
+<li>Accept low, sporadic throughput to manage the user base</li>
+<li>Provide user list behind a UI for easy review and changes</li>
 <li>Spend $0</li>
 </ul>
-<p>The requirements for low throughput and sporadic requests are straightforward to solve with any modern technology. The real considerations are CPU and memory efficiency, and ensuring rapid response times even if the service hasn&rsquo;t run in several days.</p>
-<p>The best tool I found was to use <a href="https://aws.amazon.com/lambda/">AWS Lambda</a>, which not only fits all requirements but offers a few more interesting features:</p>
+<p>Low throughput and sporadic requests are straightforward to solve with modern technology. The real considerations are CPU and memory efficiency, ensuring rapid response times even after days of inactivity.</p>
+<p>The best tool I found was <a href="https://aws.amazon.com/lambda/">AWS Lambda</a>, which not only fits all requirements but offers interesting features:</p>
 <ul>
 <li>I can configure it to scale aggressively if needed</li>
 <li>Very low latency</li>
 <li>Easy to develop</li>
 </ul>
-<p>I picked python because of the amazing <a href="https://pypi.org/project/boto3/">boto3</a> library, which exposes AWS services with a very simple SDK.</p>
-<p>The hardest part about developing lambda functions is to test them locally. Fortunately, AWS provides with a CLI tool <a href="https://aws.amazon.com/serverless/sam/">sam</a> that solves exactly that problem.</p>
-<p>If you look into the <a href="https://github.com/jmpargana/jmpargana">repository</a> you can see a very complete README (auto generated when generating the project), which has all the commands needed to test it locally:</p>
+<p>I picked Python because of the amazing <a href="https://pypi.org/project/boto3/">boto3</a> library, which exposes AWS services with a simple SDK.</p>
+<p>The hardest part about developing Lambda functions is testing them locally. Fortunately, AWS provides <a href="https://aws.amazon.com/serverless/sam/">SAM</a> (Serverless Application Model), a CLI tool that solves this.</p>
+<p>If you check the <a href="https://github.com/jmpargana/jmpargana">repository</a>, you&rsquo;ll see a complete README (auto-generated with the project) with all commands needed to test locally:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">&gt; sam build --use-container
 </span></span><span class="line"><span class="cl">&gt; sam <span class="nb">local</span> invoke join --event events/event.json
 </span></span><span class="line"><span class="cl">&gt; sam <span class="nb">local</span> start-api
 </span></span><span class="line"><span class="cl">curl http://localhost:3000
 </span></span></code></pre></div><h2 id="infrastructure">Infrastructure</h2>
-<p>To provision the infrastructure mentioned above, I used Terraform. This is my preferred tool at work, and using it has deepened my knowledge of the AWS provider.</p>
-<p>The terraform folder has a few modules to simplify the main provisioning. I&rsquo;ve create a <code>state-module</code>, which creates an s3 bucket and dynamodb to store the backend remotely.</p>
+<p>To provision the infrastructure, I used Terraform. This is my preferred tool at work, and using it deepened my AWS knowledge.</p>
+<p>The Terraform folder has modules to simplify provisioning. I created a <code>state-module</code> that sets up an S3 bucket and DynamoDB for remote backend storage.</p>
 <blockquote>
-<p>NOTE: As of terraform v1.10.0 a new <code>use_lockfile</code> can be used, instead of configuring a separate database for locking.</p>
+<p>NOTE: As of Terraform v1.10.0, a new <code>use_lockfile</code> can be used instead of configuring a separate database for locking.</p>
 </blockquote>
-<p>I also have a <code>function-module</code> which abstracts the provisioning I need to perform for each of the lambda functions.</p>
-<p>A Lambda function can be deployed and provisioned in different ways within Terraform. My approach is to use a compiled <code>.zip</code> file that gets hashed and encoded before submission to AWS. I&rsquo;ll explain this decision in the automation section.</p>
-<p>Once you have deployed the lambda functions you need a provision a REST API on AWS Gateway for it to be accessible from the outside.</p>
-<p>Here&rsquo;s a full list of the building blocks without getting lost in the weeds of implementation details:</p>
+<p>I also created a <code>function-module</code> that abstracts provisioning for each Lambda function.</p>
+<p>Lambda functions can be deployed in Terraform different ways. My approach uses a compiled <code>.zip</code> file that gets hashed and encoded before submission to AWS. I&rsquo;ll explain this decision in the automation section.</p>
+<p>Once you&rsquo;ve deployed the Lambda functions, you need to provision a REST API on API Gateway for external access.</p>
+<p>Here&rsquo;s the full list of building blocks without getting lost in implementation weeds:</p>
 <ul>
 <li>API Gateway REST API</li>
 <li>API Gateway Resource</li>
-<li>API Gateway Deployment (one per lambda)</li>
+<li>API Gateway Deployment (one per Lambda)</li>
 <li>API Gateway Stage (one per deployment)</li>
 </ul>
-<p>Then, per lambda:</p>
+<p>Per Lambda:</p>
 <ul>
 <li>API Gateway Method</li>
 <li>API Gateway Integration</li>
@@ -186,17 +186,17 @@
 </ul>
 <p>And the shared infra:</p>
 <ul>
-<li>DynamoDB (to store user list)</li>
-<li>IAM Policy (document, and policy)</li>
+<li>DynamoDB (user list storage)</li>
+<li>IAM Policy</li>
 <li>IAM Role (with policy attachment)</li>
-<li>SES (Email) template, to be used by broadcasting function</li>
+<li>SES (Email) template for the broadcast function</li>
 </ul>
-<p>Last but not least, we also need to configure an extra function and responses for CORS policies, since the lambda will not be running in the same domain (the domain was delegated to GitHub Pages CDN).</p>
+<p>Finally, configure extra functions and responses for CORS policies since the Lambda won&rsquo;t run in the same domain (GitHub Pages CDN hosts the domain).</p>
 <h2 id="automation">Automation</h2>
-<p>Regarding the automation, we could have automated the deploy, but the only thing changing continuously is likely to be the javascript animations, design &amp; themes and the actual upload of new articles. For this reason I&rsquo;ve opted at compiling the lambda function locally and running the terraform locally as well not to risk exposing my AWS credentials with a future supply-chain attack.</p>
-<p>The only automation we have in place is a simple GitHub Action to call the broadcasting function everytime a new article get&rsquo;s added/updated from the <code>/content/posts</code> folder.</p>
+<p>We could automate the deploy, but only JavaScript animations, design, themes, and new articles change continuously. For this reason, I compile the Lambda locally and run Terraform locally to avoid exposing AWS credentials to potential supply-chain attacks.</p>
+<p>The only automation is a simple GitHub Action that calls the broadcast function whenever a new article is added or updated in <code>/content/posts</code>.</p>
 <h2 id="conclusion">Conclusion</h2>
-<p>That&rsquo;s it on the implementation of this site. If you are curious feel free to clone and playaround with the code locally. If you have doubts or suggestions you can open an issue you reach out to me directly.</p>
+<p>That covers the implementation of this site. Feel free to clone and experiment with the code locally if you&rsquo;re curious. If you have questions or suggestions, open an issue or reach out directly.</p>
 
       </article>
 

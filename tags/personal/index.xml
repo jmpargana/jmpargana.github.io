@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Personal on jmpargana</title>
-    <link>https://jmpargana.com/tags/personal/</link>
-    <description>Recent content in Personal on jmpargana</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Tue, 27 Aug 2024 22:03:54 +0100</lastBuildDate>
-    <atom:link href="https://jmpargana.com/tags/personal/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>OpenSource - 1 - Motivations</title>
-      <link>https://jmpargana.com/posts/oss1/</link>
-      <pubDate>Tue, 27 Aug 2024 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/posts/oss1/</guid>
-      <description>&lt;p&gt;Have you ever felt like you take more than you give?&lt;/p&gt;&#xA;&lt;p&gt;I&amp;rsquo;ve been using free information and resources for as long as I remember. My journey with computers started with linux. Most of the software I&amp;rsquo;ve used ever since (I&amp;rsquo;d guess about 99%) has been open source. I&amp;rsquo;ve read open documentation, downloaded free books, learned how to code with free resources. Everything for free. When it wasn&amp;rsquo;t free I used torrents or libgen (I hope this admission is not enough to charge me). I&amp;rsquo;ve build my knowledge and tools from things that are out there.&lt;/p&gt;</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Personal on jmpargana</title>
+		<link>https://jmpargana.com/tags/personal/</link>
+		<description>Recent content in Personal on jmpargana</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Tue, 27 Aug 2024 22:03:54 +0100</lastBuildDate>
+		
+			<atom:link href="https://jmpargana.com/tags/personal/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>OpenSource - 1 - Motivations</title>
+				<link>https://jmpargana.com/posts/oss1/</link>
+				<pubDate>Tue, 27 Aug 2024 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/posts/oss1/</guid>
+				<description>&lt;p&gt;Have you ever felt like you take more than you give?&lt;/p&gt;&#xA;&lt;p&gt;I&amp;rsquo;ve been using free information and resources forever. My journey with computers started with Linux. Most software I&amp;rsquo;ve used (roughly 99%) has been open source. I&amp;rsquo;ve read documentation, downloaded free books, learned to code with free resources—everything free. When something wasn&amp;rsquo;t free, I used torrents or LibGen (I hope this admission doesn&amp;rsquo;t incriminate me). I built my knowledge from freely available resources.&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

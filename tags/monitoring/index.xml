@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Monitoring on jmpargana</title>
-    <link>https://jmpargana.com/tags/monitoring/</link>
-    <description>Recent content in Monitoring on jmpargana</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Fri, 20 Mar 2026 22:03:54 +0100</lastBuildDate>
-    <atom:link href="https://jmpargana.com/tags/monitoring/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Canonical Logging</title>
-      <link>https://jmpargana.com/posts/cannonical_logging/</link>
-      <pubDate>Fri, 20 Mar 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/posts/cannonical_logging/</guid>
-      <description>&lt;p&gt;Ever since I&amp;rsquo;ve read &lt;a href=&#34;https://loggingsucks.com/&#34;&gt;loggingsucks&lt;/a&gt;, I&amp;rsquo;ve been focused on implementing canonical logging across my applications.&lt;/p&gt;&#xA;&lt;p&gt;If you&amp;rsquo;re new to the concept, I really really recommend you reading the whole article there. It&amp;rsquo;s a great read, interactive, complete and makes a compeling case on why you should prefer it. I will try to give a very simple explanation so the code examples below make more sense.&lt;/p&gt;&#xA;&lt;p&gt;Imagine each server call, whatever happens has a single, context-rich log with all the information that pertains to that one request. No complex &lt;a href=&#34;https://grafana.com/oss/loki/&#34;&gt;loki&lt;/a&gt; queries. No guessing what &lt;em&gt;ERROR: something went wrong&lt;/em&gt; means. No looking for timestamps between different microservices to figure out what triggered the failure. That&amp;rsquo;s what canonical logging is. That one single log. The log you&amp;rsquo;ve longed for.&lt;/p&gt;</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Monitoring on jmpargana</title>
+		<link>https://jmpargana.com/tags/monitoring/</link>
+		<description>Recent content in Monitoring on jmpargana</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Fri, 20 Mar 2026 22:03:54 +0100</lastBuildDate>
+		
+			<atom:link href="https://jmpargana.com/tags/monitoring/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Canonical Logging</title>
+				<link>https://jmpargana.com/posts/cannonical_logging/</link>
+				<pubDate>Fri, 20 Mar 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/posts/cannonical_logging/</guid>
+				<description>&lt;p&gt;Since reading &lt;a href=&#34;https://loggingsucks.com/&#34;&gt;loggingsucks&lt;/a&gt;, I&amp;rsquo;ve focused on implementing canonical logging across my applications.&lt;/p&gt;&#xA;&lt;p&gt;I highly recommend reading the full article there. It&amp;rsquo;s a great read, interactive, complete, and makes a compelling case for why you should prefer it. I will try to give a very simple explanation so the code examples below make more sense.&lt;/p&gt;&#xA;&lt;p&gt;Imagine each server call: whatever happens gets logged once with all relevant context for that single request. No complex &lt;a href=&#34;https://grafana.com/oss/loki/&#34;&gt;Loki&lt;/a&gt; queries. No guessing what &lt;em&gt;ERROR: something went wrong&lt;/em&gt; means. No searching across timestamps in different microservices to trace failures. That&amp;rsquo;s canonical logging—the single log you&amp;rsquo;ve always wanted.&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

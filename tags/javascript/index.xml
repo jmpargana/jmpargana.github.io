@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Javascript on jmpargana</title>
-    <link>https://jmpargana.com/tags/javascript/</link>
-    <description>Recent content in Javascript on jmpargana</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sun, 12 Apr 2026 22:03:54 +0100</lastBuildDate>
-    <atom:link href="https://jmpargana.com/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>This Blog&#39;s Tech Stack &amp; Architecture</title>
-      <link>https://jmpargana.com/posts/site/</link>
-      <pubDate>Sun, 12 Apr 2026 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/posts/site/</guid>
-      <description>&lt;p&gt;In this post I&amp;rsquo;ll go over the architecture behind this static site plus newsletter features, as well as the decisions behind the tech used.&lt;/p&gt;&#xA;&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://jmpargana.com/images/site/arch.png&#34; alt=&#34;architecture&#34;&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;frontend&#34;&gt;Frontend&lt;/h2&gt;&#xA;&lt;p&gt;Starting with the frontend. The previous site was developed with &lt;a href=&#34;https://svelte.dev/&#34;&gt;svelte&lt;/a&gt; as a fun project to work with a technology I was excited about. Since I&amp;rsquo;ve added a blog to it, the functional requirements changed:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Display page with list of blog posts&lt;/li&gt;&#xA;&lt;li&gt;Render markdown in page style for individual post&lt;/li&gt;&#xA;&lt;li&gt;Display landing page with animations&lt;/li&gt;&#xA;&lt;li&gt;Make it easy to write articles in markdown without having to change code&lt;/li&gt;&#xA;&lt;li&gt;Make it easy to update animations and styles without having to rewrite a lot of code&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;With these requirements in mind, continuing to write svelte would require me to create a set of components for the markdown, and implement a rendering engine, so that I could simply add a static asset which would get converted.&lt;/p&gt;</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Javascript on jmpargana</title>
+		<link>https://jmpargana.com/tags/javascript/</link>
+		<description>Recent content in Javascript on jmpargana</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Sun, 12 Apr 2026 22:03:54 +0100</lastBuildDate>
+		
+			<atom:link href="https://jmpargana.com/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>This Blog&#39;s Tech Stack &amp; Architecture</title>
+				<link>https://jmpargana.com/posts/site/</link>
+				<pubDate>Sun, 12 Apr 2026 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/posts/site/</guid>
+				<description>&lt;p&gt;In this post, I&amp;rsquo;ll go over the architecture behind this static site plus newsletter features, as well as decisions behind the tech used.&lt;/p&gt;&#xA;&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://jmpargana.com/images/site/arch.png&#34; alt=&#34;architecture&#34;&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;frontend&#34;&gt;Frontend&lt;/h2&gt;&#xA;&lt;p&gt;The previous site was built with &lt;a href=&#34;https://svelte.dev/&#34;&gt;Svelte&lt;/a&gt; as a fun project. Since adding a blog, the requirements changed:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Display page listing blog posts&lt;/li&gt;&#xA;&lt;li&gt;Render markdown in page style for individual posts&lt;/li&gt;&#xA;&lt;li&gt;Display landing page with animations&lt;/li&gt;&#xA;&lt;li&gt;Make it easy to write articles in markdown without changing code&lt;/li&gt;&#xA;&lt;li&gt;Make it easy to update animations and styles without rewriting a lot of code&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Given these requirements, continuing with Svelte would require creating markdown rendering components and a rendering engine so I could add static assets and convert them.&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

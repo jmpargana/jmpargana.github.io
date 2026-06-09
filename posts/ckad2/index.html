@@ -111,12 +111,12 @@
 </header>
 
       <article class="article-body">
-        <p>While Kubernetes is far more than just a server, thinking about it as a REST API server is incredibly helpful for understanding how to interact with cluster resources.</p>
-<p>In this post I&rsquo;ll explore how we can interact with Kubernetes as a server and how to discover its API.</p>
+        <p>While Kubernetes is far more than just a server, thinking of it as a REST API server is incredibly helpful for understanding how to interact with cluster resources.</p>
+<p>In this post, I&rsquo;ll explore how we can interact with Kubernetes as a server and how to discover its API.</p>
 <h2 id="proxy">Proxy</h2>
-<p>To make it easier for you to see how Kubernetes is a server, run:</p>
+<p>To make it easier for you to see how Kubernetes functions as a server, run:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">&gt; kubectl proxy
-</span></span></code></pre></div><p>Now we can call the API to navigate through its endpoints. Calling the root you can see all available paths:</p>
+</span></span></code></pre></div><p>Now we can call the API to navigate through its endpoints. Calling the root endpoint shows all available paths:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">&gt; curl localhost:8001
 </span></span><span class="line"><span class="cl"><span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="s2">&#34;paths&#34;</span>: <span class="o">[</span>
@@ -140,7 +140,7 @@
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;/apis/authorization.k8s.io&#34;</span>,
 </span></span><span class="line"><span class="cl">    // ...
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><p>The APIs list all their versions calling <code>/apis</code>:</p>
+</span></span></code></pre></div><p>The APIs list all their versions by calling <code>/apis</code>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">&gt; curl localhost:8001/apis
 </span></span><span class="line"><span class="cl"><span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="s2">&#34;kind&#34;</span>: <span class="s2">&#34;APIGroupList&#34;</span>,
@@ -188,7 +188,7 @@
 </span></span><span class="line"><span class="cl">    // ... collapsed <span class="k">for</span> readability
 </span></span><span class="line"><span class="cl">  <span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><p>Picking any of the group versions there will show you more information about the particular resource:</p>
+</span></span></code></pre></div><p>Picking any of the group versions will show more information about that particular resource:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">&gt; curl localhost:8001/events.k8s.io/v1
 </span></span><span class="line"><span class="cl"><span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="s2">&#34;kind&#34;</span>: <span class="s2">&#34;APIResourceList&#34;</span>,
@@ -217,8 +217,8 @@
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>
 </span></span><span class="line"><span class="cl">  <span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><p>If you&rsquo;ve configured <em>users</em>, <em>roles</em> and <em>role_bindings</em> you&rsquo;ll find the payload familiar (and useful). For each of the resource listed, you get a path and the CRUD + other operations you can perform against that particular resource.</p>
-<p>Let&rsquo;s see what you get with <em>statefulsets</em></p>
+</span></span></code></pre></div><p>If you&rsquo;ve configured <em>users</em>, <em>roles</em>, and <em>role bindings</em>, you&rsquo;ll find this payload familiar (and useful). For each resource, you get a path and the CRUD plus other operations you can perform against it.</p>
+<p>Let&rsquo;s see what you get with <em>statefulsets</em>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">&gt; curl localhost:8001/apis/apps/v1/statefulsets
 </span></span><span class="line"><span class="cl"><span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="s2">&#34;kind&#34;</span>: <span class="s2">&#34;StatefulSetList&#34;</span>,
@@ -276,12 +276,12 @@
 </span></span><span class="line"><span class="cl">    // ...
 </span></span><span class="line"><span class="cl">  <span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><p>If your resource has a <code>get</code> verb you can call it also directly:</p>
+</span></span></code></pre></div><p>If your resource has a <code>get</code> verb, you can call it directly:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">&gt; curl localhost:8001/apis/apps/v1/namespaces/default/statefulsets/minitube-nats
-</span></span></code></pre></div><p>There&rsquo;s a lot of <strong>interesting</strong> information there about Kubernetes internals. The point of this post is not to deep dive, but simply to give you idea what hides below the surface.</p>
-<p>When you handle your <em>yaml</em> configuration files, you&rsquo;re really just managing a <em>json</em> payload, that is only a UI for the go structs used internally.</p>
+</span></span></code></pre></div><p>There&rsquo;s a lot of <strong>interesting</strong> information about Kubernetes internals hidden there. This post isn&rsquo;t a deep dive, but simply shows you what exists below the surface.</p>
+<p>When you manage YAML configuration files, you&rsquo;re really just managing a JSON payload with a UI for the Go structs used internally.</p>
 <h2 id="resources">Resources</h2>
-<p>Proxying the API server and navigating through their endpoints is not the easiest way to get information about what resources you have available and how you can configure them. There&rsquo;s an extension to <code>kubectl</code> which makes that much easier:</p>
+<p>Proxying the API server and navigating through endpoints isn&rsquo;t the easiest way to get information about available resources and how to configure them. There&rsquo;s a <code>kubectl</code> extension that makes this much easier:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">&gt; kubectl api-resources
 </span></span><span class="line"><span class="cl">NAME                                SHORTNAMES   APIVERSION                          NAMESPACED   KIND
 </span></span><span class="line"><span class="cl">bindings                                         v1                                  <span class="nb">true</span>         Binding
@@ -299,12 +299,12 @@
 </span></span><span class="line"><span class="cl">replicationcontrollers              rc           v1                                  <span class="nb">true</span>         ReplicationController
 </span></span><span class="line"><span class="cl">resourcequotas                      quota        v1                                  <span class="nb">true</span>         ResourceQuota
 </span></span><span class="line"><span class="cl">secrets                                          v1                                  <span class="nb">true</span>         Secret
-</span></span></code></pre></div><p>As you see, Kubernetes has a resource representing it&rsquo;s resources. Extensibility is builtin to it&rsquo;s core. You can create or override existing resources with your own CRDs as long as you adhere to the API model.</p>
-<p>I&rsquo;ll go over how to so in a future post, for now let&rsquo;s add the last piece of the puzzle on how you can get information about a particular API you need to use.</p>
+</span></span></code></pre></div><p>As you can see, Kubernetes has a resource representing its resources. Extensibility is built into its core. You can create or override existing resources with your own CRDs as long as you adhere to the API model.</p>
+<p>I&rsquo;ll cover how to do this in a future post. For now, let&rsquo;s add the last piece: how to get information about a particular API you need to use.</p>
 <h2 id="openapi">OpenAPI</h2>
-<p>The previous post in this series showed how all objects have the same structure (with few exceptions): <code>kind</code>, <code>version</code>, <code>metadata</code> and <code>spec</code>.</p>
-<p>We saw how to get information about the <code>kind</code> and <code>version</code>. Now the missing piece is to look at <code>spec</code>.</p>
-<p>You may have noticed on the first payload that there is a <code>/openapi</code> endpoint. Let&rsquo;s see what is returned by calling it:</p>
+<p>Previous posts showed how all objects share the same structure (with few exceptions): <code>kind</code>, <code>version</code>, <code>metadata</code>, and <code>spec</code>.</p>
+<p>We saw how to get information about <code>kind</code> and <code>version</code>. Now the missing piece is looking at <code>spec</code>.</p>
+<p>You may have noticed a <code>/openapi</code> endpoint in the first payload. Let&rsquo;s see what it returns:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">&gt; curl localhost:8001/openapi/v3
 </span></span><span class="line"><span class="cl"><span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="s2">&#34;paths&#34;</span>: <span class="o">{</span>
@@ -322,7 +322,7 @@
 </span></span><span class="line"><span class="cl">    <span class="o">}</span>,
 </span></span><span class="line"><span class="cl">    // ...
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><p>Every single resource in Kubernetes has an OpenAPI specification which can use as reference on top of it. You can see all of them by calling the endpoints and you could even copy paste the specification to visualize it in any OpenAPI UI available online:</p>
+</span></span></code></pre></div><p>Every single resource in Kubernetes has an OpenAPI specification you can use as reference. You can see all of them by calling these endpoints, and you could even copy-paste the specification into any online OpenAPI UI to visualize it:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">&gt; curl localhost:8001/openapi/v3/apis/apps/v1
 </span></span><span class="line"><span class="cl"><span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="s2">&#34;openapi&#34;</span>: <span class="s2">&#34;3.0.0&#34;</span>,
@@ -366,9 +366,9 @@
 </span></span><span class="line"><span class="cl">      <span class="o">}</span>
 </span></span><span class="line"><span class="cl">  // ...
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><p>Here&rsquo;s an example of what copy/pasting the payload get&rsquo;s you on <code>editor.swagger.io</code>:</p>
+</span></span></code></pre></div><p>Here&rsquo;s an example of what copy-pasting the payload gets you on <code>editor.swagger.io</code>:</p>
 <p><img src="/images/k8s/openapi.png" alt="openapi"></p>
-<p>That&rsquo;s it for now. I hope this has provided you with a new perspective on how you can use Kubernetes. On the next post I&rsquo;ll go over the tools we have available to set up an API extension.</p>
+<p>That&rsquo;s it for now. I hope this provided you with a new perspective on how you can use Kubernetes. In the next post, I&rsquo;ll cover the tools available for API extensions.</p>
 
       </article>
 

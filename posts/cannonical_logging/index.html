@@ -111,14 +111,14 @@
 </header>
 
       <article class="article-body">
-        <p>Ever since I&rsquo;ve read <a href="https://loggingsucks.com/">loggingsucks</a>, I&rsquo;ve been focused on implementing canonical logging across my applications.</p>
-<p>If you&rsquo;re new to the concept, I really really recommend you reading the whole article there. It&rsquo;s a great read, interactive, complete and makes a compeling case on why you should prefer it. I will try to give a very simple explanation so the code examples below make more sense.</p>
-<p>Imagine each server call, whatever happens has a single, context-rich log with all the information that pertains to that one request. No complex <a href="https://grafana.com/oss/loki/">loki</a> queries. No guessing what <em>ERROR: something went wrong</em> means. No looking for timestamps between different microservices to figure out what triggered the failure. That&rsquo;s what canonical logging is. That one single log. The log you&rsquo;ve longed for.</p>
-<p>In microservices and large scale systems, canonical logging is a must. You simply add all the context you need there.</p>
+        <p>Since reading <a href="https://loggingsucks.com/">loggingsucks</a>, I&rsquo;ve focused on implementing canonical logging across my applications.</p>
+<p>I highly recommend reading the full article there. It&rsquo;s a great read, interactive, complete, and makes a compelling case for why you should prefer it. I will try to give a very simple explanation so the code examples below make more sense.</p>
+<p>Imagine each server call: whatever happens gets logged once with all relevant context for that single request. No complex <a href="https://grafana.com/oss/loki/">Loki</a> queries. No guessing what <em>ERROR: something went wrong</em> means. No searching across timestamps in different microservices to trace failures. That&rsquo;s canonical logging—the single log you&rsquo;ve always wanted.</p>
+<p>In microservices and large-scale systems, canonical logging is essential. You simply add all necessary context to a single log.</p>
 <h2 id="setting-up-in-go">Setting up in go</h2>
-<p>Fortunately for any go developer, there&rsquo;s a great library: <a href="https://github.com/ucarion/log">ucarion/log</a>. It&rsquo;s compatible with any logging library you use, like <a href="https://github.com/uber-go/zap">uber-go/zap</a>.</p>
-<p>The way it works is by leveraging go&rsquo;s <code>context.Context</code>. You pass along all the key-value you want to include in your logs and once you&rsquo;re done, you call <code>log.Log</code>.</p>
-<p>Here&rsquo;s a simple example on how you can use the standard library to create a middleware that sets up the logger.</p>
+<p>Fortunately, Go developers have a great library: <a href="https://github.com/ucarion/log">ucarion/log</a>. It&rsquo;s compatible with any logging library you use, like <a href="https://github.com/uber-go/zap">uber-go/zap</a>.</p>
+<p>It works by leveraging Go&rsquo;s <code>context.Context</code>. You pass along all key-value pairs you want in your logs, and once done, you call <code>log.Log</code>.</p>
+<p>Here&rsquo;s a simple example showing how to create middleware that sets up the logger using the standard library.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span><span class="w"> </span><span class="nx">main</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="kn">import</span><span class="w"> </span><span class="p">(</span><span class="w">
@@ -167,12 +167,12 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="nx">w</span><span class="p">.</span><span class="nf">WriteHeader</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
 </span></span></span></code></pre></div><h2 id="keep-in-mind">Keep in mind</h2>
-<p>While canonical logging is extremely useful, adding all context to a single log can result in very large log entries. If you&rsquo;ve used a service like Grafana Cloud, you know it can incur significant costs. Heavy logging, even with low retention periods, can become expensive.</p>
-<p>My recommendation is to have someone review the code and help determine whether the extra context provides real value. It&rsquo;s easy to add everything (for example, <em>metadata columns</em>). In practice, you&rsquo;ll likely only need core fields that should always be included:</p>
+<p>While canonical logging is extremely useful, including all context in a single log can result in very large entries. If you&rsquo;ve used services like Grafana Cloud, you know it can incur significant costs. Heavy logging, even with low retention, can become expensive.</p>
+<p>My recommendation is to have a code review identify whether the extra context provides real value. It&rsquo;s easy to add everything (like <em>metadata columns</em>). In practice, you&rsquo;ll likely only need core fields that should always be present:</p>
 <ul>
 <li>correlationId</li>
-<li>error code (if you keep efficient representations of long string explanations)</li>
-<li>trace and span ids (to match with traces)</li>
+<li>error code (if using efficient representations for long string explanations)</li>
+<li>trace and span IDs (to match with traces)</li>
 <li>result</li>
 <li>userId (if GDPR compliant)</li>
 <li>sessionId</li>

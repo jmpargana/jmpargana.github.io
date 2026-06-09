@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Containerd on jmpargana</title>
-    <link>https://jmpargana.com/tags/containerd/</link>
-    <description>Recent content in Containerd on jmpargana</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Fri, 30 Aug 2024 22:03:54 +0100</lastBuildDate>
-    <atom:link href="https://jmpargana.com/tags/containerd/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>OpenSource - 2 - First Contribution</title>
-      <link>https://jmpargana.com/posts/oss2/</link>
-      <pubDate>Fri, 30 Aug 2024 22:03:54 +0100</pubDate>
-      <guid>https://jmpargana.com/posts/oss2/</guid>
-      <description>&lt;h2 id=&#34;getting-started&#34;&gt;Getting started&lt;/h2&gt;&#xA;&lt;p&gt;I should&amp;rsquo;ve called it &lt;em&gt;My Second Contribution&lt;/em&gt; to be accurate. The first contribution, can be quite easy. Instead I&amp;rsquo;ll call that one step zero and the second as my first. It even fits better our software engineering counting habits.&lt;/p&gt;&#xA;&lt;h2 id=&#34;finding-your-target&#34;&gt;Finding your target&lt;/h2&gt;&#xA;&lt;p&gt;Contributing to an open source project isn&amp;rsquo;t really that much different than your daily job (assuming you work with industry standard practices). You go through the same ramping up steps. You&amp;rsquo;ll read documentation on the organisation, on the team. What tools are needed and how to set them up.&lt;/p&gt;</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Containerd on jmpargana</title>
+		<link>https://jmpargana.com/tags/containerd/</link>
+		<description>Recent content in Containerd on jmpargana</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Fri, 30 Aug 2024 22:03:54 +0100</lastBuildDate>
+		
+			<atom:link href="https://jmpargana.com/tags/containerd/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>OpenSource - 2 - First Contribution</title>
+				<link>https://jmpargana.com/posts/oss2/</link>
+				<pubDate>Fri, 30 Aug 2024 22:03:54 +0100</pubDate>
+				<guid>https://jmpargana.com/posts/oss2/</guid>
+				<description>&lt;h2 id=&#34;getting-started&#34;&gt;Getting started&lt;/h2&gt;&#xA;&lt;p&gt;I should&amp;rsquo;ve called this &lt;em&gt;My Second Contribution&lt;/em&gt; for accuracy. The first contribution can be quite easy, so I&amp;rsquo;ll call that one step zero and this as my first. It even fits better with software engineering counting habits.&lt;/p&gt;&#xA;&lt;h2 id=&#34;finding-your-target&#34;&gt;Finding your target&lt;/h2&gt;&#xA;&lt;p&gt;Contributing to an open source project isn&amp;rsquo;t that different from your daily job (assuming you follow industry standards). You go through the same setup steps. You&amp;rsquo;ll read documentation about the organization, the team, tools needed, and how to set them up.&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

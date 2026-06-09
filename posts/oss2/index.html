@@ -112,10 +112,10 @@
 
       <article class="article-body">
         <h2 id="getting-started">Getting started</h2>
-<p>I should&rsquo;ve called it <em>My Second Contribution</em> to be accurate. The first contribution, can be quite easy. Instead I&rsquo;ll call that one step zero and the second as my first. It even fits better our software engineering counting habits.</p>
+<p>I should&rsquo;ve called this <em>My Second Contribution</em> for accuracy. The first contribution can be quite easy, so I&rsquo;ll call that one step zero and this as my first. It even fits better with software engineering counting habits.</p>
 <h2 id="finding-your-target">Finding your target</h2>
-<p>Contributing to an open source project isn&rsquo;t really that much different than your daily job (assuming you work with industry standard practices). You go through the same ramping up steps. You&rsquo;ll read documentation on the organisation, on the team. What tools are needed and how to set them up.</p>
-<p>Every open source project is different, but they tend to follow the same principles. You need:</p>
+<p>Contributing to an open source project isn&rsquo;t that different from your daily job (assuming you follow industry standards). You go through the same setup steps. You&rsquo;ll read documentation about the organization, the team, tools needed, and how to set them up.</p>
+<p>Every open source project is different, but they tend to follow similar principles. You need:</p>
 <ul>
 <li>Code of conduct</li>
 <li>Contributing guide</li>
@@ -123,32 +123,32 @@
 <li>Security guide</li>
 <li>README</li>
 </ul>
-<p>Sometimes it&rsquo;s all on the README. Sometimes on different markdown files. Sometimes on a Wiki section. Other times as a GitHub Pages site. If it&rsquo;s not there, hey, that&rsquo;s a contribution opportunity for you right there.</p>
-<p>Whatever you go for, you should be confident to get information on:</p>
+<p>Sometimes it&rsquo;s all in the README. Sometimes in different markdown files. Sometimes in a Wiki section. Other times as a GitHub Pages site. If it&rsquo;s not there, that&rsquo;s a contribution opportunity right there.</p>
+<p>Whatever you choose, you should be confident you can find information on:</p>
 <ul>
-<li>how to run the code, tests</li>
-<li>what tools to use (linting, generating, etc.)</li>
-<li>what style to adhere to</li>
-<li>how to document and communicate your changes</li>
+<li>How to run code and tests</li>
+<li>What tools to use (linting, generating, etc.)</li>
+<li>What style to follow</li>
+<li>How to document and communicate changes</li>
 </ul>
 <h2 id="step-zero">Step zero</h2>
-<p>If you look at big projects on GitHub, you&rsquo;ll find extremely complex source code, a lot of documentation with guidelines, thousands of issues with tens of comments. If you investigate who the commenters and maintainers are, you&rsquo;ll sometimes spot people in big tech companies, principal engineers, community giants. In a nutshell, it&rsquo;s intimidating.</p>
-<p>Don&rsquo;t be frighten. For the very first step. Let&rsquo;s call it step zero. There&rsquo;s a single repository called <a href="https://github.com/firstcontributions/first-contributions">first contribution</a> that simplifies the hard step of navigating through code.</p>
+<p>If you look at big projects on GitHub, you&rsquo;ll find extremely complex source code, extensive documentation with guidelines, thousands of issues with many comments. If you investigate commenters and maintainers, you&rsquo;ll sometimes spot people from big tech companies, principal engineers, community giants. In short, it&rsquo;s intimidating.</p>
+<p>Don&rsquo;t be frightened. For your first step—let&rsquo;s call it step zero—there&rsquo;s a single repository called <a href="https://github.com/firstcontributions/first-contributions">First Contributions</a> that simplifies navigating code.</p>
 <h2 id="actual-contribution">Actual contribution</h2>
-<p>Now that you have completed your first contribution, I&rsquo;ll share my experience rather than tell you exactly which repository to contribute to.</p>
-<p>I&rsquo;ve been reading code of tools I use regularly for a while, and since got the idea of contributing to an open source project, started also visiting the issues and the <code>/org/repo/contribute</code> pages.</p>
+<p>Now that you&rsquo;ve completed your first contribution, I&rsquo;ll share my experience rather than tell you exactly which repository to contribute to.</p>
+<p>I&rsquo;ve been reading code from tools I use regularly. Since getting the idea to contribute to open source, I&rsquo;ve also visited issues and the <code>/org/repo/contribute</code> pages.</p>
 <blockquote>
-<p>NOTE: If you didn&rsquo;t know, searching for <code>/contribute</code> in any repo will automatically list any issue labeled as <code>good first issue</code>.</p>
+<p>NOTE: If you didn&rsquo;t know, searching for <code>/contribute</code> in any repository automatically lists issues labeled as <code>good first issue</code>.</p>
 </blockquote>
-<p>Inside the <code>containerd</code> organisation I learned about the tool <code>nerdctl</code>, which is CLI compatible with Docker, but wired for the containerd runtime.</p>
-<p>By chance, I found a good first issue that was actually a small feature request, not just documentation or a bug fix. <a href="https://github.com/containerd/nerdctl/issues/2835">Issue in question</a> was to add multiple build contexts to an image build, allowing files from different folders.</p>
-<p>I cloned the repository and started exploring the code to understand how it worked. After some experimentation, I figured out how to pass that flag down to <a href="https://github.com/docker/buildx">BuildX</a>.</p>
-<p>Before opening the PR I read all the documentation that was available to understand how the tests should look like and what kind of documentation was needed for the additional CLI flag.</p>
-<p><a href="https://github.com/containerd/nerdctl/pull/2861">Here&rsquo;s the result</a>.</p>
-<p>During review I realise there was another <a href="https://github.com/containerd/nerdctl/pull/2869">potential PR</a> I could do, by refactoring an API used in tests to use <code>t.TempDir()</code> to generate an ephemeral directory.</p>
+<p>Inside the <code>containerd</code> organization, I learned about the tool <code>nerdctl</code>—a CLI compatible with Docker but wired for the containerd runtime.</p>
+<p>By chance, I found a good first issue that was actually a small feature request, not just documentation or a bug fix. <a href="https://github.com/containerd/nerdctl/issues/2835">The issue</a> was to add multiple build contexts to an image build, allowing files from different folders.</p>
+<p>I cloned the repository and explored the code to understand how it worked. After some experimentation, I figured out how to pass that flag down to <a href="https://github.com/docker/buildx">BuildX</a>.</p>
+<p>Before opening the PR, I read all available documentation to understand how tests should look and what documentation was needed for the new CLI flag.</p>
+<p><a href="https://github.com/containerd/nerdctl/pull/2861">Here&rsquo;s the result.</a></p>
+<p>During review, I realized there was another <a href="https://github.com/containerd/nerdctl/pull/2869">potential PR</a> I could do: refactoring a test API to use <code>t.TempDir()</code> for generating ephemeral directories.</p>
 <h2 id="conclusion">Conclusion</h2>
-<p>My first open source contribution turned out to be a fast track into the second for the same project and made me realise the hardest part about joining the contributor community of any project is the onboarding process. Once you&rsquo;ve gotten an ok understanding of the code and have experienced the contribution process, it becomes much easier to reiterate.</p>
-<p>With that, I invite you, the reader: if you want to join the open source community but doubt your abilities, start by exploring the code. This is something you likely already do in your daily work. Starting is the hardest part.</p>
+<p>My first open source contribution turned into a fast track to a second for the same project and showed me that the hardest part of joining any project&rsquo;s contributor community is the onboarding process. Once you understand the code and have experienced the contribution process, it becomes much easier to iterate.</p>
+<p>With that, I invite you: if you want to join the open source community but doubt your abilities, start by exploring the code. This is something you likely already do in your daily work. Starting is the hardest part.</p>
 
       </article>
 

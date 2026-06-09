@@ -112,24 +112,24 @@
 
       <article class="article-body">
         <p>I&rsquo;ve recently integrated a provider and consumer service with Azure AD and B2C. Setting up the scopes was confusing and since I&rsquo;ve felt that although I&rsquo;ve been using OAuth in my systems for a long time, I haven&rsquo;t really understood it well, I decided to invest some time and really learn how it works under the hood.</p>
-<p>I could tell you that reading the various RFCs offered me clarity, but I&rsquo;d be lying. The key point of why they didn&rsquo;t, it&rsquo;s because there isn&rsquo;t a single cohesive document explaining the core concepts. It&rsquo;s spread around multiple ones:</p>
+<p>I could claim that reading the various RFCs offered clarity, but that wouldn&rsquo;t be accurate. The key reason they didn&rsquo;t is that there&rsquo;s no single cohesive document explaining the core concepts. It&rsquo;s spread around multiple ones:</p>
 <ul>
 <li>RFC 6750 defines how tokens are actually used</li>
 <li>RFC 7636 patches a major authorization code vulnerability</li>
-<li>RFC 8252 redefines best practices for mobile/desktop</li>
+<li>RFC 8252 redefines best practices for mobile and desktop</li>
 <li>RFC 8414 adds discovery</li>
 <li>RFC 6819 explains security assumptions after the fact</li>
 </ul>
 <h2 id="oauth2-in-action">OAuth2 in Action</h2>
 <p>After some research I landed on <a href="https://www.manning.com/books/oauth-2-in-action">this book</a>. It does a good job explaining the fundamentals, giving clear implementation details on all entities and a complete set of security issues and gaps in the framework.</p>
-<p>I&rsquo;ll try to explain in very simple terms how the frameworks and forward you to another implementation post by the end, so you learn how it works under-the-hood.</p>
+<p>I&rsquo;ll explain these concepts simply so the code examples below make more sense.</p>
 <h2 id="basics">Basics</h2>
-<p>OAuth2 is not a protocol, but a framework of protocols. Because it&rsquo;s an abstraction, it has different implementations, each focused on a particular usecase.</p>
+<p>OAuth2 isn&rsquo;t a protocol; it&rsquo;s a framework of protocols. Since it&rsquo;s an abstraction, it has different implementations, each focused on a particular use case.</p>
 <p>The abstraction revolves around <strong>delegating authorization</strong> to obtain <strong>limited access</strong> to a <em>resource server</em> on behalf of <em>resource owner</em> without sharing credentials.</p>
-<p>Let&rsquo;s unpack that.</p>
+<p>Let&rsquo;s unpack this.</p>
 <p>OAuth2 is <strong>not</strong> about authentication. A commonly misunderstood aspect is that developers often try to use OAuth2 for authentication because of its flexibility, and libraries now exist that support this pattern (more on this later).</p>
-<p>Let&rsquo;s pick a simple example. You have some photos stored in a server. You have your credentials to access that server. Now another service, let&rsquo;s say a printer service, wants to access <strong>your</strong> photos in order to print them for you. You could either download them and provide to the printer service. You could share your storage credentials, so the printing service would download them for you, <em>or</em> you could leverage oauth. You generate a <em>token</em>, where you allow the printing service to download those photos.</p>
-<p>That is the <strong>main kind of authorization designed for OAuth2</strong>. Everything else is an adaption, where you or a developer disguises a flow as something that can be represented this way.</p>
+<p>Let&rsquo;s pick a simple example. You have some photos stored in a server. You have your credentials to access that server. Now another service—say a printer—wants to access <em>your</em> photos to print them. You could download them and provide them to the printer. You could share your storage credentials so the printer downloads them for you, <em>or</em> you could use OAuth. You generate a <em>token</em> to allow the printer service to download those photos.</p>
+<p>This represents the <strong>primary authorization pattern OAuth2 is designed for</strong>.</p>
 <h2 id="actors">Actors</h2>
 <p>OAuth2 is designed around four actors:</p>
 <ul>
@@ -138,8 +138,8 @@
 <li>Authorization manager</li>
 <li>Client</li>
 </ul>
-<p>Resource owner can be anything. It&rsquo;s more likely to be a user, but it could also be a service. The protected resource usually sits behind a service and is sometimes called <em>resource server</em>. The client can be a server as well.</p>
-<p>The flow is simple:</p>
+<p>The resource owner can be anything—usually a user, but could also be a service. The protected resource sits behind a service and is sometimes called the <em>resource server</em>. The client can be a server as well.</p>
+<p>The flow is straightforward:</p>
 <ol>
 <li>Client requests resource owner authorization to access protected resource</li>
 <li>Resource owner informs authorization manager that he allows that access</li>
@@ -147,81 +147,80 @@
 <li>Client requests protected resource with <em>token</em></li>
 </ol>
 <h2 id="token">Token</h2>
-<p>You might have noticed. The whole framework revolves around a <em>token</em>, which is a representation of something that has limited access and is issued per client per resource owner per protected resource, but what is a <em>token</em> exactly?</p>
+<p>The whole framework revolves around a <em>token</em>—a representation of something with limited access, issued per client per resource owner per protected resource. But what is a <em>token</em> exactly?</p>
 <p>The OAuth2 specification doesn&rsquo;t define exactly what a token should be. It defines principles such as: tokens should not be easily guessable, they should be short-lived, and so on.</p>
 <p>We&rsquo;ll get to JWT later in this article, but for now let&rsquo;s focus on the flows, despite of token implementation.</p>
 <h2 id="grants">Grants</h2>
 <p>As the actors can be different things, there are predefined flows, also called grant types, to represent the most usual ones. In some of them not all actors are there. In other multiple actors are the same one. We&rsquo;ll start looking at those cases first, as they have the easiest flow.</p>
-<p>For each of the flows, a specific <code>grant_type</code> value is passed in the payload.</p>
+<p>For each flow, a specific <code>grant_type</code> value is passed in the payload.</p>
 <h3 id="client-credentials">Client credentials</h3>
 <p><code>grant_type: client</code></p>
-<p>When the resource owner is not important, your grant doesn&rsquo;t need to dance between resource owner, client and authorisation manager, it can directly call the authorisation manager with it&rsquo;s credentials to request a token generation. The authorisation manager validates the credentials and generates a token, which is then used to call the protected resource.</p>
-<p>Here&rsquo;s the list of steps:</p>
+<p>When the resource owner isn&rsquo;t important, your grant doesn&rsquo;t need to dance between resource owner, client, and authorization manager. It can call the authorization manager directly with its credentials to request token generation. The authorization manager validates the credentials and generates a token, which is then used to call the protected resource.</p>
+<p>Steps:</p>
 <ol>
-<li>Client calls auth server with <code>client_id</code> and <code>client_secret</code></li>
-<li>Auth server responds with token</li>
+<li>Client calls authorization server with <code>client_id</code> and <code>client_secret</code></li>
+<li>Authorization server responds with token</li>
 <li>Client calls resource server with token</li>
 <li>Resource server validates token</li>
 </ol>
 <p>The client credentials can be passed in multiple ways. Either in the body or as an auth header. The auth header with base64 encoding seems to be the prefered version (documented in cloud providers).</p>
 <h3 id="implicit">Implicit</h3>
 <p><code>grant_type: implicit</code></p>
-<p>When the resource owner and the client are the same, aka. your client application lives in the browser and represents the user, you can use this grant type.</p>
-<p>This grant was created for a simplification of the authorization code grant, but has been deemed insecure and only relevant in few situations. We&rsquo;ll skip this one for now.</p>
+<p>When the resource owner and client are the same—your client application lives in the browser and represents the user—you can use this grant type.</p>
+<p>This grant was created as a simplification of the authorization code grant but has been deemed insecure and is only relevant in few situations. We&rsquo;ll skip it for now.</p>
 <h3 id="assertion">Assertion</h3>
 <p><code>grant_type: assertion</code></p>
-<p>Also known as <em>On Behalf Of</em> flow. The resource owner is already being represented by the client, which wants to propagate it to another resource server.</p>
-<p>You call the authorisation server with the token you&rsquo;re carrying so it generates a new one based on that.</p>
+<p>Also known as the <em>On Behalf Of</em> flow. The resource owner is already represented by the client, which wants to propagate that to another resource server.</p>
+<p>You call the authorization server with the token you&rsquo;re carrying so it generates a new one based on that.</p>
 <h3 id="resource-owner">Resource Owner</h3>
 <p><code>grant_type: password</code></p>
-<p>This one was really just created to provide a stepping stone to OAuth2 adopters that were relying on basic <code>user:password</code> header. It&rsquo;s not recommended as it involves passing the password in the payload and defeats the purpose of using limited short-lived tokens.</p>
+<p>This one was created as a stepping stone for OAuth2 adopters relying on basic <code>user:password</code> headers. It&rsquo;s not recommended since it involves passing the password in the payload, defeating the purpose of limited, short-lived tokens.</p>
 <h3 id="authorization-code">Authorization code</h3>
 <p><code>grant_type: code</code></p>
-<p>This is the main flow. The most complete and the one you should favor when implementing OAuth2 on a frontend service.</p>
+<p>This is the main flow—the most complete and the one you should favor when implementing OAuth2 on a frontend service.</p>
 <p>The flow is as follows:</p>
 <ol>
-<li>Client generates <code>code_challenge</code>, <code>code_verifier</code> and <code>state</code></li>
-<li>Client calls authorisation server with it&rsquo;s <code>redirect_uri</code>, the challenge, state and it&rsquo;s <code>client_id</code></li>
-<li>Authorisation server returns a redirect uri where user is asked for <strong>authorisation</strong></li>
-<li>After logging in, the user consents to the limited scope of access (aka. permissions)</li>
-<li>Authorisation server calls client on the provided <code>redirect_uri</code> if it matches it&rsquo;s configuration (more on this later) with the <code>state</code> and a <code>code</code></li>
-<li>Client validates <code>state</code> and exchanges <code>code</code> for <em>token</em>. This time it needs to provide the <code>code_verifier</code></li>
-<li>Authorisation server validates the verifier against the challenge provided earlier and generates a <em>token</em></li>
+<li>Client generates <code>code_challenge</code>, <code>code_verifier</code>, and <code>state</code></li>
+<li>Client calls authorization server with <code>redirect_uri</code>, the challenge, state, and <code>client_id</code></li>
+<li>Authorization server returns a redirect URI where the user is asked for <strong>authorization</strong></li>
+<li>After logging in, the user consents to the limited scope of access (permissions)</li>
+<li>Authorization server calls client on the provided <code>redirect_uri</code> (if it matches configuration) with the <code>state</code> and a <code>code</code></li>
+<li>Client validates <code>state</code> and exchanges <code>code</code> for a <em>token</em>, providing the <code>code_verifier</code></li>
+<li>Authorization server validates the verifier against the challenge and generates a <em>token</em></li>
 <li>Client calls resource server with <em>token</em></li>
 </ol>
-<p>There&rsquo;s a few security measures that come with it to prevent CSRF attacks, namely to include
-a <code>nonce</code> and <code>PKCE</code> (read as pixie).</p>
+<p>There are several security measures that come with it to prevent CSRF attacks, namely a <code>nonce</code> and <code>PKCE</code> (pronounced &ldquo;pixie&rdquo;).</p>
 <p>All these moving parts complement different parts of the system and tackle different vulnerabilities. In the implementation post you&rsquo;ll see that it&rsquo;s actually pretty straight forward.</p>
 <h2 id="scope">Scope</h2>
-<p>For all these JSON requests you must include <code>scope</code>, which represents the <em>limited</em> access the resource owner is giving in the resource server. Like the <em>token</em> this is just a vague specification. You can implement your own rules on need. OIDC uses words like <code>email profile pictures</code>, but you can have <code>read:files write:photos</code> on your API. Azure AD uses tenantIds or API URIs. The only requirement is to pass each of the scopes space separated inside that string and the client must be registered in the authorisation server with a each of the scopes being asked to the resource owner.</p>
+<p>For all these JSON requests, include <code>scope</code>, which represents the <em>limited</em> access the resource owner is granting on the resource server. Like the <em>token</em>, this is just a vague specification. You can implement your own rules as needed. OIDC uses words like <code>email profile pictures</code>, but you can have <code>read:files write:photos</code> on your API. Azure AD uses tenant IDs or API URIs. The only requirement is to pass each scope space-separated inside that string, and the client must be registered in the authorization server with each of the scopes being requested on behalf of the resource owner.</p>
 <h2 id="token-1">Token</h2>
-<p>Now we get to the fun part. The token as mentioned early can be any kind of string. I won&rsquo;t bore you with the details on why short strings or meaningful ones can be problematic. I also won&rsquo;t go over why sharing database for the resource owner to validate a generated token with the authorisation token is a bad idea (this is not forbidden or disencouraged by the framework).</p>
-<p>The token design should simplify two things, passing context, simplifying validation. Alas, comes our hero JWT.</p>
-<p>The JWT has been designed to have a header, a payload and a signature. The three parts are base64 encoded and <code>.</code> separated.</p>
-<p>Why is it so powerful you might ask. Well, the signature allows for many different approaches. You can have symmetric signing, where resource server and authorisation server share a private key. You can use asymmetric, where you have public and private key pairs. You can add encryption on top of the signature. You can do all sorts of things. By signing the token, you allow it to carry context that you know was only included by your authorisation server and no other actors. If also prevents you from having to share a database or calling the server for validation (on an introspection endpoint). If you have an encryption method on top you could even include some sensible information.</p>
-<p>Signing is a powerful solution to removing an extra network call from your flow. Here&rsquo;s how the JWT flow has been standardised:</p>
+<p>Now for the fun part. The token can be any string. I won&rsquo;t detail why short strings or meaningful ones are problematic, nor why sharing a database for the resource owner to validate tokens with the authorization server is a bad idea (though the framework doesn&rsquo;t forbid it).</p>
+<p>Token design should simplify two things: passing context and simplifying validation. Enter JWT.</p>
+<p>The JWT contains a header, a payload, and a signature. The three parts are base64-encoded and <code>.</code>-separated.</p>
+<p>Why is it so powerful? Well, the signature enables many approaches. You can use symmetric signing (where resource server and authorization server share a private key) or asymmetric (where you have public and private key pairs). You can add encryption on top of the signature. By signing the token, you allow it to carry context that you know was only included by your authorization server. It also prevents you from needing to share a database or call the server for validation (via an introspection endpoint). With encryption on top, you could even include sensitive information.</p>
+<p>Signing is a powerful solution for removing extra network calls from your flow. Here&rsquo;s how JWT signing is standardized:</p>
 <ol>
-<li>Authorisation server has multiple public/private key pairs used to sign it&rsquo;s tokens (or shared private if agreed with the resource server)</li>
-<li>It serves the public keys in a <code>.well-known/keys</code> endpoint, which resource servers can regularly call to get non expired keys</li>
-<li>When generating a token it gets signed by a particular key and the key id (<code>kid</code>) is included in the token header</li>
-<li>The resource owner computes de signature with the public key that matches the <code>kid</code></li>
+<li>Authorization server has multiple public/private key pairs for signing tokens (or a shared private key, if agreed with the resource server)</li>
+<li>It serves the public keys at a <code>.well-known/keys</code> endpoint, which resource servers can regularly check for non-expired keys</li>
+<li>When generating a token, it&rsquo;s signed by a particular key, and the key ID (<code>kid</code>) is included in the token header</li>
+<li>The resource owner computes the signature with the public key that matches the <code>kid</code></li>
 </ol>
-<p>The JWT can include all sorts of information in the payload, although you should strive to keep it short, as it&rsquo;s passed as a header. Some of the following fields (aka. claims) called <em>registered</em> and recommended but not mandatory:</p>
+<p>The JWT can include various information in the payload, though keep it short since it&rsquo;s passed as a header. Some common fields (called <em>registered</em> claims) are recommended but not mandatory:</p>
 <ul>
 <li><code>iss</code>: issuer</li>
 <li><code>sub</code>: subject</li>
-<li><code>aud</code>: audience identifies the recipients</li>
+<li><code>aud</code>: audience (identifies the recipients)</li>
 <li><code>exp</code>: expiration time</li>
 <li><code>iat</code>: issued at time</li>
 <li><code>nbf</code>: not before time</li>
-<li><code>jti</code>: unique identifier for JWT</li>
+<li><code>jti</code>: unique JWT identifier</li>
 </ul>
 <p>Besides the registered claims you also have public and private claims.</p>
 <h2 id="client-registration">Client registration</h2>
-<p>Finally we come to the client registration. It can be static or dynamic, even though you&rsquo;ll see a manual provisioning setup around dynamic registration. I&rsquo;ll go over this topic in the implementation post.</p>
+<p>Finally, client registration. It can be static or dynamic, though you&rsquo;ll often see manual provisioning for dynamic registration.</p>
 <h2 id="extras">Extras</h2>
-<p>Repeating an important point. OAuth2 does not handle <strong>authentication</strong>. In order to cover that, an extension protocol called OpenID Connect has been created on top of it, which relies on the authorisation server also being an identity provider. When that is the case, you can add authentication layer on top of it by leveraging a second token called the ID token and serving a <code>/userinfo</code> endpoint.</p>
-<p>The OIDC protocol is a bit complexer and deserves a full post to discuss it. I&rsquo;ll get a bit into the details during the implementation post, which you can read next.</p>
+<p>Repeating an important point: OAuth2 does not handle <strong>authentication</strong>. To cover that, an extension protocol called OpenID Connect was created on top of it. It relies on the authorization server also being an identity provider. When that&rsquo;s the case, you can add an authentication layer by using a second token called the ID token and serving a <code>/userinfo</code> endpoint.</p>
+<p>The OIDC protocol is more complex and deserves its own post. I&rsquo;ll cover some details in the implementation post.</p>
 
       </article>
 
