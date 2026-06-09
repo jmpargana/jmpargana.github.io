@@ -5,7 +5,7 @@ draft = false
 tags = ["architecture", "go", "backend", "seaweedfs", "s3", "signing", "multipart", "video streaming"]
 +++
 
-This post is part of my _MiniTube_ series. If you end up enjoying the content, please have a look at other related tasks.
+This post is part of my _MiniTube_ series. Check out other related posts if you find this content useful.
 
 ## Presigning
 
@@ -17,7 +17,7 @@ If you haven't read my other posts on this topic. I've implemented a miniature v
 
 In order to upload large files, the recommended architecture is to perform a multipart upload, and generating some upload URLs with pre-authorised codes, that the client can use to call the storage service directly on behalf of the server.
 
-Here's how the sequence looks like:
+Here's how the sequence works:
 1. Client initiates multipart upload
 2. Server takes file size and splits in chunks
 3. Server requests storage server to generate a presigned URL for each of the chunks
@@ -30,7 +30,7 @@ Here's how the sequence looks like:
 
 ## URLs
 
-What's so special about this presignature. Well, besides including the credentials for the specific client to upload a specific chunk, of a specific size to a specific path, it also embeds information such as expiration date and refresh capabilities (if configured by server).
+What makes this presignature special? Besides including the credentials for the specific client to upload a specific chunk, of a specific size to a specific path, it also embeds information such as expiration date and refresh capabilities (if configured by server).
 
 ## Example
 
@@ -264,6 +264,6 @@ func validateParts(source, provided []types.Part) bool {
 
 ## Conclusion
 
-This post doesn't focus on refreshing or handling timeouts and reconnections. That could be a take-home exercise for you. 
+This post doesn't cover refreshing, timeouts, or reconnection handling—those make good follow-up exercises. 
 
 Feel free to play around with the project by cloning the [repo](https://github.com/jmpargana/minitube/tree/main).

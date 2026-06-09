@@ -19,20 +19,20 @@ The following examples use Go and its concurrency-first design. However, these p
 
 The idea is simple. You have a process running and you need to leverage the underlying operating system to coordinate signaling to actual stopping.
 
-Your flow diagram will look something like this:
+Your flow looks like this:
 1. Event triggers stopping sequence against supervisor (we'll get to that later)
 2. Operating system emits signal to process
 3. Your process delays stopping until confirmation
 
 ### Signals
 
-Let's start the signals. Assuming you're running your application on a Linux system, you will have two types of signals:
+On Linux systems, two signal types exist:
 - Catchable: `SIGTERM`, `SIGINT`, `SIGHUP`
 - Non-catchable: `SIGKILL`, `SIGSTOP`
 
-### Delaying
+### Shutdown coordination
 
-The flow in your application usually involves subscribing to these signals, wiring them up with shared concurrency-friendly global data (usually `context.Context`) and defining closing routines.
+Your application typically subscribes to signals, wires them with shared, concurrency-friendly global data (usually `context.Context`), and defines cleanup routines.
 
 ```go
 	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
@@ -49,15 +49,14 @@ The flow in your application usually involves subscribing to these signals, wiri
     dependencyA.Cleanup()
 ```
 
-You'll want to either wire up your clean up to be handled by the caller in your `main` function, or simply accept `context.Context` as an argument. 
+You'll want to wire up your cleanup either in your caller (like `main`) or accept `context.Context` as a function argument. 
 
 
 #### Delaying
 
 ##### Server handlers
 
-When using `http.Server` you must execute `server.Shutdown()` manually. That means you must add that
-call after receiving the signal.
+With `http.Server`, you must call `server.Shutdown()` manually after receiving the signal.
 
 ```go
     server := &http.Server{
@@ -75,9 +74,9 @@ call after receiving the signal.
     server.Shutdown()
 ```
 
-##### Worker pool
+#### Worker pools
 
-Depending on whether you implement your own worker pool or use an existing library, in a well designed library, passing `ctx` is enough. Using `ctx` should have you regularly read `ctx.Done()` and handle closing routines accordingly. 
+For worker pools, whether custom or from a library, a well-designed library needs only `ctx` passed. It should regularly check `ctx.Done()` and handle cleanup accordingly. 
 
 Here's an example of such a library:
 
@@ -97,13 +96,13 @@ Here's an example of such a library:
     }
 ```
 
-### Tradeoffs
+### Design considerations
 
-You might have noticed that the worker pool not only stops receiving work but also orchestrates the cancellation of ongoing. 
+Notice the worker pool both stops receiving work and orchestrates cancellation of ongoing tasks. 
 
-This comes at a cost. You might want to split it into two phases, as the two are different and you might want to distinguish waiting for a signal vs setting a clear deadline to stop work. 
+This comes at a cost. You might want to split it into two phases since they're different, and you might distinguish between waiting for a signal versus setting a deadline to stop work. 
 
-Here's how a better design would look like and more idiomatic Go would look like:
+Here's a better, more idiomatic Go design:
 
 ```go
 func (wp *WorkerPool) Start(ctx context.Context) {
@@ -122,25 +121,23 @@ func (wp *WorkerPool) Start(ctx context.Context) {
 	}
 }
 
-// This one is called after you know you want to stop to handle timeouts
+// Called after you know you want to stop to handle timeouts
 func (wp *WorkerPool) Shutdown(ctx context.Context) error {
     close(p)
 }
 ```
 
 This achieves the following:
-- context is used for cancellation of in-flight work
-- explicit methods handle lifecycle
+- Context is used for cancellation of in-flight work
+- Explicit methods handle lifecycle
 
 You see the `http.Server` example above implementing this exact pattern.
 
-### Supervisor
+### Container orchestration
 
-All of this behavior heavily depends on the system where your service runs. If we're talking about an ephemeral container system like Kubernetes, it might not just wait around until you emit an exit code. Which is actually there for your own protection. Imagine a hanging queue or infinite loop?
+This behavior heavily depends on your deployment environment. In ephemeral container systems like Kubernetes, the control plane may not wait for you to emit an exit code. Kubernetes escalates from catchable signal `SIGTERM` to non-catchable `SIGKILL`. You can only influence the grace period. 
 
-In Kubernetes the control plane will always escalate from catchable signal `SIGTERM` to non-catchable `SIGKILL`. You can only influence how look you expect your service to wait. 
-
-To do so, you can use:
+To do so, use:
 
 ```sh
 > kubectl explain pod.spec.terminationGracePeriodSeconds
@@ -163,4 +160,4 @@ DESCRIPTION:
 
 ## Conclusion
 
-Graceful shutdown comes with some tradeoffs that heavily depend on the sort of system you are running. In some cases you might prefer to simply close all channels instead. Weighing those is essential before deciding how to wire up your application correctly.
+Graceful shutdown involves tradeoffs that depend heavily on your deployment environment. In some cases, you might prefer to simply close all channels instead. Weighing these options is essential before wiring up your application correctly.

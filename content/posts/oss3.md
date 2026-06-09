@@ -5,19 +5,19 @@ draft = false
 tags = ["Open Source", "OSS", "TypeScript", "GHA", "GitHub Actions"]
 +++
 
-I've managed to find another project that I could contribute to.
+I found another project I could contribute to.
 
-During the last weeks of December, while a team in my company was migrating from Azure DevOps Pipelines to GitHub Actions, a colleague reached out because one of the actions we developed, which was meant to be reused across the company was not working. It was the CI workflow, responsible for build, running and publishing the unit and integration tests, while security scans would run in parallel. 
+In the last weeks of December, while a team at my company was migrating from Azure DevOps Pipelines to GitHub Actions, a colleague reached out. One of the actions we developed for company-wide reuse wasn't working. It was the CI workflow responsible for building, running, and publishing unit and integration tests, with security scans running in parallel. 
 
-This workflow would fail in their runtime, because the runners didn't have docker compose installed and the [compose-action](https://github.com/hoverkraft-tech/compose-action) crashed with an unexpected error. 
+This workflow failed in their runtime because the runners didn't have Docker Compose installed, and the [compose-action](https://github.com/hoverkraft-tech/compose-action) crashed with an unexpected error. 
 
-Navigating the code exposed a quick bug to solve so I opened my personal laptop and layed hands to work. 
+Navigating the code exposed a quick bug to fix, so I opened my laptop and got to work. 
 
 ## The Bug
 
-The bug was very easy to fix, but hidden in a few layers of if/else logic with 3 flags. It took me a while to figure out the cleanest boolean expression, without refactoring too much the code. 
+The bug was very easy to fix but hidden in several layers of if/else logic with 3 flags. It took a while to find the cleanest boolean expression without refactoring too much of the code. 
 
-This is the kind of setup, that no matter how you look at, it'll always look like you can improve it. You'll understand what I mean with the snippet:
+This is the kind of setup where, no matter how you look at it, it always seems improvable. You'll understand once you see this snippet:
 
 ```typescript
 async install({ composeVersion, cwd, githubToken }: InstallInputs): Promise<string> {
@@ -45,14 +45,14 @@ async install({ composeVersion, cwd, githubToken }: InstallInputs): Promise<stri
 
 ## Pushing changes
 
-Before submitting the PR I filed a [bug report](https://github.com/hoverkraft-tech/compose-action/issues/232), documenting the issue as requested in the code of conduct. Then, a few minutes later a opened the [PR](https://github.com/hoverkraft-tech/compose-action/pull/234).
+Before submitting the PR, I filed a [bug report](https://github.com/hoverkraft-tech/compose-action/issues/232), documenting the issue as requested in the code of conduct. Then, minutes later, I opened the [PR](https://github.com/hoverkraft-tech/compose-action/pull/234).
 
-Everything went well and within a few minutes the maintainer merged the changes. 
+Everything went well, and the maintainer merged the changes within minutes. 
 
 ## Humbling experience
 
-Here's why I'm writing an article about it. 
+Here's why I'm writing this article. 
 
-Between the time I filed the bug and opened the PR (few minutes tops), copilot had already created a branch, opened a PR in draft with the plan to identify the issue. It then correctly identified the issue and submitted a similar PR with a similar refactor of the boolean states along with the same style of testing. All this in maximum 5 minutes compared to the 2/3h it took me to clone the code, read the documentation, study the tests, setup my personal laptop to run the tests, document the pull request description. 
+Between filing the bug and opening the PR (minutes apart), Copilot had already created a branch and opened a draft PR with a plan to identify the issue. It correctly identified it and submitted a similar PR with comparable refactoring of boolean logic and the same testing style. All this in ~5 minutes compared to the 2–3 hours it took me to clone code, read documentation, study tests, setup my laptop, run tests, and document the PR. 
 
-This wasn't the state of art we are witnessing today with impressive coding agents and cheap-to-run models like gemma. It was back in January and it was already insanely powerful and making it compelling for open source maintainers to stop relying on contributers for such small tasks.
+This wasn't the state-of-the-art we see today with impressive coding agents and cheap models like Gemma. It was January, and it was already insanely powerful, making it compelling for maintainers to stop relying on contributors for small tasks.

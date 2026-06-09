@@ -11,23 +11,21 @@ externalLink = ""
 series = []
 +++
 
-Welcome! In this series you'll read along my journey to CKAD certification. You can expect 
-high-level knowledge sharing and hopefully some useful tips.
+Welcome! In this series, you'll read along my journey to CKAD certification. Expect high-level knowledge sharing and hopefully some useful tips.
 
 ## Picking the course
 
-Visiting the [linux foundation](https://training.linuxfoundation.org/certification/certified-kubernetes-application-developer-ckad/), you'll see a suggested package, which includes a course, an annual subscription, and more. 
+Visiting the [Linux Foundation](https://training.linuxfoundation.org/certification/certified-kubernetes-application-developer-ckad/) site, you'll see a suggested package that includes a course, annual subscription, and more. 
 
-After getting advise from colleagues who are already certified, I decided to follow a different course instead, on [Udemy](https://www.udemy.com/course/certified-kubernetes-application-developer/learn/lecture/28376970#overview). 
+After getting advice from colleagues who are already certified, I decided to follow a different course instead on [Udemy](https://www.udemy.com/course/certified-kubernetes-application-developer/learn/lecture/28376970#overview). 
 
-Not only does this have close to 5 star reviews, it's significantly cheaper. I purchased it with a discount of 80% (at around $11).
+Not only does this have close to 5-star reviews, it's significantly cheaper. I purchased it at an 80% discount (around $11).
 
 ## First impressions
 
-I've only just started. After completing the _Section 2: Core Concepts_, I'm already very impressed with the instructor. 
-Even though I've been using Kubernetes professionally and dealing with it daily—debugging, deploying, securing—the course is the first time I've understood core concepts that make the documentation and manifest development much clearer. 
+I've just started. After completing _Section 2: Core Concepts_, I'm already very impressed with the instructor. Even though I've been using Kubernetes professionally and dealing with it daily—debugging, deploying, securing—this course is the first time I've truly understood core concepts that make documentation and manifest development much clearer. 
 
-Also, since the course is heavily focused on `kubectl`, I've stopped relying on `k9s` as a daily dependency and am now comfortable using `kubectl` directly.
+Since the course focuses heavily on `kubectl`, I've stopped relying on `k9s` as a daily dependency and am now comfortable using `kubectl` directly.
 
 ### Manifest skeleton
 
@@ -38,38 +36,38 @@ metadata: map[string]any
 spec: any
 ```
 
-Each manifest always has the 4 components listed above. 
+Each manifest always has these 4 components. 
 
-`Kind` is anything either available in the kubernetes API (ex. `Pod`, `Service`, `ReplicaSet`, etc.) or it's something custom defined (or a _CRD_).
+`Kind` can be anything available in the Kubernetes API (like `Pod`, `Service`, `ReplicaSet`, etc.) or something custom (a _CRD_).
 
-`spec`, the most important field, is strongly typed and needs to match it's `Kind`. 
+`spec`, the most important field, is strongly typed and must match its `kind`. 
 
-> NOTE: In future posts I'll go more in depth with `apiVersion`, `kind` and `spec`. Understanding these fields is all about understanding how Kubernetes exposes it's API and how you can enhance it.
+> NOTE: In future posts I'll dive deeper into `apiVersion`, `kind`, and `spec`. Understanding these fields is really about understanding how Kubernetes exposes its API and how you can extend it.
 
 
 ### Kubernetes API References
 
-My motivation to explore the documentation can be split in 2 points.
+My motivation to explore the documentation splits into 2 points.
 
 #### LLMs
 
-In my quest to become a better software engineer, I want to fight the constant urge of finding the _easy_ solution. For most questions I have, instead of searching for a response on StackOverflow, on Guides, articles, I end up going for the easy thing: asking the latest most powerful model. 
+In my quest to become a better software engineer, I want to resist the constant urge to find the _easy_ solution. For most questions, instead of searching StackOverflow, guides, or articles, I end up taking the easy route: asking the latest powerful model. 
 
-This is sadly becoming a recurring event. Much more serious than using `k9s` as a clutch. 
+This is sadly becoming a recurring issue—far more serious than relying on `k9s`. 
 
-One way I'm trying to break out of that cycle is to find the information in 2 sources. Either the official documentation or directly in the source code. 
+One way I'm breaking out of this cycle is to find information from 2 sources: either the official documentation or the source code directly. 
 
 #### Certificate
 
-My second motivation is during the certification one only has access to the documentation. So ideally, you should become well versed in it's structure to find your way around.
+My second motivation is that during certification, you only have access to documentation. Ideally, you should become well versed in its structure to navigate it quickly.
 
 #### Reference
 
-Well, the docs are massive. You have over 1000 pages, but the API reference, as it's automatically generated, is quite intuitive. It feels like navigating code.
+Well, the docs are massive—over 1000 pages—but the API reference, being automatically generated, is quite intuitive and feels like navigating code.
 
-You start of in the [References > Kubernetes API](https://kubernetes.io/docs/reference/kubernetes-api/) submodule. If you can't find it straight away in the categories, you can simply search for a title (ex. `Pods`).
+You start in the [References > Kubernetes API](https://kubernetes.io/docs/reference/kubernetes-api/) section. If you can't find it immediately in the categories, you can search by title (like `Pods`).
 
-Every documentation that is not a reference, contains an API reference on top-right corner saying `X API`. Clicking it, you'll see exactly what's expected in the spec.
+Every documentation page (except references) has an API reference link in the top-right corner labeled `X API`. Clicking it shows exactly what's expected in the spec.
 
 Here's the example for `Pod`:
 
@@ -84,20 +82,20 @@ PodSpec:
   // ... plenty more
 ```
 
-You'll be able to understand exactly what the required fields are and how what data is expected. 
+You can understand exactly what the required fields are and what data type is expected. 
 
 ### Imperative commands
 
-The 3rd valuable lesson is using _imperative commands_ to quickly generate YAML manifest boilerplate. While you can add all necessary flags for a complete resource definition, you can quickly generate templates for most common debugging scenarios. 
+The 3rd valuable lesson is using _imperative commands_ to quickly generate YAML manifest boilerplate. While you can use flags for complete resource definitions, you can quickly generate templates for common debugging scenarios. 
 
-Before I start dumping all the information I've learned so far, there's 2 important flags that come in handy when using imperative commands.
+Before listing all this information, there are 2 important flags that are helpful when using imperative commands.
 
-1. `--dry-run=client` -> does not create any resources yet, just outputs the result
-2. `-o yaml` -> dumps the exact yaml manifest needed
+1. `--dry-run=client` → outputs the result without creating resources
+2. `-o yaml` → outputs the exact YAML manifest needed
 
 #### Pods
 
-As pods are working resources, you can _run_ them:
+Since pods are working resources, you can _run_ them:
 
 ```sh
 $ kubectl run nginx --image nginx --dry-run=client -o yaml
@@ -118,7 +116,7 @@ spec:
 status: {}
 ```
 
-For `Deployments` you need to _create_. As with other commands in `kubectl` you can opt for the short form:
+For `Deployments`, you need to _create_. You can use the short form:
 
 ```sh
 $ kubectl create deploy nginx-deploy --image nginx --replicas 4 --dry-run=client -o yaml
@@ -148,9 +146,9 @@ spec:
 status: {}
 ```
 
-As you can probably notice, the selector labels and pod metadata match, so that's one less thing you need to check on.
+As you can see, the selector labels and pod metadata match, so that's one less thing to verify.
 
-For services there are multiple ways, I'll show an alternative to `create`:
+For services, here's an alternative to `create`:
 
 ```sh
 $ kubectl expose pod redis --port=6379 --name redis-svc --dry-run=client -o yaml
@@ -172,7 +170,7 @@ status:
   loadBalancer: {}
 ```
 
-And for namespace, you can also do it very quickly:
+For namespaces, you can also create them quickly:
 
 ```sh
 $ kubectl create ns ns-test --dry-run=client -o yaml
@@ -185,11 +183,11 @@ spec: {}
 status: {}
 ```
 
-You can always pipe these yaml to files that you edit further before applying, or you don't even have to worry about the output if you simply want to validate the typing. Doing a `--dry-run` will give you feedback if the types are correct.
+You can always pipe YAML to files for further editing before applying, or skip file output if you just want to validate typing. A `--dry-run` provides feedback on type correctness.
 
 
 ## Conclusion
 
-These were the first learnings, but here comes a recommendation. The only reason I can remember them all so well is because of the practicing labs that come with the udemy course.
+You'll remember these learnings best through the practice labs included with the Udemy course.
 
-Playing around with quickly creating all kinds of resources, even debugging some pods on your dev cluster.
+Experiment with quickly creating different resource types and debug pods on your dev cluster.

@@ -5,21 +5,21 @@ draft = false
 tags = ["Go", "Backend", "Observability", "Monitoring", "Logging", "Context", "On-Call", "Operations", "Costs"]
 +++
 
-Ever since I've read [loggingsucks](https://loggingsucks.com/), I've been focused on implementing canonical logging across my applications. 
+Since reading [loggingsucks](https://loggingsucks.com/), I've focused on implementing canonical logging across my applications. 
 
-If you're new to the concept, I really really recommend you reading the whole article there. It's a great read, interactive, complete and makes a compeling case on why you should prefer it. I will try to give a very simple explanation so the code examples below make more sense.
+I highly recommend reading the full article there. It's a great read, interactive, complete, and makes a compelling case for why you should prefer it. I will try to give a very simple explanation so the code examples below make more sense.
 
-Imagine each server call, whatever happens has a single, context-rich log with all the information that pertains to that one request. No complex [loki](https://grafana.com/oss/loki/) queries. No guessing what _ERROR: something went wrong_ means. No looking for timestamps between different microservices to figure out what triggered the failure. That's what canonical logging is. That one single log. The log you've longed for. 
+Imagine each server call: whatever happens gets logged once with all relevant context for that single request. No complex [Loki](https://grafana.com/oss/loki/) queries. No guessing what _ERROR: something went wrong_ means. No searching across timestamps in different microservices to trace failures. That's canonical logging—the single log you've always wanted. 
 
-In microservices and large scale systems, canonical logging is a must. You simply add all the context you need there.
+In microservices and large-scale systems, canonical logging is essential. You simply add all necessary context to a single log.
 
 ## Setting up in go
 
-Fortunately for any go developer, there's a great library: [ucarion/log](https://github.com/ucarion/log). It's compatible with any logging library you use, like [uber-go/zap](https://github.com/uber-go/zap).
+Fortunately, Go developers have a great library: [ucarion/log](https://github.com/ucarion/log). It's compatible with any logging library you use, like [uber-go/zap](https://github.com/uber-go/zap).
 
-The way it works is by leveraging go's `context.Context`. You pass along all the key-value you want to include in your logs and once you're done, you call `log.Log`. 
+It works by leveraging Go's `context.Context`. You pass along all key-value pairs you want in your logs, and once done, you call `log.Log`. 
 
-Here's a simple example on how you can use the standard library to create a middleware that sets up the logger.
+Here's a simple example showing how to create middleware that sets up the logger using the standard library.
 
 ```go
 package main
@@ -73,12 +73,12 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 ## Keep in mind
 
-While canonical logging is extremely useful, adding all context to a single log can result in very large log entries. If you've used a service like Grafana Cloud, you know it can incur significant costs. Heavy logging, even with low retention periods, can become expensive.
+While canonical logging is extremely useful, including all context in a single log can result in very large entries. If you've used services like Grafana Cloud, you know it can incur significant costs. Heavy logging, even with low retention, can become expensive.
 
-My recommendation is to have someone review the code and help determine whether the extra context provides real value. It's easy to add everything (for example, _metadata columns_). In practice, you'll likely only need core fields that should always be included:
+My recommendation is to have a code review identify whether the extra context provides real value. It's easy to add everything (like _metadata columns_). In practice, you'll likely only need core fields that should always be present:
 - correlationId
-- error code (if you keep efficient representations of long string explanations)
-- trace and span ids (to match with traces)
+- error code (if using efficient representations for long string explanations)
+- trace and span IDs (to match with traces)
 - result
 - userId (if GDPR compliant)
 - sessionId

@@ -6,19 +6,19 @@ draft = false
 +++
 
 
-While Kubernetes is far more than just a server, thinking about it as a REST API server is incredibly helpful for understanding how to interact with cluster resources. 
+While Kubernetes is far more than just a server, thinking of it as a REST API server is incredibly helpful for understanding how to interact with cluster resources. 
 
-In this post I'll explore how we can interact with Kubernetes as a server and how to discover its API.
+In this post, I'll explore how we can interact with Kubernetes as a server and how to discover its API.
 
 ## Proxy
 
-To make it easier for you to see how Kubernetes is a server, run:
+To make it easier for you to see how Kubernetes functions as a server, run:
 
 ```sh
 > kubectl proxy
 ```
 
-Now we can call the API to navigate through its endpoints. Calling the root you can see all available paths:
+Now we can call the API to navigate through its endpoints. Calling the root endpoint shows all available paths:
 
 ```sh
 > curl localhost:8001
@@ -46,7 +46,7 @@ Now we can call the API to navigate through its endpoints. Calling the root you 
 }
 ```
 
-The APIs list all their versions calling `/apis`:
+The APIs list all their versions by calling `/apis`:
 
 ```sh
 > curl localhost:8001/apis
@@ -98,7 +98,7 @@ The APIs list all their versions calling `/apis`:
 }
 ```
 
-Picking any of the group versions there will show you more information about the particular resource:
+Picking any of the group versions will show more information about that particular resource:
 
 ```sh
 > curl localhost:8001/events.k8s.io/v1
@@ -131,10 +131,10 @@ Picking any of the group versions there will show you more information about the
 }
 ```
 
-If you've configured _users_, _roles_ and _role\_bindings_ you'll find the payload familiar (and useful). For each of the resource listed, you get a path and the CRUD + other operations you can perform against that particular resource.
+If you've configured _users_, _roles_, and _role bindings_, you'll find this payload familiar (and useful). For each resource, you get a path and the CRUD plus other operations you can perform against it.
 
 
-Let's see what you get with _statefulsets_
+Let's see what you get with _statefulsets_:
 
 ```sh
 > curl localhost:8001/apis/apps/v1/statefulsets
@@ -196,19 +196,19 @@ Let's see what you get with _statefulsets_
 }
 ```
 
-If your resource has a `get` verb you can call it also directly:
+If your resource has a `get` verb, you can call it directly:
 
 ```sh
 > curl localhost:8001/apis/apps/v1/namespaces/default/statefulsets/minitube-nats
 ```
 
-There's a lot of **interesting** information there about Kubernetes internals. The point of this post is not to deep dive, but simply to give you idea what hides below the surface. 
+There's a lot of **interesting** information about Kubernetes internals hidden there. This post isn't a deep dive, but simply shows you what exists below the surface. 
 
-When you handle your _yaml_ configuration files, you're really just managing a _json_ payload, that is only a UI for the go structs used internally. 
+When you manage YAML configuration files, you're really just managing a JSON payload with a UI for the Go structs used internally. 
 
 ## Resources
 
-Proxying the API server and navigating through their endpoints is not the easiest way to get information about what resources you have available and how you can configure them. There's an extension to `kubectl` which makes that much easier:
+Proxying the API server and navigating through endpoints isn't the easiest way to get information about available resources and how to configure them. There's a `kubectl` extension that makes this much easier:
 
 ```sh
 > kubectl api-resources
@@ -230,17 +230,17 @@ resourcequotas                      quota        v1                             
 secrets                                          v1                                  true         Secret
 ```
 
-As you see, Kubernetes has a resource representing it's resources. Extensibility is builtin to it's core. You can create or override existing resources with your own CRDs as long as you adhere to the API model. 
+As you can see, Kubernetes has a resource representing its resources. Extensibility is built into its core. You can create or override existing resources with your own CRDs as long as you adhere to the API model. 
 
-I'll go over how to so in a future post, for now let's add the last piece of the puzzle on how you can get information about a particular API you need to use.
+I'll cover how to do this in a future post. For now, let's add the last piece: how to get information about a particular API you need to use.
 
 ## OpenAPI
 
-The previous post in this series showed how all objects have the same structure (with few exceptions): `kind`, `version`, `metadata` and `spec`. 
+Previous posts showed how all objects share the same structure (with few exceptions): `kind`, `version`, `metadata`, and `spec`. 
 
-We saw how to get information about the `kind` and `version`. Now the missing piece is to look at `spec`. 
+We saw how to get information about `kind` and `version`. Now the missing piece is looking at `spec`. 
 
-You may have noticed on the first payload that there is a `/openapi` endpoint. Let's see what is returned by calling it:
+You may have noticed a `/openapi` endpoint in the first payload. Let's see what it returns:
 
 ```sh
 > curl localhost:8001/openapi/v3
@@ -262,7 +262,7 @@ You may have noticed on the first payload that there is a `/openapi` endpoint. L
 }
 ```
 
-Every single resource in Kubernetes has an OpenAPI specification which can use as reference on top of it. You can see all of them by calling the endpoints and you could even copy paste the specification to visualize it in any OpenAPI UI available online:
+Every single resource in Kubernetes has an OpenAPI specification you can use as reference. You can see all of them by calling these endpoints, and you could even copy-paste the specification into any online OpenAPI UI to visualize it:
 
 ```sh
 > curl localhost:8001/openapi/v3/apis/apps/v1
@@ -310,8 +310,8 @@ Every single resource in Kubernetes has an OpenAPI specification which can use a
 }
 ```
 
-Here's an example of what copy/pasting the payload get's you on `editor.swagger.io`:
+Here's an example of what copy-pasting the payload gets you on `editor.swagger.io`:
 
 ![openapi](/images/k8s/openapi.png)
 
-That's it for now. I hope this has provided you with a new perspective on how you can use Kubernetes. On the next post I'll go over the tools we have available to set up an API extension.
+That's it for now. I hope this provided you with a new perspective on how you can use Kubernetes. In the next post, I'll cover the tools available for API extensions.
