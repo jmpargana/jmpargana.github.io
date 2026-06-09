@@ -44,6 +44,17 @@ data "aws_iam_policy_document" "allow_dynamo" {
   }
 }
 
+data "aws_iam_policy_document" "allow_ses" {
+  statement {
+    effect = "Allow"
+    actions = [
+      "ses:SendTemplatedEmail",
+      "ses:SendEmail"
+    ]
+    resources = ["*"]
+  }
+}
+
 data "aws_iam_policy_document" "allow_lambda" {
   statement {
     effect = "Allow"
@@ -95,21 +106,56 @@ resource "aws_lambda_function" "delete_user" {
 }
 
 
+# Verify domain identity
+resource "aws_ses_domain_identity" "main" {
+  domain = "jmpargana.com"
+}
+
+# Enable DKIM for domain
+resource "aws_ses_domain_dkim" "main" {
+  domain = aws_ses_domain_identity.main.domain
+}
+
+# Verify email identity
+resource "aws_ses_email_identity" "newsletter" {
+  email = "newsletter@jmpargana.com"
+}
+
 resource "aws_ses_template" "name" {
   name = var.name 
   subject = "Freshly backed blog post"
   html = file("${path.module}/template.html")
 }
 
+output "ses_dkim_tokens" {
+  value       = aws_ses_domain_dkim.main.dkim_tokens
+  description = "DKIM tokens to add to your DNS provider"
+}
 
-# resource "aws_lambda_function" "broadcast" {
-#   filename         = data.archive_file.zip.output_path
-#   function_name    = format("%s-leave-user", var.name)
-#   role             = aws_iam_role.role.arn
-#   handler          = "broadcast.lambda_handler"
-#   source_code_hash = data.archive_file.zip.output_base64sha256
-#   runtime          = "python3.12"
-# }
+output "ses_verification_token" {
+  value       = aws_ses_domain_identity.main.verification_token
+  description = "Domain verification token for DNS"
+}
+
+
+resource "aws_iam_policy" "ses_policy" {
+  name   = format("%s-lambda-to-ses", var.name)
+  policy = data.aws_iam_policy_document.allow_ses.json
+}
+
+resource "aws_iam_role_policy_attachment" "ses_policy_attachment" {
+  role       = aws_iam_role.role.name
+  policy_arn = aws_iam_policy.ses_policy.arn
+}
+
+resource "aws_lambda_function" "broadcast" {
+  filename         = data.archive_file.zip.output_path
+  function_name    = format("%s-broadcast", var.name)
+  role             = aws_iam_role.role.arn
+  handler          = "broadcast.lambda_handler"
+  source_code_hash = data.archive_file.zip.output_base64sha256
+  runtime          = "python3.12"
+}
 
 output "api_gateway_invoke_url" {
   value = aws_api_gateway_stage.name.invoke_url

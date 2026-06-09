@@ -26,7 +26,7 @@ def lambda_handler(event, context):
         try:
             template_data = json.dumps({"unsubscribe_token": token})
             send_response = SES.send_templated_email(
-                Source='jmpargana@gmail.com',
+                Source='newsletter@jmpargana.com',
                 Destination={'ToAddresses': [email]},
                 Template='jmpargana-newsletter',
                 TemplateData=template_data
