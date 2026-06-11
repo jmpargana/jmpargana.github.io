@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>NAT on jmpargana</title>
+		<link>https://jmpargana.com/tags/nat/</link>
+		<description>Recent content in NAT on jmpargana</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Tue, 09 Jun 2026 13:32:46 +0100</lastBuildDate>
+		
+			<atom:link href="https://jmpargana.com/tags/nat/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Bitmap Leaser: Efficient IP Allocation with Bitmap Data Structures</title>
+				<link>https://jmpargana.com/posts/bitmap/</link>
+				<pubDate>Tue, 09 Jun 2026 13:32:46 +0100</pubDate>
+				<guid>https://jmpargana.com/posts/bitmap/</guid>
+				<description>&lt;p&gt;I&amp;rsquo;ve become interested in implementing backend infrastructure components we often take for granted: connection pools, circuit breakers, rate limiters, semaphores, resource allocators, etc.. These are typically provided by standard libraries (like &lt;code&gt;net/http&lt;/code&gt;) or third-party services (like Envoy), but understanding their internals is valuable.&lt;/p&gt;&#xA;&lt;p&gt;This is the first post in a series where I&amp;rsquo;ll implement key algorithms from scratch, exploring different data structures and their trade-offs in terms of performance and scalability.&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

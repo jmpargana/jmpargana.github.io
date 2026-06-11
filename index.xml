@@ -10,9 +10,16 @@
 		
 		
 		
-			<lastBuildDate>Sun, 12 Apr 2026 22:03:54 +0100</lastBuildDate>
+			<lastBuildDate>Tue, 09 Jun 2026 13:32:46 +0100</lastBuildDate>
 		
 			<atom:link href="https://jmpargana.com/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Bitmap Leaser: Efficient IP Allocation with Bitmap Data Structures</title>
+				<link>https://jmpargana.com/posts/bitmap/</link>
+				<pubDate>Tue, 09 Jun 2026 13:32:46 +0100</pubDate>
+				<guid>https://jmpargana.com/posts/bitmap/</guid>
+				<description>&lt;p&gt;I&amp;rsquo;ve become interested in implementing backend infrastructure components we often take for granted: connection pools, circuit breakers, rate limiters, semaphores, resource allocators, etc.. These are typically provided by standard libraries (like &lt;code&gt;net/http&lt;/code&gt;) or third-party services (like Envoy), but understanding their internals is valuable.&lt;/p&gt;&#xA;&lt;p&gt;This is the first post in a series where I&amp;rsquo;ll implement key algorithms from scratch, exploring different data structures and their trade-offs in terms of performance and scalability.&lt;/p&gt;</description>
+			</item>
 			<item>
 				<title>This Blog&#39;s Tech Stack &amp; Architecture</title>
 				<link>https://jmpargana.com/posts/site/</link>

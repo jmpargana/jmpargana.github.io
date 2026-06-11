@@ -2,6 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://jmpargana.com/tags/backend/</loc>
+    <lastmod>2026-06-09T13:32:46+01:00</lastmod>
+  </url><url>
+    <loc>https://jmpargana.com/tags/bit/</loc>
+    <lastmod>2026-06-09T13:32:46+01:00</lastmod>
+  </url><url>
+    <loc>https://jmpargana.com/posts/bitmap/</loc>
+    <lastmod>2026-06-09T13:32:46+01:00</lastmod>
+  </url><url>
+    <loc>https://jmpargana.com/tags/data-structures/</loc>
+    <lastmod>2026-06-09T13:32:46+01:00</lastmod>
+  </url><url>
+    <loc>https://jmpargana.com/tags/go/</loc>
+    <lastmod>2026-06-09T13:32:46+01:00</lastmod>
+  </url><url>
+    <loc>https://jmpargana.com/tags/nat/</loc>
+    <lastmod>2026-06-09T13:32:46+01:00</lastmod>
+  </url><url>
+    <loc>https://jmpargana.com/tags/networking/</loc>
+    <lastmod>2026-06-09T13:32:46+01:00</lastmod>
+  </url><url>
+    <loc>https://jmpargana.com/posts/</loc>
+    <lastmod>2026-06-09T13:32:46+01:00</lastmod>
+  </url><url>
+    <loc>https://jmpargana.com/tags/</loc>
+    <lastmod>2026-06-09T13:32:46+01:00</lastmod>
+  </url><url>
     <loc>https://jmpargana.com/tags/arch/</loc>
     <lastmod>2026-04-12T22:03:54+01:00</lastmod>
   </url><url>
@@ -17,16 +44,10 @@
     <loc>https://jmpargana.com/tags/lambda/</loc>
     <lastmod>2026-04-12T22:03:54+01:00</lastmod>
   </url><url>
-    <loc>https://jmpargana.com/posts/</loc>
-    <lastmod>2026-04-12T22:03:54+01:00</lastmod>
-  </url><url>
     <loc>https://jmpargana.com/tags/python/</loc>
     <lastmod>2026-04-12T22:03:54+01:00</lastmod>
   </url><url>
     <loc>https://jmpargana.com/tags/stitch/</loc>
-    <lastmod>2026-04-12T22:03:54+01:00</lastmod>
-  </url><url>
-    <loc>https://jmpargana.com/tags/</loc>
     <lastmod>2026-04-12T22:03:54+01:00</lastmod>
   </url><url>
     <loc>https://jmpargana.com/tags/terraform/</loc>
@@ -51,12 +72,6 @@
     <lastmod>2026-04-11T21:13:34+01:00</lastmod>
   </url><url>
     <loc>https://jmpargana.com/tags/architecture/</loc>
-    <lastmod>2026-04-05T22:03:54+01:00</lastmod>
-  </url><url>
-    <loc>https://jmpargana.com/tags/backend/</loc>
-    <lastmod>2026-04-05T22:03:54+01:00</lastmod>
-  </url><url>
-    <loc>https://jmpargana.com/tags/go/</loc>
     <lastmod>2026-04-05T22:03:54+01:00</lastmod>
   </url><url>
     <loc>https://jmpargana.com/posts/presigning/</loc>
