@@ -2,6 +2,7 @@
 title = 'Kafka Storage'
 date = 2026-08-13T09:11:22+01:00
 draft = true
+tags = ["Kafka", "Storage", "Rust"]
 +++
 
 Welcome to the first post on my _Kafka Series_. Here I'll go over my learnings from writing Kafka from scratch in Rust. Something to keep in mind while reading through this articles. I'm by no means a Kafka or Rust expert. The whole point of this project was to improve my knowledge in both these areas. I've come a long way, but still have a long way to go. If you notice anything wrong or that you believe would significantly improve my code or the project, I'd love to hear from you either by mail or by opening an issue in this repo.
