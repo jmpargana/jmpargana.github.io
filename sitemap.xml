@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://jmpargana.com/tags/kafka/</loc>
+    <lastmod>2026-08-13T09:11:22+01:00</lastmod>
+  </url><url>
+    <loc>https://jmpargana.com/posts/kafka_storage/</loc>
+    <lastmod>2026-08-13T09:11:22+01:00</lastmod>
+  </url><url>
+    <loc>https://jmpargana.com/posts/</loc>
+    <lastmod>2026-08-13T09:11:22+01:00</lastmod>
+  </url><url>
+    <loc>https://jmpargana.com/tags/rust/</loc>
+    <lastmod>2026-08-13T09:11:22+01:00</lastmod>
+  </url><url>
+    <loc>https://jmpargana.com/tags/storage/</loc>
+    <lastmod>2026-08-13T09:11:22+01:00</lastmod>
+  </url><url>
+    <loc>https://jmpargana.com/tags/</loc>
+    <lastmod>2026-08-13T09:11:22+01:00</lastmod>
+  </url><url>
     <loc>https://jmpargana.com/tags/backend/</loc>
     <lastmod>2026-06-09T13:32:46+01:00</lastmod>
   </url><url>
@@ -21,12 +39,6 @@
     <lastmod>2026-06-09T13:32:46+01:00</lastmod>
   </url><url>
     <loc>https://jmpargana.com/tags/networking/</loc>
-    <lastmod>2026-06-09T13:32:46+01:00</lastmod>
-  </url><url>
-    <loc>https://jmpargana.com/posts/</loc>
-    <lastmod>2026-06-09T13:32:46+01:00</lastmod>
-  </url><url>
-    <loc>https://jmpargana.com/tags/</loc>
     <lastmod>2026-06-09T13:32:46+01:00</lastmod>
   </url><url>
     <loc>https://jmpargana.com/tags/arch/</loc>
