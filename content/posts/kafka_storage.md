@@ -1,7 +1,7 @@
 +++
 title = 'Kafka Storage'
 date = 2026-08-13T09:11:22+01:00
-draft = true
+draft = false
 tags = ["Kafka", "Storage", "Rust"]
 +++
 
