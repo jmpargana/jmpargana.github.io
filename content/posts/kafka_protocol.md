@@ -5,13 +5,13 @@ draft = false
 tags = ['Kafka', 'Rust', 'Network', 'Protocol', 'SSL']
 +++
 
-This post is part of my Kafka series. If you're following along, make sure to check the other posts.
+This post is part of my Kafka series. If you're new make sure to check the other posts first.
 
 ## Network Layer
 
 Surprisingly, Kafka's network layer is its simplest aspect. It's designed like an RPC. A message, or in Kafka's terms, a _Frame_, is just like a network envelope: header + payload. 
 
-![original](/images/kafka/protocol.png)
+![original](/images/kafka/frame.png)
 
 The header carries standard metadata fields found in most protocols. The most relevant is `api_key` — despite its name, this is not an authentication key but the RPC verb that defines how the payload is decoded. 
 
@@ -139,51 +139,51 @@ With this whole context, I'll present the entire flow of how I fill a network bu
 As with any server, the starting point is a `TcpStream` created for each connection where you pass it to a handler:
 
 ```rs
-    async fn accept_loop(&self, ln: TcpListener) {
-        loop {
-            let (stream, peer_addr) = ln.accept().await.unwrap();
-            debug!(%peer_addr, "Received connection from");
-            let conn = Connection {
-                stream,
-                broker: self.broker.clone(),
-                read_buf: BytesMut::new(),
-            };
-            tokio::spawn(async move {
-                conn.handle().await;
-            });
-        }
+async fn accept_loop(&self, ln: TcpListener) {
+    loop {
+        let (stream, peer_addr) = ln.accept().await.unwrap();
+        debug!(%peer_addr, "Received connection from");
+        let conn = Connection {
+            stream,
+            broker: self.broker.clone(),
+            read_buf: BytesMut::new(),
+        };
+        tokio::spawn(async move {
+            conn.handle().await;
+        });
     }
+}
 ```
 
 The handler loops, reading frames and writing back the responses the broker returns:
 
 ```rs
-    pub async fn handle(mut self) {
-        loop {
-            let request = match self.read_frame().await {
-                Ok(r) => r,
-                Err(ConnectionError::Io(_)) => break,
-                Err(ConnectionError::Protocol(e)) => {
-                    tracing::warn!("protocol error: {e:?}");
-                    break;
-                }
-            };
-            info!(
-                api_key = ?request.header.api_key,
-                "Handling request for caller"
-            );
-            let response = match self.broker.handle(request).await {
-                Ok(r) => r,
-                Err(_) => unreachable!(
-                    "broker errors should be encoded as ErrorCode in the response body"
-                ),
-            };
-            if let Err(e) = self.write_frame(response).await {
-                tracing::warn!("write failed: {e:?}");
+pub async fn handle(mut self) {
+    loop {
+        let request = match self.read_frame().await {
+            Ok(r) => r,
+            Err(ConnectionError::Io(_)) => break,
+            Err(ConnectionError::Protocol(e)) => {
+                tracing::warn!("protocol error: {e:?}");
                 break;
             }
+        };
+        info!(
+            api_key = ?request.header.api_key,
+            "Handling request for caller"
+        );
+        let response = match self.broker.handle(request).await {
+            Ok(r) => r,
+            Err(_) => unreachable!(
+                "broker errors should be encoded as ErrorCode in the response body"
+            ),
+        };
+        if let Err(e) = self.write_frame(response).await {
+            tracing::warn!("write failed: {e:?}");
+            break;
         }
     }
+}
 ```
 
 ### Parsing
@@ -191,25 +191,25 @@ The handler loops, reading frames and writing back the responses the broker retu
 The interesting part is `read_frame`, which reads the frame size, resizes a reusable buffer to fit, then calls `read_exact` to fill it — blocking until all bytes arrive:
 
 ```rs
-    async fn read_frame(&mut self) -> Result<Frame, ConnectionError> {
-        let size = self.stream.read_u32().await.map_err(ConnectionError::Io)?;
-        self.read_buf.resize(size as usize, 0);
-        self.stream
-            .read_exact(&mut self.read_buf)
-            .await
-            .map_err(ConnectionError::Io)?;
-        Frame::decode(&self.read_buf.split().freeze(), size).map_err(ConnectionError::Protocol)
-    }
+async fn read_frame(&mut self) -> Result<Frame, ConnectionError> {
+    let size = self.stream.read_u32().await.map_err(ConnectionError::Io)?;
+    self.read_buf.resize(size as usize, 0);
+    self.stream
+        .read_exact(&mut self.read_buf)
+        .await
+        .map_err(ConnectionError::Io)?;
+    Frame::decode(&self.read_buf.split().freeze(), size).map_err(ConnectionError::Protocol)
+}
 ```
 
 Then, we can decode by parsing the full buffer with a custom decoder:
 
 ```rs
-    pub fn decode(buf: &Bytes, size: u32) -> Result<Self, ParseError> {
-        let mut decoder = RequestDecoder;
-        let mut buf = buf.clone();
-        decoder.parse(&mut buf, size)
-    }
+pub fn decode(buf: &Bytes, size: u32) -> Result<Self, ParseError> {
+    let mut decoder = RequestDecoder;
+    let mut buf = buf.clone();
+    decoder.parse(&mut buf, size)
+}
 ```
 
 ```rs
@@ -248,7 +248,7 @@ impl RequestDecoder {
         Ok(Frame { size, header, body })
     }
 
-        fn parse_fetch(&self, buf: &mut Bytes) -> Result<FrameBody, ParseError> {
+    fn parse_fetch(&self, buf: &mut Bytes) -> Result<FrameBody, ParseError> {
         let replica_id = buf.get_i32();
         let max_bytes = buf.get_u32();
         let topics_len = buf.get_u32();
@@ -296,34 +296,34 @@ The broker will handle the request and return a `Frame` which can then be encode
 Once we have a response, we encode it back to bytes. 
 
 ```rs
-    async fn write_frame(&mut self, res: Frame) -> Result<(), ConnectionError> {
-        let bytes = res.encode();
-        self.stream
-            .write_all(&bytes)
-            .await
-            .map_err(ConnectionError::Io)
-    }
+async fn write_frame(&mut self, res: Frame) -> Result<(), ConnectionError> {
+    let bytes = res.encode();
+    self.stream
+        .write_all(&bytes)
+        .await
+        .map_err(ConnectionError::Io)
+}
 ```
 
 This calls `Frame::encode`, which builds a byte buffer by serializing each field in order. 
 
 ```rs
-            FrameBody::Fetch(req) => {
-                buf.put_i32(req.replica_id);
-                buf.put_u32(req.max_bytes);
-                buf.put_u32(req.topics.len() as u32);
-                for t in &req.topics {
-                    buf.put_u16(t.topic.len() as u16);
-                    buf.put_slice(t.topic.as_bytes());
-                    buf.put_u32(t.partitions.len() as u32);
-                    for p in &t.partitions {
-                        buf.put_u32(p.partition);
-                        buf.put_u64(p.fetch_offset);
-                        buf.put_u32(p.partition_max_bytes);
-                        buf.put_u64(p.high_watermark);
-                    }
-                }
-            }
+FrameBody::Fetch(req) => {
+    buf.put_i32(req.replica_id);
+    buf.put_u32(req.max_bytes);
+    buf.put_u32(req.topics.len() as u32);
+    for t in &req.topics {
+        buf.put_u16(t.topic.len() as u16);
+        buf.put_slice(t.topic.as_bytes());
+        buf.put_u32(t.partitions.len() as u32);
+        for p in &t.partitions {
+            buf.put_u32(p.partition);
+            buf.put_u64(p.fetch_offset);
+            buf.put_u32(p.partition_max_bytes);
+            buf.put_u64(p.high_watermark);
+        }
+    }
+}
 ```
 
 ## Conclusion

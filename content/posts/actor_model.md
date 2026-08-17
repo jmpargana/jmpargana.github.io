@@ -101,7 +101,7 @@ Starting with the actual log. As we've discussed before, the log is almost entir
 
 We have the following memory layout:
 
-![original](/images/kafka/memmap.png)
+![original](/images/kafka/memap.png)
 
 There is a contiguous region of memory, where the log gets written. The kernel exposes the file through a file descriptor, which we can think of as a byte array, as shown in the diagram above. Since the log is append-only, almost all data is immutable — reads load bytes at a specific position using `std::os::unix::fs::FileExt::read_at`. Under the hood, it uses the `pread` syscall which does not modify the file descriptor by updating the seek position. This is particularly useful, because you can have multiple simultaneous readers never racing each other.
 
@@ -135,15 +135,15 @@ pub struct SegmentView {
 This is the immutable view, holding references to the log file and index. It is only used for reads — the binary search and linear search covered in the previous post. `read_at` is called once the matching index entry is located. To find that entry, we address the memory-mapped index directly as a `&[u8]` byte slice, so the only value that changes on each write is `index_count`, which is cheap to update via RCU. This is why we only need this one extra method.
 
 ```rs
-    pub fn with_metadata(&self, index_count: usize, size: usize) -> Arc<Self> {
-        Arc::new(Self {
-            base_offset: self.base_offset,
-            log: self.log.clone(),
-            index: self.index.clone(),
-            size,
-            index_count,
-        })
-    }
+pub fn with_metadata(&self, index_count: usize, size: usize) -> Arc<Self> {
+    Arc::new(Self {
+        base_offset: self.base_offset,
+        log: self.log.clone(),
+        index: self.index.clone(),
+        size,
+        index_count,
+    })
+}
 ```
 
 Then we have the mutable object, which looks like this:
