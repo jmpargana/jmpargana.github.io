@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kafka Protocol | jmpargana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+
+      <link rel="stylesheet" href="/css/bundle.min.353e1f76e4a796a58a29dac195a2ffe6307cc85355209dbd2cfcca38e53f4b86.css" integrity="sha256-NT4fduSnlqWKKdrBlaL/5jB8yFNVIJ29LPzKOOU/S4Y=" crossorigin="anonymous">
+
+      <script defer src="/js/bundle.3008416cf76fe506b7aa0c9dcd5a82032c1c3ef33bca038292daee0872e343c5.js" integrity="sha256-MAhBbPdv5Qa3qgydzVqCAywcPvM7ygOCktruCHLjQ8U=" crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+  
+  <header>
+    <div class="container-header">
+  <div class="site-header">
+    <a class="title-header" href="/">jmpargana</a>
+    <div class="header-center">
+      
+  <nav class="nav-container">
+    <ul class="nav-menu">
+    <li class="nav-item">
+      <a href="/about/">About</a>
+    </li>
+    <li class="nav-item">
+      <a href="/posts/">Blog</a>
+    </li>
+    </ul>
+  </nav>
+
+    </div>
+    <div class="header-actions">
+      <button class="theme-toggle" type="button" aria-label="Toggle color theme" aria-pressed="false" title="Toggle color theme">
+        <span class="theme-toggle-icon" aria-hidden="true">◐</span>
+      </button>
+      <button class="header-menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">≡</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+  <div class="mobile-nav__backdrop"></div>
+  <nav class="mobile-nav__panel" role="navigation" aria-label="Mobile navigation">
+    <button class="mobile-nav__close" type="button" aria-label="Close menu">✕</button>
+    <ul class="mobile-nav__list">
+      
+        <li class="mobile-nav__item">
+          <a class="mobile-nav__link" href="/about/">About</a>
+        </li>
+      
+        <li class="mobile-nav__item">
+          <a class="mobile-nav__link" href="/posts/">Blog</a>
+        </li>
+      
+    </ul>
+    <div class="mobile-nav__social">
+      <a class="mobile-nav__social-link" href="https://github.com/jmpargana/" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="currentColor" d="M237.9 461.4C237.9 463.4 235.6 465 232.7 465C229.4 465.3 227.1 463.7 227.1 461.4C227.1 459.4 229.4 457.8 232.3 457.8C235.3 457.5 237.9 459.1 237.9 461.4zM206.8 456.9C206.1 458.9 208.1 461.2 211.1 461.8C213.7 462.8 216.7 461.8 217.3 459.8C217.9 457.8 216 455.5 213 454.6C210.4 453.9 207.5 454.9 206.8 456.9zM251 455.2C248.1 455.9 246.1 457.8 246.4 460.1C246.7 462.1 249.3 463.4 252.3 462.7C255.2 462 257.2 460.1 256.9 458.1C256.6 456.2 253.9 454.9 251 455.2zM316.8 72C178.1 72 72 177.3 72 316C72 426.9 141.8 521.8 241.5 555.2C254.3 557.5 258.8 549.6 258.8 543.1C258.8 536.9 258.5 502.7 258.5 481.7C258.5 481.7 188.5 496.7 173.8 451.9C173.8 451.9 162.4 422.8 146 415.3C146 415.3 123.1 399.6 147.6 399.9C147.6 399.9 172.5 401.9 186.2 425.7C208.1 464.3 244.8 453.2 259.1 446.6C261.4 430.6 267.9 419.5 275.1 412.9C219.2 406.7 162.8 398.6 162.8 302.4C162.8 274.9 170.4 261.1 186.4 243.5C183.8 237 175.3 210.2 189 175.6C209.9 169.1 258 202.6 258 202.6C278 197 299.5 194.1 320.8 194.1C342.1 194.1 363.6 197 383.6 202.6C383.6 202.6 431.7 169 452.6 175.6C466.3 210.3 457.8 237 455.2 243.5C471.2 261.2 481 275 481 302.4C481 398.9 422.1 406.6 366.2 412.9C375.4 420.8 383.2 435.8 383.2 459.3C383.2 493 382.9 534.7 382.9 542.9C382.9 549.4 387.5 557.3 400.2 555C500.2 521.8 568 426.9 568 316C568 177.3 455.5 72 316.8 72zM169.2 416.9C167.9 417.9 168.2 420.2 169.9 422.1C171.5 423.7 173.8 424.4 175.1 423.1C176.4 422.1 176.1 419.8 174.4 417.9C172.8 416.3 170.5 415.6 169.2 416.9zM158.4 408.8C157.7 410.1 158.7 411.7 160.7 412.7C162.3 413.7 164.3 413.4 165 412C165.7 410.7 164.7 409.1 162.7 408.1C160.7 407.5 159.1 407.8 158.4 408.8zM190.8 444.4C189.2 445.7 189.8 448.7 192.1 450.6C194.4 452.9 197.3 453.2 198.6 451.6C199.9 450.3 199.3 447.3 197.3 445.4C195.1 443.1 192.1 442.8 190.8 444.4zM179.4 429.7C177.8 430.7 177.8 433.3 179.4 435.6C181 437.9 183.7 438.9 185 437.9C186.6 436.6 186.6 434 185 431.7C183.6 429.4 181 428.4 179.4 429.7z"/></svg></div>
+        <span>GitHub</span>
+      </a>
+      <a class="mobile-nav__social-link" href="https://linkedin.com/in/jmpargana" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="currentColor" d="M512 96L127.9 96C110.3 96 96 110.5 96 128.3L96 511.7C96 529.5 110.3 544 127.9 544L512 544C529.6 544 544 529.5 544 511.7L544 128.3C544 110.5 529.6 96 512 96zM231.4 480L165 480L165 266.2L231.5 266.2L231.5 480L231.4 480zM198.2 160C219.5 160 236.7 177.2 236.7 198.5C236.7 219.8 219.5 237 198.2 237C176.9 237 159.7 219.8 159.7 198.5C159.7 177.2 176.9 160 198.2 160zM480.3 480L413.9 480L413.9 376C413.9 351.2 413.4 319.3 379.4 319.3C344.8 319.3 339.5 346.3 339.5 374.2L339.5 480L273.1 480L273.1 266.2L336.8 266.2L336.8 295.4L337.7 295.4C346.6 278.6 368.3 260.9 400.6 260.9C467.8 260.9 480.3 305.2 480.3 362.8L480.3 480z"/></svg></div>
+        <span>LinkedIn</span>
+      </a>
+      <a class="mobile-nav__social-link" href="mailto:jmpargana@gmail.com" aria-label="Email">
+        <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-16 -16 96 96">
+    <g transform="scale(1, 1.25) translate(0, -6)">
+      <path fill="currentColor" d="M32,34.934L63.617,10.34C62.984,8.965,61.613,8,60,8H4c-1.613,0-2.984,0.965-3.617,2.34L32,34.934z"/>
+      <path fill="currentColor" d="M34.457,43.156C33.734,43.719,32.867,44,32,44s-1.734-0.281-2.457-0.844L0,20.18V52c0,2.211,1.789,4,4,4h56c2.211,0,4-1.789,4-4V20.18L34.457,43.156z"/>
+    </g>
+  </svg></div>
+        <span>Email</span>
+      </a>
+    </div>
+  </nav>
+</div>
+
+  </header>
+  
+  <main>
+    
+  
+  <div class="content article-view">
+    <div class="article-frame">
+      <div class="article-back">
+        <a class="article-back-link" href="/posts/">
+          <svg class="article-back-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="19" y1="12" x2="5" y2="12"/>
+            <polyline points="12 19 5 12 12 5"/>
+          </svg>
+          <span>BACK TO ARCHIVES</span>
+        </a>
+      </div>
+
+      
+
+<header class="article-header">
+  <div class="article-kicker-row">
+    <span class="article-kicker">Issue No. 226</span>
+    <span class="article-kicker-line" aria-hidden="true"></span>
+    <time class="article-kicker-date" datetime="2026-08-14T07:33:38&#43;01:00">Aug 14, 2026</time>
+  </div>
+  <h1 class="article-title">Kafka Protocol</h1>
+  
+</header>
+
+      <article class="article-body">
+        <p>This post is part of my Kafka series. If you&rsquo;re following along, make sure to check the other posts.</p>
+<h2 id="network-layer">Network Layer</h2>
+<p>Surprisingly, Kafka&rsquo;s network layer is its simplest aspect. It&rsquo;s designed like an RPC. A message, or in Kafka&rsquo;s terms, a <em>Frame</em>, is just like a network envelope: header + payload.</p>
+<p><img src="/images/kafka/protocol.png" alt="original"></p>
+<p>The header carries standard metadata fields found in most protocols. The most relevant is <code>api_key</code> — despite its name, this is not an authentication key but the RPC verb that defines how the payload is decoded.</p>
+<p>Here&rsquo;s a list of the currently supported verbs in my version of Kafka (more coming soon). For a comprehensive list, check the [docs](hint comes here).</p>
+<h2 id="payload">Payload</h2>
+<p>We&rsquo;ll look at the <code>Fetch</code> Request and Response as examples to understand how the bytes are structured and how versioning is handled.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">Fetch Request (Version</span><span class="p">:</span><span class="w"> </span><span class="m">18</span><span class="l">) =&gt; { max_wait_ms min_bytes max_bytes isolation_level session_id session_epoch (topics) (forgotten_topics_data) rack_id cluster_id&lt;tag: 0&gt; replica_state&lt;tag: 1&gt; }</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="l">max_wait_ms =&gt; INT32</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="l">min_bytes =&gt; INT32</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="l">max_bytes =&gt; INT32</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="l">isolation_level =&gt; INT8</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="l">session_id =&gt; INT32</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="l">session_epoch =&gt; INT32</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="l">topics =&gt; { topic_id (partitions) }</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">topic_id =&gt; UUID</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">partitions =&gt; { partition current_leader_epoch fetch_offset last_fetched_epoch log_start_offset partition_max_bytes replica_directory_id&lt;tag: 0&gt; high_watermark&lt;tag: 1&gt; }</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="l">partition =&gt; INT32</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="l">current_leader_epoch =&gt; INT32</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="l">fetch_offset =&gt; INT64</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="l">last_fetched_epoch =&gt; INT32</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="l">log_start_offset =&gt; INT64</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="l">partition_max_bytes =&gt; INT32</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">replica_directory_id&lt;tag</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="l">&gt; =&gt; UUID</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">high_watermark&lt;tag</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="l">&gt; =&gt; INT64</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="l">forgotten_topics_data =&gt; { topic_id (partitions) }</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">topic_id =&gt; UUID</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">partitions =&gt; INT32</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="l">rack_id =&gt; COMPACT_STRING</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">cluster_id&lt;tag</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="l">&gt; =&gt; COMPACT_NULLABLE_STRING</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">replica_state&lt;tag</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="l">&gt; =&gt; { replica_id replica_epoch }</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">replica_id =&gt; INT32</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">replica_epoch =&gt; INT64</span><span class="w">
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">Fetch Response (Version</span><span class="p">:</span><span class="w"> </span><span class="m">18</span><span class="l">) =&gt; { throttle_time_ms error_code session_id (responses) node_endpoints&lt;tag: 0&gt; }</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="l">throttle_time_ms =&gt; INT32</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="l">error_code =&gt; INT16</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="l">session_id =&gt; INT32</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="l">responses =&gt; { topic_id (partitions) }</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">topic_id =&gt; UUID</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">partitions =&gt; { partition_index error_code high_watermark last_stable_offset log_start_offset ?(aborted_transactions) preferred_read_replica records diverging_epoch&lt;tag: 0&gt; current_leader&lt;tag: 1&gt; snapshot_id&lt;tag: 2&gt; }</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="l">partition_index =&gt; INT32</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="l">error_code =&gt; INT16</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="l">high_watermark =&gt; INT64</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="l">last_stable_offset =&gt; INT64</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="l">log_start_offset =&gt; INT64</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="l">aborted_transactions =&gt; { producer_id first_offset }</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">producer_id =&gt; INT64</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">first_offset =&gt; INT64</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="l">preferred_read_replica =&gt; INT32</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="l">records =&gt; COMPACT_NULLABLE_RECORDS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">diverging_epoch&lt;tag</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="l">&gt; =&gt; { epoch end_offset }</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">epoch =&gt; INT32</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">end_offset =&gt; INT64</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">current_leader&lt;tag</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="l">&gt; =&gt; { leader_id leader_epoch }</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">leader_id =&gt; INT32</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">leader_epoch =&gt; INT32</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">snapshot_id&lt;tag</span><span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="l">&gt; =&gt; { end_offset epoch }</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">end_offset =&gt; INT64</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="l">epoch =&gt; INT32</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">node_endpoints&lt;tag</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="l">&gt; =&gt; { node_id host port rack }</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">node_id =&gt; INT32</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">host =&gt; COMPACT_STRING</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">port =&gt; INT32</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="l">rack =&gt; COMPACT_NULLABLE_STRING</span><span class="w">
+</span></span></span></code></pre></div><h2 id="simple">Simple</h2>
+<p>You might be thinking: this is not interesting at all. It feels like you just need auto-generated boilerplate to encode and decode each <code>api_key</code>, right?</p>
+<p>There are still some interesting questions worth answering:</p>
+<ul>
+<li>How is this compatible with SSL?</li>
+<li>How do we efficiently work with the Protocol in Rust?</li>
+</ul>
+<h2 id="ssl">SSL</h2>
+<p><strong>How is this compatible with SSL?</strong> This might seem like a stupid question. <em>Why wouldn&rsquo;t it be compatible with SSL?</em> Well, Kafka&rsquo;s philosophy, if you&rsquo;ve read other posts in this series, is really this:</p>
+<ul>
+<li>Bytes over encoding formats.</li>
+<li>Sequential data in disk over memory.</li>
+<li><strong>Avoid copy wherever possible</strong>.</li>
+</ul>
+<p>Kafka&rsquo;s initial broker design was to rely on syscalls like <code>sendfile</code> to transfer data from disk directly to the network socket, bypassing user space entirely. The motivation is straightforward: relying on user space as an intermediary at least doubles the I/O work — data must be read from disk into a user-space buffer and then written from that buffer to the socket. More than that, excessive memory use is the first point of failure for a JVM application. If you have had experience with Java or other JVM languages, you&rsquo;ll know that peaks of memory usage, especially spikes in heap, quickly summon <em>Unexpected Behavior</em> Demons — a no-go for a high-performance application.</p>
+<p>Going back to the question. Why is this a problem? <code>sendfile</code> copies raw bytes from a file descriptor straight to a socket in the kernel — there is no opportunity for encryption in this path. TLS/SSL encryption must happen in user space, inside the SSL library running in your process. So when a consumer fetches data over a TLS connection, Kafka cannot use <code>sendfile</code>: it must read the data into a user-space buffer, encrypt it for that specific session, then write the ciphertext to the socket.</p>
+<p>The Kafka developers solved this pragmatically: when SSL is enabled, the zero-copy path is simply unavailable. Kafka detects the channel type at connection setup and falls back to a standard user-space loop — read from disk into a buffer, encrypt with the SSL library, write ciphertext to the socket. The same applies in reverse for producers sending data in. This is a known and accepted trade-off: SSL-enabled clusters have measurably lower throughput than plaintext ones, partly because of this. The upside is that the separation is clean — the choice between the <code>sendfile</code> path and the SSL path is made once, not scattered throughout the codebase.</p>
+<h2 id="rust">Rust</h2>
+<p>This is quite an interesting question for a low-level language like Rust, which promises efficient byte management. There are a few options, and I see these approaches not as competing solutions to the same problem but as an evolution of how Rust handles I/O — each one solving a slightly different aspect of it.</p>
+<h3 id="byte-slice">Byte slice</h3>
+<p>We can start by looking at how to parse from a <code>&amp;[u8]</code> byte slice.</p>
+<h3 id="custom-reader">Custom Reader</h3>
+<p>In Go, parsing typically builds around <code>io.Reader</code>: you wrap a <code>net.Conn</code> in a <code>bufio.Reader</code> and call <code>Read</code> or <code>io.ReadFull</code>. In Rust, the equivalent is implementing <code>std::io::Read</code> — a <code>fn read(&amp;mut self, buf: &amp;mut [u8]) -&gt; io::Result&lt;usize&gt;</code> on a struct wrapping the TCP stream. The advantage is genericity: the same parser works against a real socket, a file, or a <code>Cursor&lt;&amp;[u8]&gt;</code> in tests. The problem is that <code>std::io::Read</code> is synchronous. Using it inside an async Tokio runtime means blocking the executor thread, which defeats the purpose of async I/O entirely.</p>
+<h3 id="generic-r-read">Generic R: Read</h3>
+<p>The idiomatic Rust step is to make the parsing function generic: <code>fn parse&lt;R: Read&gt;(reader: &amp;mut R) -&gt; Result&lt;Frame, ParseError&gt;</code>. Any type implementing <code>Read</code> works — real sockets, files, or in-memory <code>Cursor&lt;Vec&lt;u8&gt;&gt;</code> for tests. For async code, the equivalent is <code>R: AsyncRead + Unpin</code> using Tokio&rsquo;s <code>AsyncReadExt</code>. This is more flexible than a concrete custom reader, but the same synchronous-vs-async tension remains: <code>std::io::Read</code> and <code>tokio::io::AsyncRead</code> are separate traits and don&rsquo;t compose without an explicit bridge.</p>
+<h3 id="stream">Stream</h3>
+<p>Now you say, isn&rsquo;t a network buffer asynchronous in nature? Shouldn&rsquo;t we opt for something concurrency friendly, that doesn&rsquo;t expect the payload to be complete? Shouldn&rsquo;t we opt for viewing the buffer as a stream and continuously consume bytes until we have successfully parsed the whole Payload? I won&rsquo;t explain this option in depth, because Kafka&rsquo;s protocol avoids the stream with a clever trick.</p>
+<h3 id="bytes">Bytes</h3>
+<p>Tokio ships a crate called <code>bytes</code>, which has become the standard for handling network byte streams in async Rust. It provides two types: <code>BytesMut</code> — a contiguous, growable buffer — and <code>Bytes</code>, its immutable counterpart. Calling <code>.freeze()</code> on a <code>BytesMut</code> converts it to <code>Bytes</code>. The key feature is cheap cloning and slicing: <code>Bytes::clone()</code> and <code>Bytes::split_to()</code> never copy underlying data — they increment a reference count and adjust the internal offset and length. You fill one <code>BytesMut</code> from the socket, freeze it, then hand off sub-slices to different parts of your parser with no extra allocations. Methods like <code>get_u32()</code> and <code>get_i16()</code> advance an internal read cursor, making sequential parsing a matter of calling methods in field order — exactly what you see in <code>parse_fetch</code> above.</p>
+<h2 id="final-solution">Final Solution</h2>
+<p>With this whole context, I&rsquo;ll present the entire flow of how I fill a network buffer, decode the message and do the reverse.</p>
+<h3 id="accept-loop">Accept loop</h3>
+<p>As with any server, the starting point is a <code>TcpStream</code> created for each connection where you pass it to a handler:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rs" data-lang="rs"><span class="line"><span class="cl"><span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="k">fn</span> <span class="nf">accept_loop</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">ln</span>: <span class="nc">TcpListener</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">loop</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="p">(</span><span class="n">stream</span><span class="p">,</span><span class="w"> </span><span class="n">peer_addr</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ln</span><span class="p">.</span><span class="n">accept</span><span class="p">().</span><span class="k">await</span><span class="p">.</span><span class="n">unwrap</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="fm">debug!</span><span class="p">(</span><span class="o">%</span><span class="n">peer_addr</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;Received connection from&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="n">conn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Connection</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">stream</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">broker</span>: <span class="nc">self</span><span class="p">.</span><span class="n">broker</span><span class="p">.</span><span class="n">clone</span><span class="p">(),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">read_buf</span>: <span class="nc">BytesMut</span>::<span class="n">new</span><span class="p">(),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">};</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">tokio</span>::<span class="n">spawn</span><span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="k">move</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">conn</span><span class="p">.</span><span class="n">handle</span><span class="p">().</span><span class="k">await</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">});</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>The handler loops, reading frames and writing back the responses the broker returns:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rs" data-lang="rs"><span class="line"><span class="cl"><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="k">fn</span> <span class="nf">handle</span><span class="p">(</span><span class="k">mut</span><span class="w"> </span><span class="bp">self</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">loop</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">match</span><span class="w"> </span><span class="bp">self</span><span class="p">.</span><span class="n">read_frame</span><span class="p">().</span><span class="k">await</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="nb">Ok</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="nb">Err</span><span class="p">(</span><span class="n">ConnectionError</span>::<span class="n">Io</span><span class="p">(</span><span class="n">_</span><span class="p">))</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">break</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="nb">Err</span><span class="p">(</span><span class="n">ConnectionError</span>::<span class="n">Protocol</span><span class="p">(</span><span class="n">e</span><span class="p">))</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="n">tracing</span>::<span class="fm">warn!</span><span class="p">(</span><span class="s">&#34;protocol error: {e:?}&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="k">break</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">};</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="fm">info!</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">api_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">?</span><span class="n">request</span><span class="p">.</span><span class="n">header</span><span class="p">.</span><span class="n">api_key</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="s">&#34;Handling request for caller&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">match</span><span class="w"> </span><span class="bp">self</span><span class="p">.</span><span class="n">broker</span><span class="p">.</span><span class="n">handle</span><span class="p">(</span><span class="n">request</span><span class="p">).</span><span class="k">await</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="nb">Ok</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="nb">Err</span><span class="p">(</span><span class="n">_</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="fm">unreachable!</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="s">&#34;broker errors should be encoded as ErrorCode in the response body&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">};</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nb">Err</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">self</span><span class="p">.</span><span class="n">write_frame</span><span class="p">(</span><span class="n">response</span><span class="p">).</span><span class="k">await</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">tracing</span>::<span class="fm">warn!</span><span class="p">(</span><span class="s">&#34;write failed: {e:?}&#34;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="k">break</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><h3 id="parsing">Parsing</h3>
+<p>The interesting part is <code>read_frame</code>, which reads the frame size, resizes a reusable buffer to fit, then calls <code>read_exact</code> to fill it — blocking until all bytes arrive:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rs" data-lang="rs"><span class="line"><span class="cl"><span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="k">fn</span> <span class="nf">read_frame</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="bp">self</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nb">Result</span><span class="o">&lt;</span><span class="n">Frame</span><span class="p">,</span><span class="w"> </span><span class="n">ConnectionError</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">self</span><span class="p">.</span><span class="n">stream</span><span class="p">.</span><span class="n">read_u32</span><span class="p">().</span><span class="k">await</span><span class="p">.</span><span class="n">map_err</span><span class="p">(</span><span class="n">ConnectionError</span>::<span class="n">Io</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="bp">self</span><span class="p">.</span><span class="n">read_buf</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="kt">usize</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="bp">self</span><span class="p">.</span><span class="n">stream</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">.</span><span class="n">read_exact</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="bp">self</span><span class="p">.</span><span class="n">read_buf</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">.</span><span class="k">await</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">.</span><span class="n">map_err</span><span class="p">(</span><span class="n">ConnectionError</span>::<span class="n">Io</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Frame</span>::<span class="n">decode</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">.</span><span class="n">read_buf</span><span class="p">.</span><span class="n">split</span><span class="p">().</span><span class="n">freeze</span><span class="p">(),</span><span class="w"> </span><span class="n">size</span><span class="p">).</span><span class="n">map_err</span><span class="p">(</span><span class="n">ConnectionError</span>::<span class="n">Protocol</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>Then, we can decode by parsing the full buffer with a custom decoder:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rs" data-lang="rs"><span class="line"><span class="cl"><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="k">fn</span> <span class="nf">decode</span><span class="p">(</span><span class="n">buf</span>: <span class="kp">&amp;</span><span class="nc">Bytes</span><span class="p">,</span><span class="w"> </span><span class="n">size</span>: <span class="kt">u32</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nb">Result</span><span class="o">&lt;</span><span class="bp">Self</span><span class="p">,</span><span class="w"> </span><span class="n">ParseError</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">decoder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RequestDecoder</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">buf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buf</span><span class="p">.</span><span class="n">clone</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">decoder</span><span class="p">.</span><span class="n">parse</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="n">buf</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rs" data-lang="rs"><span class="line"><span class="cl"><span class="k">impl</span><span class="w"> </span><span class="n">RequestDecoder</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="k">fn</span> <span class="nf">parse</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">buf</span>: <span class="kp">&amp;</span><span class="nc">mut</span><span class="w"> </span><span class="n">Bytes</span><span class="p">,</span><span class="w"> </span><span class="n">size</span>: <span class="kt">u32</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nb">Result</span><span class="o">&lt;</span><span class="n">Frame</span><span class="p">,</span><span class="w"> </span><span class="n">ParseError</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">api_key</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buf</span><span class="p">.</span><span class="n">get_u32</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">api_version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buf</span><span class="p">.</span><span class="n">get_u32</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">correlation_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buf</span><span class="p">.</span><span class="n">get_u32</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">client_id_len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buf</span><span class="p">.</span><span class="n">get_i16</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">client_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">client_id_len</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nb">Some</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="nb">String</span>::<span class="n">from_utf8</span><span class="p">(</span><span class="n">buf</span><span class="p">.</span><span class="n">split_to</span><span class="p">(</span><span class="n">client_id_len</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="kt">usize</span><span class="p">).</span><span class="n">to_vec</span><span class="p">())</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="p">.</span><span class="n">map_err</span><span class="p">(</span><span class="o">|</span><span class="n">_</span><span class="o">|</span><span class="w"> </span><span class="n">ParseError</span>::<span class="n">InvalidClientId</span><span class="p">)</span><span class="o">?</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nb">None</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">};</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">api_key</span>: <span class="nc">ApiKey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">api_key</span><span class="p">.</span><span class="n">try_into</span><span class="p">().</span><span class="n">map_err</span><span class="p">(</span><span class="o">|</span><span class="n">_</span><span class="o">|</span><span class="w"> </span><span class="n">ParseError</span>::<span class="n">InvalidApiKey</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">header</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RequestHeader</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">api_key</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">api_version</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">correlation_id</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">client_id</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">};</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">body</span>: <span class="nc">FrameBody</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">match</span><span class="w"> </span><span class="n">api_key</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">ApiKey</span>::<span class="n">Produce</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="bp">self</span><span class="p">.</span><span class="n">parse_produce</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span><span class="o">?</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">ApiKey</span>::<span class="n">Fetch</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="bp">self</span><span class="p">.</span><span class="n">parse_fetch</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span><span class="o">?</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">ApiKey</span>::<span class="n">Metadata</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="bp">self</span><span class="p">.</span><span class="n">parse_metadata</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span><span class="o">?</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">ApiKey</span>::<span class="n">CreateTopics</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="bp">self</span><span class="p">.</span><span class="n">parse_create_topics</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span><span class="o">?</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">};</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nb">Ok</span><span class="p">(</span><span class="n">Frame</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="n">header</span><span class="p">,</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="p">})</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">fn</span> <span class="nf">parse_fetch</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">buf</span>: <span class="kp">&amp;</span><span class="nc">mut</span><span class="w"> </span><span class="n">Bytes</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nb">Result</span><span class="o">&lt;</span><span class="n">FrameBody</span><span class="p">,</span><span class="w"> </span><span class="n">ParseError</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">replica_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buf</span><span class="p">.</span><span class="n">get_i32</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">max_bytes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buf</span><span class="p">.</span><span class="n">get_u32</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">topics_len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buf</span><span class="p">.</span><span class="n">get_u32</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">topics</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Vec</span>::<span class="n">new</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">_</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">0</span><span class="o">..</span><span class="n">topics_len</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="n">topic_name_len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buf</span><span class="p">.</span><span class="n">get_u16</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="n">topic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buf</span><span class="p">.</span><span class="n">split_to</span><span class="p">(</span><span class="n">topic_name_len</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="kt">usize</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="n">topic</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">String</span>::<span class="n">from_utf8_lossy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">topic</span><span class="p">).</span><span class="n">to_string</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="n">partitions_len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buf</span><span class="p">.</span><span class="n">get_u32</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">partitions</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Vec</span>::<span class="n">new</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="n">_</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="mi">0</span><span class="o">..</span><span class="n">partitions_len</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="kd">let</span><span class="w"> </span><span class="n">partition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buf</span><span class="p">.</span><span class="n">get_u32</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="kd">let</span><span class="w"> </span><span class="n">fetch_offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buf</span><span class="p">.</span><span class="n">get_u64</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="kd">let</span><span class="w"> </span><span class="n">partition_max_bytes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buf</span><span class="p">.</span><span class="n">get_u32</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="kd">let</span><span class="w"> </span><span class="n">high_watermark</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buf</span><span class="p">.</span><span class="n">get_u64</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">partitions</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">FetchPartition</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="n">partition</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="n">fetch_offset</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="n">partition_max_bytes</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="n">high_watermark</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">});</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">topics</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">FetchTopic</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">topic</span><span class="p">,</span><span class="w"> </span><span class="n">partitions</span><span class="w"> </span><span class="p">});</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nb">Ok</span><span class="p">(</span><span class="n">FrameBody</span>::<span class="n">Fetch</span><span class="p">(</span><span class="n">FetchRequest</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">replica_id</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">max_bytes</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">topics</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}))</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>This function could be cleaner, but the main logic is there. You match the <code>api_key</code> with another method, which then creates the entire payload by reading sets of bytes with <code>&amp;mut Bytes</code>.</p>
+<h3 id="handling">Handling</h3>
+<p>The broker will handle the request and return a <code>Frame</code> which can then be encoded into a response. This is an <strong>important design decision</strong>. We could convert parsed frames to domain-specific structs before passing them to the broker, but that would require an extra copy of the record data. By keeping raw <code>Bytes</code> slices inside the <code>Frame</code> and passing it through, record batches can reach disk without being read or copied in user space — preserving Kafka&rsquo;s <strong>zero-copy</strong> goal.</p>
+<h3 id="encoding">Encoding</h3>
+<p>Once we have a response, we encode it back to bytes.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rs" data-lang="rs"><span class="line"><span class="cl"><span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="k">fn</span> <span class="nf">write_frame</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">res</span>: <span class="nc">Frame</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nb">Result</span><span class="o">&lt;</span><span class="p">(),</span><span class="w"> </span><span class="n">ConnectionError</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">bytes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">res</span><span class="p">.</span><span class="n">encode</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="bp">self</span><span class="p">.</span><span class="n">stream</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">.</span><span class="n">write_all</span><span class="p">(</span><span class="o">&amp;</span><span class="n">bytes</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">.</span><span class="k">await</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">.</span><span class="n">map_err</span><span class="p">(</span><span class="n">ConnectionError</span>::<span class="n">Io</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>This calls <code>Frame::encode</code>, which builds a byte buffer by serializing each field in order.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rs" data-lang="rs"><span class="line"><span class="cl"><span class="w">            </span><span class="n">FrameBody</span>::<span class="n">Fetch</span><span class="p">(</span><span class="n">req</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">buf</span><span class="p">.</span><span class="n">put_i32</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="n">replica_id</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">buf</span><span class="p">.</span><span class="n">put_u32</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="n">max_bytes</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">buf</span><span class="p">.</span><span class="n">put_u32</span><span class="p">(</span><span class="n">req</span><span class="p">.</span><span class="n">topics</span><span class="p">.</span><span class="n">len</span><span class="p">()</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="kt">u32</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">&amp;</span><span class="n">req</span><span class="p">.</span><span class="n">topics</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="n">buf</span><span class="p">.</span><span class="n">put_u16</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">topic</span><span class="p">.</span><span class="n">len</span><span class="p">()</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="kt">u16</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="n">buf</span><span class="p">.</span><span class="n">put_slice</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">topic</span><span class="p">.</span><span class="n">as_bytes</span><span class="p">());</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="n">buf</span><span class="p">.</span><span class="n">put_u32</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">partitions</span><span class="p">.</span><span class="n">len</span><span class="p">()</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="kt">u32</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="k">for</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="o">&amp;</span><span class="n">t</span><span class="p">.</span><span class="n">partitions</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                        </span><span class="n">buf</span><span class="p">.</span><span class="n">put_u32</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">partition</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                        </span><span class="n">buf</span><span class="p">.</span><span class="n">put_u64</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">fetch_offset</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                        </span><span class="n">buf</span><span class="p">.</span><span class="n">put_u32</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">partition_max_bytes</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                        </span><span class="n">buf</span><span class="p">.</span><span class="n">put_u64</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">high_watermark</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><h2 id="conclusion">Conclusion</h2>
+<p>That&rsquo;s all on the Kafka protocol and its Rust implementation. If you have questions, look at the code and try replicating it with a simpler protocol to see it in action.</p>
+
+      </article>
+
+      
+        <div class="article-tags"><span class="article-chip article-chip-3">Kafka</span><span class="article-chip article-chip-3">Rust</span><span class="article-chip article-chip-4">Network</span><span class="article-chip article-chip-9">Protocol</span><span class="article-chip article-chip-6">SSL</span>
+        </div>
+      
+
+    </div>
+  </div>
+
+  </main>
+  
+  <footer>
+    <footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__brand">
+      <div class="site-footer__copy">© 2026 MIT Licensed.</div>
+      <div class="site-footer__tagline">Joao Pargana Blog & Site</div>
+    </div>
+    <div class="site-footer__social">
+      <a class="site-footer__social-link" href="https://github.com/jmpargana/" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="currentColor" d="M237.9 461.4C237.9 463.4 235.6 465 232.7 465C229.4 465.3 227.1 463.7 227.1 461.4C227.1 459.4 229.4 457.8 232.3 457.8C235.3 457.5 237.9 459.1 237.9 461.4zM206.8 456.9C206.1 458.9 208.1 461.2 211.1 461.8C213.7 462.8 216.7 461.8 217.3 459.8C217.9 457.8 216 455.5 213 454.6C210.4 453.9 207.5 454.9 206.8 456.9zM251 455.2C248.1 455.9 246.1 457.8 246.4 460.1C246.7 462.1 249.3 463.4 252.3 462.7C255.2 462 257.2 460.1 256.9 458.1C256.6 456.2 253.9 454.9 251 455.2zM316.8 72C178.1 72 72 177.3 72 316C72 426.9 141.8 521.8 241.5 555.2C254.3 557.5 258.8 549.6 258.8 543.1C258.8 536.9 258.5 502.7 258.5 481.7C258.5 481.7 188.5 496.7 173.8 451.9C173.8 451.9 162.4 422.8 146 415.3C146 415.3 123.1 399.6 147.6 399.9C147.6 399.9 172.5 401.9 186.2 425.7C208.1 464.3 244.8 453.2 259.1 446.6C261.4 430.6 267.9 419.5 275.1 412.9C219.2 406.7 162.8 398.6 162.8 302.4C162.8 274.9 170.4 261.1 186.4 243.5C183.8 237 175.3 210.2 189 175.6C209.9 169.1 258 202.6 258 202.6C278 197 299.5 194.1 320.8 194.1C342.1 194.1 363.6 197 383.6 202.6C383.6 202.6 431.7 169 452.6 175.6C466.3 210.3 457.8 237 455.2 243.5C471.2 261.2 481 275 481 302.4C481 398.9 422.1 406.6 366.2 412.9C375.4 420.8 383.2 435.8 383.2 459.3C383.2 493 382.9 534.7 382.9 542.9C382.9 549.4 387.5 557.3 400.2 555C500.2 521.8 568 426.9 568 316C568 177.3 455.5 72 316.8 72zM169.2 416.9C167.9 417.9 168.2 420.2 169.9 422.1C171.5 423.7 173.8 424.4 175.1 423.1C176.4 422.1 176.1 419.8 174.4 417.9C172.8 416.3 170.5 415.6 169.2 416.9zM158.4 408.8C157.7 410.1 158.7 411.7 160.7 412.7C162.3 413.7 164.3 413.4 165 412C165.7 410.7 164.7 409.1 162.7 408.1C160.7 407.5 159.1 407.8 158.4 408.8zM190.8 444.4C189.2 445.7 189.8 448.7 192.1 450.6C194.4 452.9 197.3 453.2 198.6 451.6C199.9 450.3 199.3 447.3 197.3 445.4C195.1 443.1 192.1 442.8 190.8 444.4zM179.4 429.7C177.8 430.7 177.8 433.3 179.4 435.6C181 437.9 183.7 438.9 185 437.9C186.6 436.6 186.6 434 185 431.7C183.6 429.4 181 428.4 179.4 429.7z"/></svg></div>
+        <span class="site-footer__social-label">GitHub</span>
+      </a>
+      <a class="site-footer__social-link" href="https://www.linkedin.com/in/jo%C3%A3o-pargana-9757b91b2/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="currentColor" d="M512 96L127.9 96C110.3 96 96 110.5 96 128.3L96 511.7C96 529.5 110.3 544 127.9 544L512 544C529.6 544 544 529.5 544 511.7L544 128.3C544 110.5 529.6 96 512 96zM231.4 480L165 480L165 266.2L231.5 266.2L231.5 480L231.4 480zM198.2 160C219.5 160 236.7 177.2 236.7 198.5C236.7 219.8 219.5 237 198.2 237C176.9 237 159.7 219.8 159.7 198.5C159.7 177.2 176.9 160 198.2 160zM480.3 480L413.9 480L413.9 376C413.9 351.2 413.4 319.3 379.4 319.3C344.8 319.3 339.5 346.3 339.5 374.2L339.5 480L273.1 480L273.1 266.2L336.8 266.2L336.8 295.4L337.7 295.4C346.6 278.6 368.3 260.9 400.6 260.9C467.8 260.9 480.3 305.2 480.3 362.8L480.3 480z"/></svg></div>
+        <span class="site-footer__social-label">LinkedIn</span>
+      </a>
+      <a class="site-footer__social-link" href="mailto:jmpargana@gmail.com" aria-label="Email">
+        <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-16 -16 96 96">
+    <g transform="scale(1, 1.25) translate(0, -6)">
+      <path fill="currentColor" d="M32,34.934L63.617,10.34C62.984,8.965,61.613,8,60,8H4c-1.613,0-2.984,0.965-3.617,2.34L32,34.934z"/>
+      <path fill="currentColor" d="M34.457,43.156C33.734,43.719,32.867,44,32,44s-1.734-0.281-2.457-0.844L0,20.18V52c0,2.211,1.789,4,4,4h56c2.211,0,4-1.789,4-4V20.18L34.457,43.156z"/>
+    </g>
+  </svg></div>
+        <span class="site-footer__social-label">Email</span>
+      </a>
+    </div>
+  </div>
+</footer>
+
+  </footer>
+  
+</body>
+</html>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
-		<title>Concurrency on jmpargana</title>
-		<link>https://jmpargana.com/tags/concurrency/</link>
-		<description>Recent content in Concurrency on jmpargana</description>
+		<title>Multithread on jmpargana</title>
+		<link>https://jmpargana.com/tags/multithread/</link>
+		<description>Recent content in Multithread on jmpargana</description>
 		<generator>Hugo</generator>
 		<language>en-us</language>
 		
@@ -12,20 +12,13 @@
 		
 			<lastBuildDate>Thu, 13 Aug 2026 10:30:03 +0100</lastBuildDate>
 		
-			<atom:link href="https://jmpargana.com/tags/concurrency/index.xml" rel="self" type="application/rss+xml" />
+			<atom:link href="https://jmpargana.com/tags/multithread/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>Kafka Actor Model</title>
 				<link>https://jmpargana.com/posts/actor_model/</link>
 				<pubDate>Thu, 13 Aug 2026 10:30:03 +0100</pubDate>
 				<guid>https://jmpargana.com/posts/actor_model/</guid>
 				<description>&lt;p&gt;Working with lower-level languages comes with the assumption that you are dealing with high load. When I say high load, I mean something in the order of thousands of operations a second. If the operations are not simply computations (CPU bound), but reads and writes (I/O), you quickly reach a point where you should introduce concurrency.&lt;/p&gt;&#xA;&lt;p&gt;Concurrency, alongside naming, is considered one of the hardest problems in software design. The problem is the same as you have with synchronization in distributed systems. The spectrum runs from accurate-and-slow to fast-but-inconsistent: synchronize and wait, or proceed async and accept eventual consistency. Picking the right model requires a deep understanding of both the problem and the available solutions.&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>Graceful Shutdown</title>
-				<link>https://jmpargana.com/posts/graceful_shutdown/</link>
-				<pubDate>Thu, 05 Mar 2026 22:03:54 +0100</pubDate>
-				<guid>https://jmpargana.com/posts/graceful_shutdown/</guid>
-				<description>&lt;p&gt;Graceful shutdown is critical for production readiness. It ensures that in-flight requests complete or are properly handled, and that dependent services can cleanly release resources during rolling updates or maintenance windows.&lt;/p&gt;&#xA;&lt;p&gt;In a distributed, multi-instance system, instances go up and down continuously. Starting up is straightforward: configure health probes and optimize startup time. Shutting down gracefully is more complex.&lt;/p&gt;&#xA;&lt;p&gt;At scale, when your system processes multiple concurrent requests, you must ensure work either completes or is properly delegated before shutdown.&lt;/p&gt;</description>
 			</item>
 	</channel>
 </rss>

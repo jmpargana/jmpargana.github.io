@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kafka Actor Model | jmpargana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+
+      <link rel="stylesheet" href="/css/bundle.min.353e1f76e4a796a58a29dac195a2ffe6307cc85355209dbd2cfcca38e53f4b86.css" integrity="sha256-NT4fduSnlqWKKdrBlaL/5jB8yFNVIJ29LPzKOOU/S4Y=" crossorigin="anonymous">
+
+      <script defer src="/js/bundle.3008416cf76fe506b7aa0c9dcd5a82032c1c3ef33bca038292daee0872e343c5.js" integrity="sha256-MAhBbPdv5Qa3qgydzVqCAywcPvM7ygOCktruCHLjQ8U=" crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+  
+  <header>
+    <div class="container-header">
+  <div class="site-header">
+    <a class="title-header" href="/">jmpargana</a>
+    <div class="header-center">
+      
+  <nav class="nav-container">
+    <ul class="nav-menu">
+    <li class="nav-item">
+      <a href="/about/">About</a>
+    </li>
+    <li class="nav-item">
+      <a href="/posts/">Blog</a>
+    </li>
+    </ul>
+  </nav>
+
+    </div>
+    <div class="header-actions">
+      <button class="theme-toggle" type="button" aria-label="Toggle color theme" aria-pressed="false" title="Toggle color theme">
+        <span class="theme-toggle-icon" aria-hidden="true">◐</span>
+      </button>
+      <button class="header-menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">≡</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+  <div class="mobile-nav__backdrop"></div>
+  <nav class="mobile-nav__panel" role="navigation" aria-label="Mobile navigation">
+    <button class="mobile-nav__close" type="button" aria-label="Close menu">✕</button>
+    <ul class="mobile-nav__list">
+      
+        <li class="mobile-nav__item">
+          <a class="mobile-nav__link" href="/about/">About</a>
+        </li>
+      
+        <li class="mobile-nav__item">
+          <a class="mobile-nav__link" href="/posts/">Blog</a>
+        </li>
+      
+    </ul>
+    <div class="mobile-nav__social">
+      <a class="mobile-nav__social-link" href="https://github.com/jmpargana/" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="currentColor" d="M237.9 461.4C237.9 463.4 235.6 465 232.7 465C229.4 465.3 227.1 463.7 227.1 461.4C227.1 459.4 229.4 457.8 232.3 457.8C235.3 457.5 237.9 459.1 237.9 461.4zM206.8 456.9C206.1 458.9 208.1 461.2 211.1 461.8C213.7 462.8 216.7 461.8 217.3 459.8C217.9 457.8 216 455.5 213 454.6C210.4 453.9 207.5 454.9 206.8 456.9zM251 455.2C248.1 455.9 246.1 457.8 246.4 460.1C246.7 462.1 249.3 463.4 252.3 462.7C255.2 462 257.2 460.1 256.9 458.1C256.6 456.2 253.9 454.9 251 455.2zM316.8 72C178.1 72 72 177.3 72 316C72 426.9 141.8 521.8 241.5 555.2C254.3 557.5 258.8 549.6 258.8 543.1C258.8 536.9 258.5 502.7 258.5 481.7C258.5 481.7 188.5 496.7 173.8 451.9C173.8 451.9 162.4 422.8 146 415.3C146 415.3 123.1 399.6 147.6 399.9C147.6 399.9 172.5 401.9 186.2 425.7C208.1 464.3 244.8 453.2 259.1 446.6C261.4 430.6 267.9 419.5 275.1 412.9C219.2 406.7 162.8 398.6 162.8 302.4C162.8 274.9 170.4 261.1 186.4 243.5C183.8 237 175.3 210.2 189 175.6C209.9 169.1 258 202.6 258 202.6C278 197 299.5 194.1 320.8 194.1C342.1 194.1 363.6 197 383.6 202.6C383.6 202.6 431.7 169 452.6 175.6C466.3 210.3 457.8 237 455.2 243.5C471.2 261.2 481 275 481 302.4C481 398.9 422.1 406.6 366.2 412.9C375.4 420.8 383.2 435.8 383.2 459.3C383.2 493 382.9 534.7 382.9 542.9C382.9 549.4 387.5 557.3 400.2 555C500.2 521.8 568 426.9 568 316C568 177.3 455.5 72 316.8 72zM169.2 416.9C167.9 417.9 168.2 420.2 169.9 422.1C171.5 423.7 173.8 424.4 175.1 423.1C176.4 422.1 176.1 419.8 174.4 417.9C172.8 416.3 170.5 415.6 169.2 416.9zM158.4 408.8C157.7 410.1 158.7 411.7 160.7 412.7C162.3 413.7 164.3 413.4 165 412C165.7 410.7 164.7 409.1 162.7 408.1C160.7 407.5 159.1 407.8 158.4 408.8zM190.8 444.4C189.2 445.7 189.8 448.7 192.1 450.6C194.4 452.9 197.3 453.2 198.6 451.6C199.9 450.3 199.3 447.3 197.3 445.4C195.1 443.1 192.1 442.8 190.8 444.4zM179.4 429.7C177.8 430.7 177.8 433.3 179.4 435.6C181 437.9 183.7 438.9 185 437.9C186.6 436.6 186.6 434 185 431.7C183.6 429.4 181 428.4 179.4 429.7z"/></svg></div>
+        <span>GitHub</span>
+      </a>
+      <a class="mobile-nav__social-link" href="https://linkedin.com/in/jmpargana" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="currentColor" d="M512 96L127.9 96C110.3 96 96 110.5 96 128.3L96 511.7C96 529.5 110.3 544 127.9 544L512 544C529.6 544 544 529.5 544 511.7L544 128.3C544 110.5 529.6 96 512 96zM231.4 480L165 480L165 266.2L231.5 266.2L231.5 480L231.4 480zM198.2 160C219.5 160 236.7 177.2 236.7 198.5C236.7 219.8 219.5 237 198.2 237C176.9 237 159.7 219.8 159.7 198.5C159.7 177.2 176.9 160 198.2 160zM480.3 480L413.9 480L413.9 376C413.9 351.2 413.4 319.3 379.4 319.3C344.8 319.3 339.5 346.3 339.5 374.2L339.5 480L273.1 480L273.1 266.2L336.8 266.2L336.8 295.4L337.7 295.4C346.6 278.6 368.3 260.9 400.6 260.9C467.8 260.9 480.3 305.2 480.3 362.8L480.3 480z"/></svg></div>
+        <span>LinkedIn</span>
+      </a>
+      <a class="mobile-nav__social-link" href="mailto:jmpargana@gmail.com" aria-label="Email">
+        <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-16 -16 96 96">
+    <g transform="scale(1, 1.25) translate(0, -6)">
+      <path fill="currentColor" d="M32,34.934L63.617,10.34C62.984,8.965,61.613,8,60,8H4c-1.613,0-2.984,0.965-3.617,2.34L32,34.934z"/>
+      <path fill="currentColor" d="M34.457,43.156C33.734,43.719,32.867,44,32,44s-1.734-0.281-2.457-0.844L0,20.18V52c0,2.211,1.789,4,4,4h56c2.211,0,4-1.789,4-4V20.18L34.457,43.156z"/>
+    </g>
+  </svg></div>
+        <span>Email</span>
+      </a>
+    </div>
+  </nav>
+</div>
+
+  </header>
+  
+  <main>
+    
+  
+  <div class="content article-view">
+    <div class="article-frame">
+      <div class="article-back">
+        <a class="article-back-link" href="/posts/">
+          <svg class="article-back-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="19" y1="12" x2="5" y2="12"/>
+            <polyline points="12 19 5 12 12 5"/>
+          </svg>
+          <span>BACK TO ARCHIVES</span>
+        </a>
+      </div>
+
+      
+
+<header class="article-header">
+  <div class="article-kicker-row">
+    <span class="article-kicker">Issue No. 225</span>
+    <span class="article-kicker-line" aria-hidden="true"></span>
+    <time class="article-kicker-date" datetime="2026-08-13T10:30:03&#43;01:00">Aug 13, 2026</time>
+  </div>
+  <h1 class="article-title">Kafka Actor Model</h1>
+  
+</header>
+
+      <article class="article-body">
+        <p>Working with lower-level languages comes with the assumption that you are dealing with high load. When I say high load, I mean something in the order of thousands of operations a second. If the operations are not simply computations (CPU bound), but reads and writes (I/O), you quickly reach a point where you should introduce concurrency.</p>
+<p>Concurrency, alongside naming, is considered one of the hardest problems in software design. The problem is the same as you have with synchronization in distributed systems. The spectrum runs from accurate-and-slow to fast-but-inconsistent: synchronize and wait, or proceed async and accept eventual consistency. Picking the right model requires a deep understanding of both the problem and the available solutions.</p>
+<p>As software developers we quickly jump to assumptions on the problem, and we often have a partial understanding of the solution, not fully grasping all the pros and cons. There is a reason most senior engineers start with a thorough investigation of trade-offs rather than jumping straight to a solution.</p>
+<h2 id="problem">Problem</h2>
+<p>Let&rsquo;s start by understanding the way Kafka works to have a full grasp on the problem, before proposing a solution.</p>
+<p>Kafka is built to serve very high throughput. Not necessarily low latency, but high throughput. Whether this was a requirement or is a consequence of its design is questionable, but given we&rsquo;re simply recreating Kafka, we can start by defining that requirement: throughput &gt; latency. Prioritizing disk over memory comes with a trade-off. I/O operations are slower than memory — each one requires a round-trip through the kernel. We should <strong>avoid copying</strong> at all costs.</p>
+<p>Gathering our requirements, we have:</p>
+<ul>
+<li>reads are immutable</li>
+<li>high throughput over latency</li>
+<li>disk over memory</li>
+<li>avoid copying as much as possible (because it involves disk I/O)</li>
+</ul>
+<h2 id="options">Options</h2>
+<h3 id="mutex">Mutex</h3>
+<p>Let&rsquo;s start by analysing the easiest option and the one we usually default to when writing in Rust: <code>Mutex</code>. It wraps data behind an exclusive lock. Only one thread holds the lock at a time, for either a read or a write.</p>
+<p><strong>Pros:</strong> simple to reason about, prevents data races, and the Rust compiler enforces correct usage through the type system — you cannot access the inner data without holding the lock. No need to think about memory <code>Ordering</code>. No multiple variables in conflict for ownership.</p>
+<p><strong>Cons:</strong> no concurrent reads — even two threads that only want to read must take turns. Under high contention, threads queue up waiting for the lock to release. When a thread is blocked waiting for a <code>Mutex</code>, the OS typically puts it to sleep and wakes it when the lock is free, which involves a kernel context switch. This overhead adds up fast.</p>
+<p>The way it works is: it locks across threads on every access, because it must synchronize state across all CPU cores. If you have high contention, you end up blocking all your parallel threads waiting for a single lock holder to finish. This somewhat defeats the purpose of concurrency.</p>
+<p><strong>Does this suit Kafka requirements?</strong> Recall that reads in Kafka are immutable. Multiple consumers can safely read from the same partition at the same time — the data never changes underneath them. A <code>Mutex</code> makes this impossible. Every read blocks every other read. For a system designed around high read throughput, this is a non-starter.</p>
+<h3 id="rwlock">RWLock</h3>
+<p><code>RwLock</code> is a natural upgrade from <code>Mutex</code>. The contract changes: multiple readers can hold the lock simultaneously, but a writer requires exclusive access — no readers, no other writers.</p>
+<p><strong>Pros:</strong> concurrent reads don&rsquo;t block each other, so read-heavy workloads scale much better than with <code>Mutex</code>. The API is almost as simple, and the Rust compiler still enforces correct usage.</p>
+<p><strong>Cons:</strong> every write still blocks all readers. More importantly, writer starvation is a real risk — if there is a constant stream of readers, a writer may wait indefinitely, depending on the scheduler. There is still OS-level synchronization overhead for any contended access.</p>
+<p><strong>For Kafka:</strong> this is a better fit than <code>Mutex</code>, since immutable reads no longer serialize against each other. But writes — appends to the log — still block all active readers. Given our requirement for high write throughput, this remains a bottleneck. And because Kafka producers send batches continuously, reads and writes will contend constantly.</p>
+<h3 id="atomics">Atomics</h3>
+<p>Atomics take a different approach entirely: they delegate synchronization to the CPU itself rather than the OS. CPU instructions like <code>load</code>, <code>store</code>, <code>fetch_add</code>, and <code>compare_exchange</code> are guaranteed to execute without interruption, with no kernel involvement.</p>
+<p>This removes the overhead of sleeping and waking threads. Atomic operations are lock-free — a thread never blocks waiting for another. They are also composable without deadlock risk, since there are no locks to acquire.</p>
+<p>The hard part is <strong>memory ordering</strong>. Modern CPUs and compilers reorder instructions aggressively for performance. Without explicit ordering constraints, two threads may observe writes in different orders. Rust exposes this through the <code>Ordering</code> enum:</p>
+<ul>
+<li><strong><code>Relaxed</code></strong>: no synchronization with other threads. Only the atomicity of the individual operation is guaranteed. Useful for counters where you only care about the final value, not the relative order of surrounding reads and writes.</li>
+<li><strong><code>Release</code></strong>: all writes in the current thread that happened <em>before</em> this store become visible to any thread that subsequently does an <code>Acquire</code> load on the same atomic. Think of it as publishing a result.</li>
+<li><strong><code>Acquire</code></strong>: all reads in the current thread that happen <em>after</em> this load will see everything the publishing thread had written before its <code>Release</code> store. Think of it as subscribing to a result.</li>
+<li><strong><code>AcqRel</code></strong>: both <code>Acquire</code> and <code>Release</code> in a single operation. Used for read-modify-write operations like <code>fetch_add</code> or <code>compare_exchange</code> that sit in the middle of a publish/subscribe handoff.</li>
+<li><strong><code>SeqCst</code></strong>: total sequential consistency across all threads and all atomic operations. The safest but most expensive option, as it prevents all reordering globally.</li>
+</ul>
+<p>A common pattern is to write data behind a pointer, then do a <code>Release</code> store on the pointer. Readers do an <code>Acquire</code> load on that pointer — this guarantees they see the fully written data, not a partial state. This is the foundation of lock-free data structures.</p>
+<p><strong>Pros:</strong> no blocking, very low overhead, no deadlocks, no kernel involvement.</p>
+<p><strong>Cons:</strong> atomics only work for simple types — integers, booleans, pointers. You cannot atomically update a struct or a file. Composing multiple atomic operations into a larger logical transaction is error-prone. Ordering bugs are subtle, architecture-dependent, and notoriously hard to reproduce or test.</p>
+<p><strong>For Kafka:</strong> atomics are useful for individual counters — tracking the current write offset, watermarks, reference counts. But the log itself involves file writes, index updates, and metadata changes that cannot all be expressed as a single atomic operation. We need something that coordinates around ownership of entire subsystems, not individual integers.</p>
+<h3 id="better-option">Better option</h3>
+<p>All three options above share the same root problem: they try to protect <em>shared</em> mutable state. Threads share access to the same data and use locks or atomic operations to coordinate access. The actor model flips this on its head.</p>
+<p>In the actor model, no state is shared. Each actor owns its state exclusively and is the only entity that ever reads or writes it. Actors don&rsquo;t reach into each other&rsquo;s memory. Instead, they communicate by passing messages through channels.</p>
+<h2 id="actor-model">Actor model</h2>
+<p>A quick disclaimer: my implementation of the <em>actor model</em> is not the classic pattern and is not exactly how Kafka implements it in its source code. Instead, it provides a simpler abstraction — writes are managed by a single process that clients cannot access directly. Actors are instantiated with a channel, and read-only data is exposed as an immutable reference that the actor silently replaces on each write, with no input from the client.</p>
+<p>Here&rsquo;s a graphical representation of my implementation:</p>
+<p><img src="/images/kafka/actor.png" alt="original"></p>
+<h3 id="components">Components</h3>
+<ul>
+<li><strong>State</strong>: Treated as immutable, the state can only be updated via the <a href="https://en.wikipedia.org/wiki/Read-copy-update">Read-Copy-Update (RCU) mechanism</a>. A good fit for this is the <a href="https://docs.rs/arc-swap/latest/arc_swap/"><code>arc_swap</code> lib in Rust</a>.</li>
+<li><strong>Actor</strong>: Runs a loop on a dedicated thread (in this case, a Tokio task) — the only place where state is updated. Spawned once, it exposes a single channel sender that all Handles share, so commands are never processed concurrently.</li>
+<li><strong>Handle</strong>: Can be instantiated as many times as needed. Each incoming request handler creates a Handle to perform reads or dispatch write commands. Writes go through the sender channel; reads use a shared immutable reference to the state.</li>
+</ul>
+<h2 id="examples">Examples</h2>
+<p>Let&rsquo;s get to the code examples. I&rsquo;ve reused this pattern in multiple implementations where a single write and RCU reads are a good fit.</p>
+<h3 id="log-segment">Log Segment</h3>
+<p>Starting with the actual log. As we&rsquo;ve discussed before, the log is almost entirely a read-only sequence of bytes. I&rsquo;ll cover memory mapping — the technique Kafka&rsquo;s original implementation uses, also common in high-performance Rust projects — but first let me explain how the RCU works.</p>
+<p>We have the following memory layout:</p>
+<p><img src="/images/kafka/memmap.png" alt="original"></p>
+<p>There is a contiguous region of memory, where the log gets written. The kernel exposes the file through a file descriptor, which we can think of as a byte array, as shown in the diagram above. Since the log is append-only, almost all data is immutable — reads load bytes at a specific position using <code>std::os::unix::fs::FileExt::read_at</code>. Under the hood, it uses the <code>pread</code> syscall which does not modify the file descriptor by updating the seek position. This is particularly useful, because you can have multiple simultaneous readers never racing each other.</p>
+<p>When a RCU is performed, <code>with_metadata</code> allocates a new <code>SegmentView</code> with updated <code>index_count</code> and <code>size</code>, while the <code>Arc&lt;File&gt;</code> and <code>Arc&lt;Mmap&gt;</code> fields are simply cloned — only their reference counts increment, no file descriptor is duplicated or re-opened. The <code>ArcSwap</code> then atomically replaces the old snapshot with the new one. Readers already holding a reference to the old <code>Arc&lt;SegmentView&gt;</code> continue safely and simply drop it when done. We are able to address the correct byte position because before calling <code>read_at</code>, we find the location on the <code>.index</code> file using binary search over the memory map. Since the index is memory-mapped as a <code>&amp;[u8]</code> byte slice, the only value we need to track is <code>index_count</code> — the count of valid index entries that exist — which is cheap to swap via RCU.</p>
+<h4 id="memmap">memmap</h4>
+<p>A memory map (<code>mmap</code> syscall) maps a file directly into the process&rsquo;s virtual address space. Instead of going through <code>read()</code> and <code>write()</code> syscalls with intermediate kernel buffers, the kernel exposes the file&rsquo;s pages as plain memory. Accessing a mapped address triggers a page fault on first touch — the kernel fetches the page from disk — and subsequent accesses are pure memory reads with no syscall overhead.</p>
+<p>For the index file this is particularly useful. The index is a sequence of fixed-size entries: in this implementation each entry is two 8-byte integers — the offset and the physical byte position in the log — totalling 16 bytes per entry. Memory-mapping the entire index lets us treat it as a <code>&amp;[u8]</code> byte slice and perform binary search with simple pointer arithmetic, at memory speed. No file cursor to manage, no syscall per lookup.</p>
+<p>Writes work the same way in reverse. <code>MmapMut</code> maps the file with write permissions. Writing to the mapped addresses is equivalent to writing to the file — the kernel flushes dirty pages to disk asynchronously, or you can force a flush with <code>flush()</code>/<code>msync()</code>.</p>
+<p>The log file itself is <strong>not</strong> memory-mapped, even though it might seem like the obvious choice. The log grows continuously. Memory-mapping a growing file requires remapping the address space every time the file extends, which is expensive and complex to manage correctly. Instead, the log uses <code>pread</code> — positioned reads at a specific byte offset — which avoids the file cursor entirely and is safe for concurrent readers with no synchronization needed. The index, being small, fixed-entry, and bounded per segment, is the right candidate for <code>mmap</code>.</p>
+<p>So, the resulting code looks something like this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rs" data-lang="rs"><span class="line"><span class="cl"><span class="k">pub</span><span class="w"> </span><span class="k">struct</span> <span class="nc">SegmentView</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="n">base_offset</span>: <span class="kt">u64</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">log</span>: <span class="nc">Arc</span><span class="o">&lt;</span><span class="n">File</span><span class="o">&gt;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">index</span>: <span class="nc">Arc</span><span class="o">&lt;</span><span class="n">Mmap</span><span class="o">&gt;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">time_index</span>: <span class="nc">Arc</span><span class="o">&lt;</span><span class="n">Mmap</span><span class="o">&gt;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="n">index_count</span>: <span class="kt">usize</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="n">size</span>: <span class="kt">usize</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>This is the immutable view, holding references to the log file and index. It is only used for reads — the binary search and linear search covered in the previous post. <code>read_at</code> is called once the matching index entry is located. To find that entry, we address the memory-mapped index directly as a <code>&amp;[u8]</code> byte slice, so the only value that changes on each write is <code>index_count</code>, which is cheap to update via RCU. This is why we only need this one extra method.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rs" data-lang="rs"><span class="line"><span class="cl"><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="k">fn</span> <span class="nf">with_metadata</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">index_count</span>: <span class="kt">usize</span><span class="p">,</span><span class="w"> </span><span class="n">size</span>: <span class="kt">usize</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">Arc</span><span class="o">&lt;</span><span class="bp">Self</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">Arc</span>::<span class="n">new</span><span class="p">(</span><span class="bp">Self</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">base_offset</span>: <span class="nc">self</span><span class="p">.</span><span class="n">base_offset</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">log</span>: <span class="nc">self</span><span class="p">.</span><span class="n">log</span><span class="p">.</span><span class="n">clone</span><span class="p">(),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">index</span>: <span class="nc">self</span><span class="p">.</span><span class="n">index</span><span class="p">.</span><span class="n">clone</span><span class="p">(),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">size</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="n">index_count</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">})</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>Then we have the mutable object, which looks like this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rs" data-lang="rs"><span class="line"><span class="cl"><span class="k">pub</span><span class="w"> </span><span class="k">struct</span> <span class="nc">LogSegment</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">segment</span>: <span class="nc">Arc</span><span class="o">&lt;</span><span class="n">SegmentView</span><span class="o">&gt;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">log_file</span>: <span class="nc">File</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">index_file</span>: <span class="nc">memmap</span>::<span class="n">MmapMut</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">time_index_file</span>: <span class="nc">memmap</span>::<span class="n">MmapMut</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">index_write_pos</span>: <span class="kt">usize</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="n">size</span>: <span class="kt">usize</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">index_count</span>: <span class="kt">usize</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">bytes_since_last_index</span>: <span class="kt">usize</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">index_threshold_bytes</span>: <span class="kt">usize</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="k">impl</span><span class="w"> </span><span class="n">LogSegment</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="k">fn</span> <span class="nf">publish</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="bp">self</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">Arc</span><span class="o">&lt;</span><span class="n">SegmentView</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="n">new</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">self</span><span class="p">.</span><span class="n">segment</span><span class="p">.</span><span class="n">with_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">index_count</span><span class="p">,</span><span class="w"> </span><span class="bp">self</span><span class="p">.</span><span class="n">size</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="bp">self</span><span class="p">.</span><span class="n">segment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new</span><span class="p">.</span><span class="n">clone</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="n">new</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>Here the <code>append_batch</code> method writes new bytes to <code>log_file</code> (a regular <code>File</code>) and appends new index entries to <code>index_file</code> (a <code>MmapMut</code>). The <code>SegmentView</code>, which is the immutable reference readers hold, gets updated only by the caller by manually replacing it via RCU.</p>
+<h3 id="partition">Partition</h3>
+<p>This brings us to the partition, where the actor model components described above come together.</p>
+<p>Starting with the state:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rs" data-lang="rs"><span class="line"><span class="cl"><span class="k">pub</span><span class="w"> </span><span class="k">struct</span> <span class="nc">PartitionState</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="n">segments</span>: <span class="nc">Arc</span><span class="o">&lt;</span><span class="nb">Vec</span><span class="o">&lt;</span><span class="n">Arc</span><span class="o">&lt;</span><span class="n">SegmentView</span><span class="o">&gt;&gt;&gt;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="n">log_end_offset</span>: <span class="kt">u64</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="n">high_watermark</span>: <span class="kt">u64</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="n">replicas</span>: <span class="nc">Arc</span><span class="o">&lt;</span><span class="nb">Vec</span><span class="o">&lt;</span><span class="n">ReplicaMetadata</span><span class="o">&gt;&gt;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>Every field is cheap to clone. The heavy data sits behind <code>Arc</code> pointers — as we&rsquo;ve seen, segments are mostly file references and numerical metadata.</p>
+<p>Next, we have the actor:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rs" data-lang="rs"><span class="line"><span class="cl"><span class="k">pub</span><span class="w"> </span><span class="k">struct</span> <span class="nc">PartitionActor</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">rx</span>: <span class="nc">mpsc</span>::<span class="n">Receiver</span><span class="o">&lt;</span><span class="n">PartitionCommand</span><span class="o">&gt;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">base_dir</span>: <span class="nb">String</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">partition_id</span>: <span class="kt">u16</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">broker_id</span>: <span class="kt">u16</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">segment_bytes</span>: <span class="kt">usize</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">active</span>: <span class="nc">LogSegment</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">snapshot</span>: <span class="nc">Arc</span><span class="o">&lt;</span><span class="n">ArcSwap</span><span class="o">&lt;</span><span class="n">PartitionState</span><span class="o">&gt;&gt;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">acks_pending_replication</span>: <span class="nc">VecDeque</span><span class="o">&lt;</span><span class="n">PendingResponse</span><span class="o">&gt;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>There is more going on here, but I&rsquo;ll focus on the actor model aspects. The <code>active</code> field holds the mutable <code>LogSegment</code>, and <code>snapshot</code> wraps the <code>PartitionState</code> in an <code>ArcSwap</code>. The actor owns the receiver end of the channel (<code>rx</code>), which all <code>Handle</code> instances share.</p>
+<p>The <code>Actor</code> then runs a loop matching all commands:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rs" data-lang="rs"><span class="line"><span class="cl"><span class="k">impl</span><span class="w"> </span><span class="n">PartitionActor</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="k">fn</span> <span class="nf">run</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="bp">self</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="nb">Some</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">self</span><span class="p">.</span><span class="n">rx</span><span class="p">.</span><span class="n">recv</span><span class="p">().</span><span class="k">await</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="k">match</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="n">PartitionCommand</span>::<span class="n">Append</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">record</span><span class="p">,</span><span class="w"> </span><span class="n">acks</span><span class="p">,</span><span class="w"> </span><span class="n">done</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="c1">// ...
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="c1">// abbreviated
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="kd">let</span><span class="w"> </span><span class="n">current_active</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">self</span><span class="p">.</span><span class="n">active</span><span class="p">.</span><span class="n">publish</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="kd">let</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">self</span><span class="p">.</span><span class="n">snapshot</span><span class="p">.</span><span class="n">load_full</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">segments</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">state</span><span class="p">.</span><span class="n">segments</span><span class="p">.</span><span class="n">as_ref</span><span class="p">().</span><span class="n">to_vec</span><span class="p">();</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="o">*</span><span class="n">segments</span><span class="p">.</span><span class="n">last_mut</span><span class="p">().</span><span class="n">unwrap</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current_active</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="kd">let</span><span class="w"> </span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arc</span>::<span class="n">new</span><span class="p">(</span><span class="n">PartitionState</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                        </span><span class="n">segments</span>: <span class="nc">segments</span><span class="p">.</span><span class="n">into</span><span class="p">(),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                        </span><span class="n">high_watermark</span>: <span class="nc">hw</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                        </span><span class="n">log_end_offset</span>: <span class="nc">leo</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                        </span><span class="n">replicas</span>: <span class="nc">state</span><span class="p">.</span><span class="n">replicas</span><span class="p">.</span><span class="n">clone</span><span class="p">(),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="p">});</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="bp">self</span><span class="p">.</span><span class="n">snapshot</span><span class="p">.</span><span class="n">store</span><span class="p">(</span><span class="n">next</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>State is replaced exclusively inside this loop — no <code>Mutex</code> or other synchronization primitives needed.</p>
+<p>Finally, the <code>Handle</code> looks like this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rs" data-lang="rs"><span class="line"><span class="cl"><span class="k">pub</span><span class="w"> </span><span class="k">struct</span> <span class="nc">PartitionHandle</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">id</span>: <span class="kt">u32</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">tx</span>: <span class="nc">mpsc</span>::<span class="n">Sender</span><span class="o">&lt;</span><span class="n">PartitionCommand</span><span class="o">&gt;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="n">state</span>: <span class="nc">Arc</span><span class="o">&lt;</span><span class="n">ArcSwap</span><span class="o">&lt;</span><span class="n">PartitionState</span><span class="o">&gt;&gt;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">join</span>: <span class="nc">Mutex</span><span class="o">&lt;</span><span class="nb">Option</span><span class="o">&lt;</span><span class="n">JoinHandle</span><span class="o">&lt;</span><span class="p">()</span><span class="o">&gt;&gt;&gt;</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>You can clone a handle as many times as needed. Each clone shares the same channel to the actor loop, and reads never race because they rely on <code>pread</code> — no mutable seek position involved.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>This solution is more complex and introduces subtleties that require careful testing. It is not a replacement for <code>Mutex</code> in quick prototypes, nor for <code>Atomic*</code> when you need fine-grained control over individual shared values.</p>
+<p>What it offers is a different mental model for concurrency — one built around ownership and message passing rather than locks, and applicable regardless of the language you&rsquo;re working in.</p>
+
+      </article>
+
+      
+        <div class="article-tags"><span class="article-chip article-chip-3">Kafka</span><span class="article-chip article-chip-2">concurrency</span><span class="article-chip article-chip-6">actor model</span><span class="article-chip article-chip-4">multithread</span>
+        </div>
+      
+
+    </div>
+  </div>
+
+  </main>
+  
+  <footer>
+    <footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__brand">
+      <div class="site-footer__copy">© 2026 MIT Licensed.</div>
+      <div class="site-footer__tagline">Joao Pargana Blog & Site</div>
+    </div>
+    <div class="site-footer__social">
+      <a class="site-footer__social-link" href="https://github.com/jmpargana/" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="currentColor" d="M237.9 461.4C237.9 463.4 235.6 465 232.7 465C229.4 465.3 227.1 463.7 227.1 461.4C227.1 459.4 229.4 457.8 232.3 457.8C235.3 457.5 237.9 459.1 237.9 461.4zM206.8 456.9C206.1 458.9 208.1 461.2 211.1 461.8C213.7 462.8 216.7 461.8 217.3 459.8C217.9 457.8 216 455.5 213 454.6C210.4 453.9 207.5 454.9 206.8 456.9zM251 455.2C248.1 455.9 246.1 457.8 246.4 460.1C246.7 462.1 249.3 463.4 252.3 462.7C255.2 462 257.2 460.1 256.9 458.1C256.6 456.2 253.9 454.9 251 455.2zM316.8 72C178.1 72 72 177.3 72 316C72 426.9 141.8 521.8 241.5 555.2C254.3 557.5 258.8 549.6 258.8 543.1C258.8 536.9 258.5 502.7 258.5 481.7C258.5 481.7 188.5 496.7 173.8 451.9C173.8 451.9 162.4 422.8 146 415.3C146 415.3 123.1 399.6 147.6 399.9C147.6 399.9 172.5 401.9 186.2 425.7C208.1 464.3 244.8 453.2 259.1 446.6C261.4 430.6 267.9 419.5 275.1 412.9C219.2 406.7 162.8 398.6 162.8 302.4C162.8 274.9 170.4 261.1 186.4 243.5C183.8 237 175.3 210.2 189 175.6C209.9 169.1 258 202.6 258 202.6C278 197 299.5 194.1 320.8 194.1C342.1 194.1 363.6 197 383.6 202.6C383.6 202.6 431.7 169 452.6 175.6C466.3 210.3 457.8 237 455.2 243.5C471.2 261.2 481 275 481 302.4C481 398.9 422.1 406.6 366.2 412.9C375.4 420.8 383.2 435.8 383.2 459.3C383.2 493 382.9 534.7 382.9 542.9C382.9 549.4 387.5 557.3 400.2 555C500.2 521.8 568 426.9 568 316C568 177.3 455.5 72 316.8 72zM169.2 416.9C167.9 417.9 168.2 420.2 169.9 422.1C171.5 423.7 173.8 424.4 175.1 423.1C176.4 422.1 176.1 419.8 174.4 417.9C172.8 416.3 170.5 415.6 169.2 416.9zM158.4 408.8C157.7 410.1 158.7 411.7 160.7 412.7C162.3 413.7 164.3 413.4 165 412C165.7 410.7 164.7 409.1 162.7 408.1C160.7 407.5 159.1 407.8 158.4 408.8zM190.8 444.4C189.2 445.7 189.8 448.7 192.1 450.6C194.4 452.9 197.3 453.2 198.6 451.6C199.9 450.3 199.3 447.3 197.3 445.4C195.1 443.1 192.1 442.8 190.8 444.4zM179.4 429.7C177.8 430.7 177.8 433.3 179.4 435.6C181 437.9 183.7 438.9 185 437.9C186.6 436.6 186.6 434 185 431.7C183.6 429.4 181 428.4 179.4 429.7z"/></svg></div>
+        <span class="site-footer__social-label">GitHub</span>
+      </a>
+      <a class="site-footer__social-link" href="https://www.linkedin.com/in/jo%C3%A3o-pargana-9757b91b2/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><path fill="currentColor" d="M512 96L127.9 96C110.3 96 96 110.5 96 128.3L96 511.7C96 529.5 110.3 544 127.9 544L512 544C529.6 544 544 529.5 544 511.7L544 128.3C544 110.5 529.6 96 512 96zM231.4 480L165 480L165 266.2L231.5 266.2L231.5 480L231.4 480zM198.2 160C219.5 160 236.7 177.2 236.7 198.5C236.7 219.8 219.5 237 198.2 237C176.9 237 159.7 219.8 159.7 198.5C159.7 177.2 176.9 160 198.2 160zM480.3 480L413.9 480L413.9 376C413.9 351.2 413.4 319.3 379.4 319.3C344.8 319.3 339.5 346.3 339.5 374.2L339.5 480L273.1 480L273.1 266.2L336.8 266.2L336.8 295.4L337.7 295.4C346.6 278.6 368.3 260.9 400.6 260.9C467.8 260.9 480.3 305.2 480.3 362.8L480.3 480z"/></svg></div>
+        <span class="site-footer__social-label">LinkedIn</span>
+      </a>
+      <a class="site-footer__social-link" href="mailto:jmpargana@gmail.com" aria-label="Email">
+        <div class="icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="-16 -16 96 96">
+    <g transform="scale(1, 1.25) translate(0, -6)">
+      <path fill="currentColor" d="M32,34.934L63.617,10.34C62.984,8.965,61.613,8,60,8H4c-1.613,0-2.984,0.965-3.617,2.34L32,34.934z"/>
+      <path fill="currentColor" d="M34.457,43.156C33.734,43.719,32.867,44,32,44s-1.734-0.281-2.457-0.844L0,20.18V52c0,2.211,1.789,4,4,4h56c2.211,0,4-1.789,4-4V20.18L34.457,43.156z"/>
+    </g>
+  </svg></div>
+        <span class="site-footer__social-label">Email</span>
+      </a>
+    </div>
+  </div>
+</footer>
+
+  </footer>
+  
+</body>
+</html>

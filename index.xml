@@ -10,9 +10,23 @@
 		
 		
 		
-			<lastBuildDate>Thu, 13 Aug 2026 09:11:22 +0100</lastBuildDate>
+			<lastBuildDate>Fri, 14 Aug 2026 07:33:38 +0100</lastBuildDate>
 		
 			<atom:link href="https://jmpargana.com/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Kafka Protocol</title>
+				<link>https://jmpargana.com/posts/kafka_protocol/</link>
+				<pubDate>Fri, 14 Aug 2026 07:33:38 +0100</pubDate>
+				<guid>https://jmpargana.com/posts/kafka_protocol/</guid>
+				<description>&lt;p&gt;This post is part of my Kafka series. If you&amp;rsquo;re following along, make sure to check the other posts.&lt;/p&gt;&#xA;&lt;h2 id=&#34;network-layer&#34;&gt;Network Layer&lt;/h2&gt;&#xA;&lt;p&gt;Surprisingly, Kafka&amp;rsquo;s network layer is its simplest aspect. It&amp;rsquo;s designed like an RPC. A message, or in Kafka&amp;rsquo;s terms, a &lt;em&gt;Frame&lt;/em&gt;, is just like a network envelope: header + payload.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://jmpargana.com/images/kafka/protocol.png&#34; alt=&#34;original&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;The header carries standard metadata fields found in most protocols. The most relevant is &lt;code&gt;api_key&lt;/code&gt; — despite its name, this is not an authentication key but the RPC verb that defines how the payload is decoded.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Kafka Actor Model</title>
+				<link>https://jmpargana.com/posts/actor_model/</link>
+				<pubDate>Thu, 13 Aug 2026 10:30:03 +0100</pubDate>
+				<guid>https://jmpargana.com/posts/actor_model/</guid>
+				<description>&lt;p&gt;Working with lower-level languages comes with the assumption that you are dealing with high load. When I say high load, I mean something in the order of thousands of operations a second. If the operations are not simply computations (CPU bound), but reads and writes (I/O), you quickly reach a point where you should introduce concurrency.&lt;/p&gt;&#xA;&lt;p&gt;Concurrency, alongside naming, is considered one of the hardest problems in software design. The problem is the same as you have with synchronization in distributed systems. The spectrum runs from accurate-and-slow to fast-but-inconsistent: synchronize and wait, or proceed async and accept eventual consistency. Picking the right model requires a deep understanding of both the problem and the available solutions.&lt;/p&gt;</description>
+			</item>
 			<item>
 				<title>Kafka Storage</title>
 				<link>https://jmpargana.com/posts/kafka_storage/</link>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
-		<title>Rust on jmpargana</title>
-		<link>https://jmpargana.com/tags/rust/</link>
-		<description>Recent content in Rust on jmpargana</description>
+		<title>Network on jmpargana</title>
+		<link>https://jmpargana.com/tags/network/</link>
+		<description>Recent content in Network on jmpargana</description>
 		<generator>Hugo</generator>
 		<language>en-us</language>
 		
@@ -12,20 +12,13 @@
 		
 			<lastBuildDate>Fri, 14 Aug 2026 07:33:38 +0100</lastBuildDate>
 		
-			<atom:link href="https://jmpargana.com/tags/rust/index.xml" rel="self" type="application/rss+xml" />
+			<atom:link href="https://jmpargana.com/tags/network/index.xml" rel="self" type="application/rss+xml" />
 			<item>
 				<title>Kafka Protocol</title>
 				<link>https://jmpargana.com/posts/kafka_protocol/</link>
 				<pubDate>Fri, 14 Aug 2026 07:33:38 +0100</pubDate>
 				<guid>https://jmpargana.com/posts/kafka_protocol/</guid>
 				<description>&lt;p&gt;This post is part of my Kafka series. If you&amp;rsquo;re following along, make sure to check the other posts.&lt;/p&gt;&#xA;&lt;h2 id=&#34;network-layer&#34;&gt;Network Layer&lt;/h2&gt;&#xA;&lt;p&gt;Surprisingly, Kafka&amp;rsquo;s network layer is its simplest aspect. It&amp;rsquo;s designed like an RPC. A message, or in Kafka&amp;rsquo;s terms, a &lt;em&gt;Frame&lt;/em&gt;, is just like a network envelope: header + payload.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;https://jmpargana.com/images/kafka/protocol.png&#34; alt=&#34;original&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;The header carries standard metadata fields found in most protocols. The most relevant is &lt;code&gt;api_key&lt;/code&gt; — despite its name, this is not an authentication key but the RPC verb that defines how the payload is decoded.&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>Kafka Storage</title>
-				<link>https://jmpargana.com/posts/kafka_storage/</link>
-				<pubDate>Thu, 13 Aug 2026 09:11:22 +0100</pubDate>
-				<guid>https://jmpargana.com/posts/kafka_storage/</guid>
-				<description>&lt;p&gt;Welcome to the first post on my &lt;em&gt;Kafka Series&lt;/em&gt;. Here I&amp;rsquo;ll go over my learnings from writing Kafka from scratch in Rust. Something to keep in mind while reading through this articles. I&amp;rsquo;m by no means a Kafka or Rust expert. The whole point of this project was to improve my knowledge in both these areas. I&amp;rsquo;ve come a long way, but still have a long way to go. If you notice anything wrong or that you believe would significantly improve my code or the project, I&amp;rsquo;d love to hear from you either by mail or by opening an issue in this repo.&lt;/p&gt;</description>
 			</item>
 	</channel>
 </rss>
